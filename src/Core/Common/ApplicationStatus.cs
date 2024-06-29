@@ -1,4 +1,4 @@
-namespace Numploy;
+namespace Numployable;
 
 public enum ApplicationStatus
 {

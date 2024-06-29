@@ -6,7 +6,7 @@ using Numployable.Domain;
 
 public interface IJobApplicationRepository : IGenericRepository<JobApplication>
 {
-    Task<JobApplication> GetJobApplicationWithDetails(int Id);
+    Task<JobApplication> GetJobApplicationWithDetails(int id);
 
     Task<List<JobApplication>> GetJobApplicationsWithDetails();
 

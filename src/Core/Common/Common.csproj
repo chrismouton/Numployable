@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AssemblyName>Numployable.Common</AssemblyName>
-    <RootNamespace>Numploy</RootNamespace>
+    <RootNamespace>Numployable</RootNamespace>
   </PropertyGroup>
 
 </Project>
