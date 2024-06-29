@@ -1,4 +1,4 @@
-namespace Numploy.Application.DTOs.NextActions;
+namespace Numployable.Application.DTOs.NextActions;
 
 public class NextActionDto : CreateNextActionDto
 {

@@ -1,10 +1,10 @@
-namespace Numploy.Application.DTOs.JobApplications;
+namespace Numployable.Application.DTOs.JobApplications;
 
-using Numploy.Application.DTOs.Common;
+using Numployable.Application.DTOs.Common;
 
 public class RejectedJobApplicationDto : BaseDto
 {
-    public ApplicationStatus ApplicationStatus { get; set; } = Numploy.ApplicationStatus.Closed;
+    public ApplicationStatus ApplicationStatus { get; set; } = Numployable.ApplicationStatus.Closed;
 
-    public ApplicationProcessStatus ApplicationProcessStatus { get; set; } = Numploy.ApplicationProcessStatus.Rejected;
+    public ApplicationProcessStatus ApplicationProcessStatus { get; set; } = Numployable.ApplicationProcessStatus.Rejected;
 }

@@ -1,6 +1,6 @@
-namespace Numploy.Application.Persistence.Contracts;
+namespace Numployable.Application.Persistence.Contracts;
 
-using Numploy.Domain;
+using Numployable.Domain;
 
 public interface INextActionRepository : IGenericRepository<NextAction>
 {

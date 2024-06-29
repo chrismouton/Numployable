@@ -1,8 +1,8 @@
-namespace Numploy.Application.DTOs.JobApplications.Validators;
+namespace Numployable.Application.DTOs.JobApplications.Validators;
 
 using FluentValidation;
-using Numploy.Application.DTOs.Common;
-using Numploy.Application.Persistence.Contracts;
+using Numployable.Application.DTOs.Common;
+using Numployable.Application.Persistence.Contracts;
 
 public abstract class BaseJobApplicationDtoValidator<T> : AbstractValidator<T>
     where T : BaseDto

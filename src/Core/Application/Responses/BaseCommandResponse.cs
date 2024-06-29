@@ -1,4 +1,4 @@
-namespace Numploy.Application.Responses;
+namespace Numployable.Application.Responses;
 
 public class BaseCommandResponse
 {

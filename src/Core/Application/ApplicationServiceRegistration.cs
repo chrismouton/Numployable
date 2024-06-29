@@ -1,10 +1,10 @@
-namespace Numploy.Application;
+namespace Numployable.Application;
 
 using System.Reflection;
 
 using Microsoft.Extensions.DependencyInjection;
 
-using Numploy.Application.Profiles;
+using Numployable.Application.Profiles;
 
 public static class ApplicationServiceRegistration
 {

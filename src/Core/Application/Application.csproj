@@ -15,8 +15,8 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <AssemblyName>Numploy.Application</AssemblyName>
-    <RootNamespace>Numploy.Application</RootNamespace>
+    <AssemblyName>Numployable.Application</AssemblyName>
+    <RootNamespace>Numployable.Application</RootNamespace>
   </PropertyGroup>
 
 </Project>

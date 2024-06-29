@@ -1,6 +1,6 @@
-namespace Numploy.Application.DTOs.JobApplications;
+namespace Numployable.Application.DTOs.JobApplications;
 
-using Numploy.Application.DTOs.Common;
+using Numployable.Application.DTOs.Common;
 
 public class JobApplicationListDto : BaseDto
 {

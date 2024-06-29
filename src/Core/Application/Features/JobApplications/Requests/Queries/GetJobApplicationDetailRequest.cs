@@ -1,7 +1,7 @@
-namespace Numploy.Application.Features.JobApplications.Requests.Queries;
+namespace Numployable.Application.Features.JobApplications.Requests.Queries;
 
 using MediatR;
-using Numploy.Application.DTOs.JobApplications;
+using Numployable.Application.DTOs.JobApplications;
 
 public class GetJobApplicationDetailRequest : IRequest<JobApplicationDto>
 {

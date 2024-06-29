@@ -1,4 +1,4 @@
-namespace Numploy.Application.Features.JobApplications.Handlers.Queries;
+namespace Numployable.Application.Features.JobApplications.Handlers.Queries;
 
 using System.Threading;
 using System.Threading.Tasks;
@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 
-using Numploy.Application.DTOs.JobApplications;
-using Numploy.Application.Features.JobApplications.Requests.Queries;
-using Numploy.Application.Persistence.Contracts;
-using Numploy.Domain;
+using Numployable.Application.DTOs.JobApplications;
+using Numployable.Application.Features.JobApplications.Requests.Queries;
+using Numployable.Application.Persistence.Contracts;
+using Numployable.Domain;
 
 public class GetJobApplicationListRequestHandler(IJobApplicationRepository jobApplicationRepository, IMapper mapper) 
     : IRequestHandler<GetJobApplicationListRequest, List<JobApplicationListDto>>

@@ -1,4 +1,4 @@
-namespace Numploy.Application.Exceptions;
+namespace Numployable.Application.Exceptions;
 
 public class BadRequestException(string message) 
     : ApplicationException(message)

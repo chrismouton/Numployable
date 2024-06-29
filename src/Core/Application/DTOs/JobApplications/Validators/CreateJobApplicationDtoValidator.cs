@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace Numploy.Application.DTOs.JobApplications.Validators;
+namespace Numployable.Application.DTOs.JobApplications.Validators;
 
 public class CreateJobApplicationDtoValidator : AbstractValidator<CreateJobApplicationDto>
 {

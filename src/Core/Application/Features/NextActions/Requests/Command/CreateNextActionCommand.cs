@@ -1,9 +1,9 @@
-namespace Numploy.Application.Features.NextActions.Requests.Commands;
+namespace Numployable.Application.Features.NextActions.Requests.Commands;
 
 using MediatR;
 
-using Numploy.Application.DTOs.NextActions;
-using Numploy.Application.Responses;
+using Numployable.Application.DTOs.NextActions;
+using Numployable.Application.Responses;
 
 public class CreateNextActionCommand : IRequest<BaseCommandResponse>
 {

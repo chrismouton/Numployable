@@ -1,4 +1,4 @@
-namespace Numploy.Application.Exceptions;
+namespace Numployable.Application.Exceptions;
 
 using System.Linq;
 

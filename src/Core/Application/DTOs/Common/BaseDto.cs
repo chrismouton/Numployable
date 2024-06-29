@@ -1,4 +1,4 @@
-namespace Numploy.Application.DTOs.Common;
+namespace Numployable.Application.DTOs.Common;
 
 public abstract class BaseDto
 {

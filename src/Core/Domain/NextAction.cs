@@ -1,4 +1,4 @@
-namespace Numploy.Domain;
+namespace Numployable.Domain;
 
 public class NextAction : BaseDomainEntity
 {

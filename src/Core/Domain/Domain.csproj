@@ -8,8 +8,8 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <AssemblyName>Numploy.Domain</AssemblyName>
-    <RootNamespace>Numploy.Domain</RootNamespace>
+    <AssemblyName>Numployable.Domain</AssemblyName>
+    <RootNamespace>Numployable.Domain</RootNamespace>
   </PropertyGroup>
 
 </Project>

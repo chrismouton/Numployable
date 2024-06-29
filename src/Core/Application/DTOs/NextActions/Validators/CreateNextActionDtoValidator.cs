@@ -1,4 +1,4 @@
-namespace Numploy.Application.DTOs.NextActions.Validators;
+namespace Numployable.Application.DTOs.NextActions.Validators;
 
 using FluentValidation;
 

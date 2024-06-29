@@ -1,9 +1,9 @@
-namespace Numploy.Application.Features.JobApplications.Requests.Commands;
+namespace Numployable.Application.Features.JobApplications.Requests.Commands;
 
 using MediatR;
 
-using Numploy.Application.DTOs.JobApplications;
-using Numploy.Application.Responses;
+using Numployable.Application.DTOs.JobApplications;
+using Numployable.Application.Responses;
 
 public class UpdateJobApplicationCommand : IRequest<BaseCommandResponse>
 {

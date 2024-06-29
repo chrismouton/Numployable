@@ -1,7 +1,7 @@
-namespace Numploy.Application.DTOs.NextActions.Validators;
+namespace Numployable.Application.DTOs.NextActions.Validators;
 
 using FluentValidation;
-using Numploy.Application.Persistence.Contracts;
+using Numployable.Application.Persistence.Contracts;
 
 public class UpdateNextActionsDtoValidator : AbstractValidator<CreateNextActionDto>
 {
