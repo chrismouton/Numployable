@@ -7,5 +7,7 @@ using Numployable.Application.Responses;
 
 public class UpdateNextActionCommand : IRequest<BaseCommandResponse>
 {
+    public int Id { get; set; }
+
     public UpdateNextActionDto? UpdateNextActionDto { get; set; }
 }

@@ -36,9 +36,9 @@ public class UpdateNextActionCommandHandler(INextActionRepository nextActionRepo
         }
         else
         {
-            var nextAction = await _nextActionRepository.Get(request.UpdateNextActionDto.Id);
+            var nextAction = await _nextActionRepository.Get(request.Id);
             if (nextAction == null)
-                throw new NotFoundException(nameof(nextAction), request.UpdateNextActionDto.Id);
+                throw new NotFoundException(nameof(nextAction), request.Id);
 
             _mapper.Map(request.UpdateNextActionDto, nextAction);
 

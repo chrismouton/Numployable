@@ -21,13 +21,13 @@ public class CreateJobApplicationCommandHandler(IJobApplicationRepository jobApp
 
     public async Task<BaseCommandResponse> Handle(CreateJobApplicationCommand request, CancellationToken cancellationToken)
     {
-        if (request.JobApplicationDto == null)
-            throw new ArgumentNullException(nameof(request.JobApplicationDto));
+        if (request.CreateJobApplicationDto == null)
+            throw new ArgumentNullException(nameof(request.CreateJobApplicationDto));
 
         BaseCommandResponse response = new();
 
         var validator = new CreateJobApplicationDtoValidator();
-        var validationResult = await validator.ValidateAsync(request.JobApplicationDto, cancellationToken);
+        var validationResult = await validator.ValidateAsync(request.CreateJobApplicationDto, cancellationToken);
         if (!validationResult.IsValid)
         {
             response.Success = false;
@@ -36,7 +36,7 @@ public class CreateJobApplicationCommandHandler(IJobApplicationRepository jobApp
         }
         else
         {
-            JobApplication jobApplication = _mapper.Map<JobApplication>(request.JobApplicationDto);
+            JobApplication jobApplication = _mapper.Map<JobApplication>(request.CreateJobApplicationDto);
             jobApplication = await _jobApplicationRepository.Add(jobApplication);
 
             response.Success = true;

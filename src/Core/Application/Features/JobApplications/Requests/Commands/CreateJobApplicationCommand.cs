@@ -7,5 +7,5 @@ using Numployable.Application.Responses;
 
 public class CreateJobApplicationCommand : IRequest<BaseCommandResponse>
 {
-    public JobApplicationDto? JobApplicationDto { get; set; }
+    public CreateJobApplicationDto? CreateJobApplicationDto { get; set; }
 }
