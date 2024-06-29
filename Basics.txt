@@ -1,0 +1,18 @@
+https://www.youtube.com/watch?v=gGa7SLk1-0Q&t=1868s
+
+https://github.com/trevoirwilliams/HR.LeaveManagement.CleanArchitecture-dotnet5
+
+dotnet sln add ./Server.Common/Server.Common.csproj
+dotnet new classlib --name Server.Common
+dotnet add ./Server/Server.csproj reference ./Server.Common/Server.Common.csproj
+dotnet add package AutoMapper
+
+dotnet run --project ./Server/Server.csproj
+
+
+Actions
+* Close application (rejected)
+* Expire application
+* Update process status
+* Set Interview...
+* Update details...
