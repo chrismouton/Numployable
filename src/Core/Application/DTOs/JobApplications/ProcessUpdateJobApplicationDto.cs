@@ -4,5 +4,5 @@ using Numployable.Application.DTOs.Common;
 
 public class ProcessUpdateJobApplicationDto : BaseDto
 {
-    public ApplicationProcessStatus? ApplicationProcessStatus { get; set; }
+    public ProcessStatus? ApplicationProcessStatus { get; set; }
 }

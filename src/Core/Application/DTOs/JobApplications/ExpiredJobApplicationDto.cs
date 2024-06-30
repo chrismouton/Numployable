@@ -4,5 +4,5 @@ using Numployable.Application.DTOs.Common;
 
 public class ExpiredJobApplicationDto : BaseDto
 {
-    public ApplicationStatus ApplicationStatus { get; set; } = ApplicationStatus.Expired;
+    public Status ApplicationStatus { get; set; } = Status.Expired;
 }

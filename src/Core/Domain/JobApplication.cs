@@ -10,11 +10,13 @@ public class JobApplication : BaseDomainEntity
 
     public RoleType RoleType { get; set; }
 
-    public ApplicationStatus ApplicationStatus { get; set; } = ApplicationStatus.Active;
+    public Status Status { get; set; } = Status.Active;
 
-    public ApplicationProcessStatus ApplicationProcessStatus { get; set; }
+    public ProcessStatus ProcessStatus { get; set; }
 
-    public ApplicationSource ApplicationSource { get; set; } = ApplicationSource.JobBoard;
+    public Source Source { get; set; } = Source.JobBoard;
+
+    public string? Url { get; set; }
 
     public string? AdvertisedSalary { get; set; }
 

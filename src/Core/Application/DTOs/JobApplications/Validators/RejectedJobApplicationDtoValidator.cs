@@ -9,7 +9,7 @@ public class RejectedJobApplicationDtoValidator : BaseJobApplicationDtoValidator
     public RejectedJobApplicationDtoValidator(IJobApplicationRepository repository)
         : base(repository)
     {
-        RuleFor(p => p.ApplicationStatus).Equal(ApplicationStatus.Closed);
-        RuleFor(p => p.ApplicationProcessStatus).Equal(ApplicationProcessStatus.Rejected);
+        RuleFor(p => p.ApplicationStatus).Equal(Status.Closed);
+        RuleFor(p => p.ApplicationProcessStatus).Equal(ProcessStatus.Rejected);
     }
 }

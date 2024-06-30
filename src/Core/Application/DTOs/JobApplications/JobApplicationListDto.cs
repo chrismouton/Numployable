@@ -12,7 +12,7 @@ public class JobApplicationListDto : BaseDto
 
     public DateTime? ApplicationDate { get; set; }
 
-    public ApplicationStatus? ApplicationStatus { get; set; }
+    public Status? ApplicationStatus { get; set; }
 
-    public ApplicationProcessStatus? ApplicationProcessStatus { get; set; }
+    public ProcessStatus? ApplicationProcessStatus { get; set; }
 }

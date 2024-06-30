@@ -2,7 +2,7 @@ namespace Numployable.Application.DTOs.JobApplications;
 
 public class CreateJobApplicationDto : JobApplicationListDto
 {
-    public ApplicationSource? ApplicationSource { get; set; }
+    public Source? ApplicationSource { get; set; }
 
     public string? AdvertisedSalary { get; set; }
 

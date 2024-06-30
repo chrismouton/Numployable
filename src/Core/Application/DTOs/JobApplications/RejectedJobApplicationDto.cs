@@ -4,7 +4,7 @@ using Numployable.Application.DTOs.Common;
 
 public class RejectedJobApplicationDto : BaseDto
 {
-    public ApplicationStatus ApplicationStatus { get; set; } = Numployable.ApplicationStatus.Closed;
+    public Status ApplicationStatus { get; set; } = Numployable.Status.Closed;
 
-    public ApplicationProcessStatus ApplicationProcessStatus { get; set; } = Numployable.ApplicationProcessStatus.Rejected;
+    public ProcessStatus ApplicationProcessStatus { get; set; } = Numployable.ProcessStatus.Rejected;
 }

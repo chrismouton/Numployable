@@ -1,8 +1,13 @@
 namespace Numployable;
 
+using System.ComponentModel;
+
 public enum NextActionType
 {
-    SuggestTimeslots,
-    InitialCall,
-    Interview
+    [Description("Suggest time slots")]
+    SuggestTimeslots = 1,
+    [Description("Initial call")]
+    InitialCall = 2,
+    [Description("Interview")]
+    Interview = 3
 }

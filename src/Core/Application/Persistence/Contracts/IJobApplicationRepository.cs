@@ -10,9 +10,9 @@ public interface IJobApplicationRepository : IGenericRepository<JobApplication>
 
     Task<List<JobApplication>> GetJobApplicationsWithDetails();
 
-    Task ExpireJobApplication(JobApplication application, ApplicationStatus status);
+    Task ExpireJobApplication(JobApplication application, Status status);
 
-    Task ProcessUpdateJobApplication(JobApplication application, ApplicationProcessStatus processStatus);
+    Task ProcessUpdateJobApplication(JobApplication application, ProcessStatus processStatus);
 
-    Task RejectedJobApplication(JobApplication application, ApplicationStatus status, ApplicationProcessStatus processStatus);
+    Task RejectedJobApplication(JobApplication application, Status status, ProcessStatus processStatus);
 }

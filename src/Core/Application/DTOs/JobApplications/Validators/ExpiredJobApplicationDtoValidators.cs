@@ -8,6 +8,6 @@ public class ExpiredJobApplicationDtoValidator : BaseJobApplicationDtoValidator<
     public ExpiredJobApplicationDtoValidator(IJobApplicationRepository repository)
         : base(repository)
     {
-        RuleFor(p => p.ApplicationStatus).Equal(ApplicationStatus.Expired);
+        RuleFor(p => p.ApplicationStatus).Equal(Status.Expired);
     }
 }
