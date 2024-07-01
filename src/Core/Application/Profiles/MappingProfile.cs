@@ -15,9 +15,6 @@ public class MappingProfile : Profile
         CreateMap<JobApplication, JobApplicationDto>().ReverseMap();
         CreateMap<JobApplication, JobApplicationListDto>().ReverseMap();
         CreateMap<JobApplication, CreateJobApplicationDto>().ReverseMap();
-        CreateMap<JobApplication, ExpiredJobApplicationDto>().ReverseMap();
-        CreateMap<JobApplication, ProcessUpdateJobApplicationDto>().ReverseMap();
-        CreateMap<JobApplication, RejectedJobApplicationDto>().ReverseMap();
         CreateMap<JobApplication, UpdateJobApplicationDto>().ReverseMap();
         
         #endregion

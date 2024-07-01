@@ -49,27 +49,31 @@ public class JobApplicationController(IMediator mediator) : ControllerBase
     }
 
     [HttpPut("expire/{id}")]
-    public async Task<ActionResult> ExpireJobApplication(int id, [FromBody] ExpiredJobApplicationDto jobApplicationDto)
+    public async Task<ActionResult> ExpireJobApplication(int id)
     {
-        var command = new UpdateJobApplicationCommand { Id = id, ExpiredJobApplicationDto = jobApplicationDto };
+        var command = new ExpireJobApplicationCommand { Id = id };
         await _mediator.Send(command);
 
         return NoContent();
     }
 
-    [HttpPut("processupdate/{id}")]
-    public async Task<ActionResult> ProcessUpdateJobApplication(int id, [FromBody] ProcessUpdateJobApplicationDto jobApplicationDto)
+    [HttpPut("processupdate/{id}/{processStatus}")]
+    public async Task<ActionResult> ProcessUpdateJobApplication(int id, ProcessStatus processStatus)
     {
-        var command = new UpdateJobApplicationCommand { Id = id, ProcessUpdateJobApplicationDto = jobApplicationDto};
+        var command = new ProcessUpdateJobApplicationCommand { 
+            Id = id, 
+            ProcessStatus = processStatus
+        };
+        
         await _mediator.Send(command);
 
         return NoContent();
     }
 
     [HttpPut("reject/{id}")]
-    public async Task<ActionResult> RejectJobApplication(int id, [FromBody] RejectedJobApplicationDto jobApplicationDto)
+    public async Task<ActionResult> RejectJobApplication(int id)
     {
-        var command = new UpdateJobApplicationCommand { Id = id, RejectedJobApplicationDto = jobApplicationDto };
+        var command = new RejectJobApplicationCommand { Id = id };
         await _mediator.Send(command);
 
         return NoContent();

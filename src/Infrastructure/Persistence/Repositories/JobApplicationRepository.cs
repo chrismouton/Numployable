@@ -2,6 +2,7 @@ namespace Numployable.Persistence.Repositories;
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
+
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,7 +28,7 @@ public class JobApplicationRepository(NumployableDbContext dbContext, IMapper ma
     public async Task<bool> Exists(int id)
     {
         Domain.JobApplication entity = await Get(id);
-        return (entity != null);
+        return entity != null;
     }
 
     public async Task<Domain.JobApplication> Get(int id)
@@ -55,15 +56,6 @@ public class JobApplicationRepository(NumployableDbContext dbContext, IMapper ma
     }
 
 
-    public async Task ExpireJobApplication(Domain.JobApplication application, Status status)
-    {
-        Model.JobApplication entity = await _dbContext.Set<Model.JobApplication>().FindAsync(application.Id);
-        entity.StatusId = status;
-        _dbContext.Entry(entity).State = EntityState.Modified;
-
-        await _dbContext.SaveChangesAsync();
-    }
-
     public async Task<List<Domain.JobApplication>> GetJobApplicationsWithDetails()
     {
         var entities = await _dbContext.JobApplication
@@ -83,24 +75,5 @@ public class JobApplicationRepository(NumployableDbContext dbContext, IMapper ma
             .FirstOrDefaultAsync(q => q.Id == id);
 
         return _mapper.Map<Domain.JobApplication>(entity);
-    }
-
-    public async Task ProcessUpdateJobApplication(Domain.JobApplication application, ProcessStatus processStatus)
-    {
-        Model.JobApplication entity = await _dbContext.Set<Model.JobApplication>().FindAsync(application.Id);
-        entity.ProcessStatusId = processStatus;
-        _dbContext.Entry(entity).State = EntityState.Modified;
-
-        await _dbContext.SaveChangesAsync();
-    }
-
-    public async Task RejectedJobApplication(Domain.JobApplication application, Status status, ProcessStatus processStatus)
-    {
-        Model.JobApplication entity = await _dbContext.Set<Model.JobApplication>().FindAsync(application.Id);
-        entity.StatusId = status;
-        entity.ProcessStatusId = processStatus;
-        _dbContext.Entry(entity).State = EntityState.Modified;
-
-        await _dbContext.SaveChangesAsync();
     }
 }

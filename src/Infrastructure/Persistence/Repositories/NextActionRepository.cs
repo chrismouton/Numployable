@@ -1,7 +1,12 @@
 namespace Numployable.Persistence.Repositories;
 
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+
+using Numployable;
 using Numployable.Application.Persistence.Contracts;
 
 public class NextActionRepository(NumployableDbContext dbContext, IMapper mapper)
@@ -23,7 +28,7 @@ public class NextActionRepository(NumployableDbContext dbContext, IMapper mapper
     public async Task<bool> Exists(int id)
     {
         Domain.NextAction entity = await Get(id);
-        return (entity != null);
+        return entity != null;
     }
 
     public async Task<Domain.NextAction> Get(int id)
@@ -49,5 +54,4 @@ public class NextActionRepository(NumployableDbContext dbContext, IMapper mapper
         _dbContext.Entry(entity).State = EntityState.Modified;
         await _dbContext.SaveChangesAsync();
     }
-
 }

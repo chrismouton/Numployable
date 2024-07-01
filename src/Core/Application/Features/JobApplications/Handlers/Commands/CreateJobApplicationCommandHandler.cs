@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 using AutoMapper;
 using MediatR;
+
 using Numployable.Application.DTOs.JobApplications.Validators;
-using Numployable.Application.Exceptions;
 using Numployable.Application.Features.JobApplications.Requests.Commands;
 using Numployable.Application.Persistence.Contracts;
 using Numployable.Application.Responses;
