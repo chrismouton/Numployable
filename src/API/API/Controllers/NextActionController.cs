@@ -7,6 +7,7 @@ using MediatR;
 using Numployable.Application.DTOs.NextActions;
 using Numployable.Application.Features.NextActions.Requests.Queries;
 using Numployable.Application.Features.NextActions.Requests.Commands;
+using Numployable.Application.Responses;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -31,7 +32,7 @@ public class NextActionController(IMediator mediator) : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<int>> Post([FromBody] CreateNextActionDto application)
+    public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateNextActionDto application)
     {
         var command = new CreateNextActionCommand { CreateNextActionDto = application };
         var response = await _mediator.Send(command);

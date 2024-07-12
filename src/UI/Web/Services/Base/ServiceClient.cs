@@ -35,12 +35,12 @@ namespace Numployable.UI.Web.Services.Base
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<int> JobApplicationPOSTAsync(CreateJobApplicationDto body);
+        System.Threading.Tasks.Task<BaseCommandResponse> JobApplicationPOSTAsync(CreateJobApplicationDto body);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<int> JobApplicationPOSTAsync(CreateJobApplicationDto body, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<BaseCommandResponse> JobApplicationPOSTAsync(CreateJobApplicationDto body, System.Threading.CancellationToken cancellationToken);
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -98,12 +98,12 @@ namespace Numployable.UI.Web.Services.Base
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<int> NextActionPOSTAsync(CreateNextActionDto body);
+        System.Threading.Tasks.Task<BaseCommandResponse> NextActionPOSTAsync(CreateNextActionDto body);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<int> NextActionPOSTAsync(CreateNextActionDto body, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<BaseCommandResponse> NextActionPOSTAsync(CreateNextActionDto body, System.Threading.CancellationToken cancellationToken);
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
@@ -128,18 +128,13 @@ namespace Numployable.UI.Web.Services.Base
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.0.8.0 (NJsonSchema v11.0.1.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class Client : IClient
     {
-        #pragma warning disable 8618
-        private string _baseUrl;
-        #pragma warning restore 8618
-
         private System.Net.Http.HttpClient _httpClient;
         private static System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(CreateSerializerSettings, true);
 
     #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-        public Client(string baseUrl, System.Net.Http.HttpClient httpClient)
+        public Client(System.Net.Http.HttpClient httpClient)
     #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
-            BaseUrl = baseUrl;
             _httpClient = httpClient;
         }
 
@@ -148,17 +143,6 @@ namespace Numployable.UI.Web.Services.Base
             var settings = new Newtonsoft.Json.JsonSerializerSettings();
             UpdateJsonSerializerSettings(settings);
             return settings;
-        }
-
-        public string BaseUrl
-        {
-            get { return _baseUrl; }
-            set
-            {
-                _baseUrl = value;
-                if (!string.IsNullOrEmpty(_baseUrl) && !_baseUrl.EndsWith("/"))
-                    _baseUrl += '/';
-            }
         }
 
         protected Newtonsoft.Json.JsonSerializerSettings JsonSerializerSettings { get { return _settings.Value; } }
@@ -191,7 +175,7 @@ namespace Numployable.UI.Web.Services.Base
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
 
                     var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
+                
                     // Operation Path: "api/JobApplication"
                     urlBuilder_.Append("api/JobApplication");
 
@@ -249,7 +233,7 @@ namespace Numployable.UI.Web.Services.Base
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<int> JobApplicationPOSTAsync(CreateJobApplicationDto body)
+        public virtual System.Threading.Tasks.Task<BaseCommandResponse> JobApplicationPOSTAsync(CreateJobApplicationDto body)
         {
             return JobApplicationPOSTAsync(body, System.Threading.CancellationToken.None);
         }
@@ -257,7 +241,7 @@ namespace Numployable.UI.Web.Services.Base
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<int> JobApplicationPOSTAsync(CreateJobApplicationDto body, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<BaseCommandResponse> JobApplicationPOSTAsync(CreateJobApplicationDto body, System.Threading.CancellationToken cancellationToken)
         {
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -273,7 +257,7 @@ namespace Numployable.UI.Web.Services.Base
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
 
                     var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
+                
                     // Operation Path: "api/JobApplication"
                     urlBuilder_.Append("api/JobApplication");
 
@@ -302,7 +286,7 @@ namespace Numployable.UI.Web.Services.Base
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<int>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<BaseCommandResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -354,7 +338,7 @@ namespace Numployable.UI.Web.Services.Base
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
 
                     var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
+                
                     // Operation Path: "api/JobApplication/{id}"
                     urlBuilder_.Append("api/JobApplication/");
                     urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
@@ -439,7 +423,7 @@ namespace Numployable.UI.Web.Services.Base
                     request_.Method = new System.Net.Http.HttpMethod("PUT");
 
                     var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
+                
                     // Operation Path: "api/JobApplication/{id}"
                     urlBuilder_.Append("api/JobApplication/");
                     urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
@@ -516,7 +500,7 @@ namespace Numployable.UI.Web.Services.Base
                     request_.Method = new System.Net.Http.HttpMethod("PUT");
 
                     var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
+                
                     // Operation Path: "api/JobApplication/expire/{id}"
                     urlBuilder_.Append("api/JobApplication/expire/");
                     urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
@@ -596,7 +580,7 @@ namespace Numployable.UI.Web.Services.Base
                     request_.Method = new System.Net.Http.HttpMethod("PUT");
 
                     var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
+                
                     // Operation Path: "api/JobApplication/processupdate/{id}/{processStatus}"
                     urlBuilder_.Append("api/JobApplication/processupdate/");
                     urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
@@ -675,7 +659,7 @@ namespace Numployable.UI.Web.Services.Base
                     request_.Method = new System.Net.Http.HttpMethod("PUT");
 
                     var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
+                
                     // Operation Path: "api/JobApplication/reject/{id}"
                     urlBuilder_.Append("api/JobApplication/reject/");
                     urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
@@ -749,7 +733,7 @@ namespace Numployable.UI.Web.Services.Base
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
 
                     var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
+                
                     // Operation Path: "api/NextAction"
                     urlBuilder_.Append("api/NextAction");
 
@@ -807,7 +791,7 @@ namespace Numployable.UI.Web.Services.Base
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<int> NextActionPOSTAsync(CreateNextActionDto body)
+        public virtual System.Threading.Tasks.Task<BaseCommandResponse> NextActionPOSTAsync(CreateNextActionDto body)
         {
             return NextActionPOSTAsync(body, System.Threading.CancellationToken.None);
         }
@@ -815,7 +799,7 @@ namespace Numployable.UI.Web.Services.Base
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<int> NextActionPOSTAsync(CreateNextActionDto body, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<BaseCommandResponse> NextActionPOSTAsync(CreateNextActionDto body, System.Threading.CancellationToken cancellationToken)
         {
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -831,7 +815,7 @@ namespace Numployable.UI.Web.Services.Base
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
 
                     var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
+                
                     // Operation Path: "api/NextAction"
                     urlBuilder_.Append("api/NextAction");
 
@@ -860,7 +844,7 @@ namespace Numployable.UI.Web.Services.Base
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<int>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<BaseCommandResponse>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -912,7 +896,7 @@ namespace Numployable.UI.Web.Services.Base
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("text/plain"));
 
                     var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
+                
                     // Operation Path: "api/NextAction/{id}"
                     urlBuilder_.Append("api/NextAction/");
                     urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
@@ -997,7 +981,7 @@ namespace Numployable.UI.Web.Services.Base
                     request_.Method = new System.Net.Http.HttpMethod("PUT");
 
                     var urlBuilder_ = new System.Text.StringBuilder();
-                    if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
+                
                     // Operation Path: "api/NextAction/{id}"
                     urlBuilder_.Append("api/NextAction/");
                     urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
@@ -1159,6 +1143,23 @@ namespace Numployable.UI.Web.Services.Base
             var result = System.Convert.ToString(value, cultureInfo);
             return result == null ? "" : result;
         }
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.0.8.0 (NJsonSchema v11.0.1.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class BaseCommandResponse
+    {
+        [Newtonsoft.Json.JsonProperty("id", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int Id { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("success", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool Success { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("message", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Message { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("errors", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.ICollection<string> Errors { get; set; }
+
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.0.8.0 (NJsonSchema v11.0.1.0 (Newtonsoft.Json v13.0.0.0))")]

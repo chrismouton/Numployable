@@ -7,6 +7,7 @@ using MediatR;
 using Numployable.Application.DTOs.JobApplications;
 using Numployable.Application.Features.JobApplications.Requests.Queries;
 using Numployable.Application.Features.JobApplications.Requests.Commands;
+using Numployable.Application.Responses;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -31,7 +32,7 @@ public class JobApplicationController(IMediator mediator) : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<int>> Post([FromBody] CreateJobApplicationDto jobApplicationDto)
+    public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateJobApplicationDto jobApplicationDto)
     {
         var command = new CreateJobApplicationCommand { CreateJobApplicationDto = jobApplicationDto };
         var response = await _mediator.Send(command);
