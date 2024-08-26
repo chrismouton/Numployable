@@ -3,7 +3,7 @@ namespace Numployable.Application.Features.JobApplications.Requests.Commands;
 using MediatR;
 
 using Numployable.Application.DTOs.JobApplications;
-using Numployable.Application.Responses;
+using Responses;
 
 public class UpdateJobApplicationCommand : IRequest<BaseCommandResponse>
 {

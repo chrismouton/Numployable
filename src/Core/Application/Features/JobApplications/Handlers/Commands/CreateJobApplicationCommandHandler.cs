@@ -8,9 +8,9 @@ using MediatR;
 
 using Numployable.Application.DTOs.JobApplications.Validators;
 using Numployable.Application.Features.JobApplications.Requests.Commands;
-using Numployable.Application.Persistence.Contracts;
-using Numployable.Application.Responses;
-using Numployable.Domain;
+using Persistence.Contracts;
+using Responses;
+using Domain;
 
 public class CreateJobApplicationCommandHandler(IJobApplicationRepository jobApplicationRepository, IMapper mapper)
     : IRequestHandler<CreateJobApplicationCommand, BaseCommandResponse>

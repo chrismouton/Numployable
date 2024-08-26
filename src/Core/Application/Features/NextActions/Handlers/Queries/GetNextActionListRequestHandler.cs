@@ -8,8 +8,8 @@ using MediatR;
 
 using Numployable.Application.DTOs.NextActions;
 using Numployable.Application.Features.NextActions.Requests.Queries;
-using Numployable.Application.Persistence.Contracts;
-using Numployable.Domain;
+using Persistence.Contracts;
+using Domain;
 
 public class GetNextActionListRequestHandler(INextActionRepository NextActionRepository, IMapper mapper) 
     : IRequestHandler<GetNextActionListRequest, List<NextActionDto>>

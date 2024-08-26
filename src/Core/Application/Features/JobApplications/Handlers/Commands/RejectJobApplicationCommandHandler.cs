@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using MediatR;
 
 using Numployable.Application.Features.JobApplications.Requests.Commands;
-using Numployable.Application.Persistence.Contracts;
-using Numployable.Application.Responses;
+using Persistence.Contracts;
+using Responses;
 
 public class RejectJobApplicationCommandHandler(IJobApplicationRepository jobApplicationRepository)
     : IRequestHandler<RejectJobApplicationCommand, BaseCommandResponse>

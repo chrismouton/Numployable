@@ -7,11 +7,11 @@ using AutoMapper;
 using MediatR;
 
 using Numployable.Application.Features.JobApplications.Requests.Commands;
-using Numployable.Application.Persistence.Contracts;
+using Persistence.Contracts;
 using Numployable.Application.DTOs.JobApplications.Validators;
-using Numployable.Application.Exceptions;
-using Numployable.Application.Responses;
-using Numployable.Domain;
+using Exceptions;
+using Responses;
+using Domain;
 
 public class UpdateJobApplicationCommandHandler(IJobApplicationRepository jobApplicationRepository, IMapper mapper)
     : IRequestHandler<UpdateJobApplicationCommand, BaseCommandResponse>

@@ -1,6 +1,6 @@
 namespace Numployable.Application.DTOs.NextActions;
 
-using Numployable.Application.DTOs.Common;
+using Common;
 
 public class CreateNextActionDto : BaseDto
 {

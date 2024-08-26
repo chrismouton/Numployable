@@ -2,7 +2,7 @@ namespace Numployable.Application.Features.JobApplications.Requests.Commands;
 
 using MediatR;
 
-using Numployable.Application.Responses;
+using Responses;
 
 public class ProcessUpdateJobApplicationCommand : IRequest<BaseCommandResponse>
 {

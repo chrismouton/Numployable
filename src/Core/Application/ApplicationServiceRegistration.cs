@@ -4,7 +4,7 @@ using System.Reflection;
 
 using Microsoft.Extensions.DependencyInjection;
 
-using Numployable.Application.Profiles;
+using Profiles;
 
 public static class ApplicationServiceRegistration
 {

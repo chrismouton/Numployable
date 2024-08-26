@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using Numployable.Application.DTOs.NextActions.Validators;
-using Numployable.Application.Exceptions;
+using Exceptions;
 using Numployable.Application.Features.NextActions.Requests.Commands;
-using Numployable.Application.Persistence.Contracts;
-using Numployable.Application.Responses;
+using Persistence.Contracts;
+using Responses;
 
 public class UpdateNextActionCommandHandler(INextActionRepository nextActionRepository, IMapper mapper)
     : IRequestHandler<UpdateNextActionCommand, BaseCommandResponse>

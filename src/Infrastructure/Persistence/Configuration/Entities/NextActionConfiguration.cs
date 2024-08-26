@@ -3,7 +3,7 @@ namespace Numployable.Persistence.Configuration.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-using Numployable.Persistence.Model;
+using Model;
 
 public class NextActionConfiguration : IEntityTypeConfiguration<NextAction>
 {

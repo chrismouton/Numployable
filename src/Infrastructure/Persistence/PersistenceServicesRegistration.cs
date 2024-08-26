@@ -7,8 +7,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 using Numployable.Application.Persistence.Contracts;
-using Numployable.Persistence.Profiles;
-using Numployable.Persistence.Repositories;
+using Profiles;
+using Repositories;
 
 public static class PersistenceServicesRegistration
 {

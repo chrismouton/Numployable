@@ -1,6 +1,6 @@
 namespace Numployable.Application.DTOs.JobApplications;
 
-using Numployable.Application.DTOs.NextActions;
+using NextActions;
 
 public class JobApplicationDto : CreateJobApplicationDto
 {

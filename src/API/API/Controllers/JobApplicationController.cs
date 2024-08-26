@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 
 using MediatR;
 
-using Numployable.Application.DTOs.JobApplications;
-using Numployable.Application.Features.JobApplications.Requests.Queries;
-using Numployable.Application.Features.JobApplications.Requests.Commands;
-using Numployable.Application.Responses;
+using Application.DTOs.JobApplications;
+using Application.Features.JobApplications.Requests.Queries;
+using Application.Features.JobApplications.Requests.Commands;
+using Application.Responses;
 
 [Route("api/[controller]")]
 [ApiController]

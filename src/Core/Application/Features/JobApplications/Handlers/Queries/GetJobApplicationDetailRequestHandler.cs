@@ -8,7 +8,7 @@ using MediatR;
 
 using Numployable.Application.DTOs.JobApplications;
 using Numployable.Application.Features.JobApplications.Requests.Queries;
-using Numployable.Application.Persistence.Contracts;
+using Persistence.Contracts;
 
 public class GetJobApplicationDetailRequestHandler(IJobApplicationRepository jobApplicationRepository, IMapper mapper) 
     : IRequestHandler<GetJobApplicationDetailRequest, JobApplicationDto>

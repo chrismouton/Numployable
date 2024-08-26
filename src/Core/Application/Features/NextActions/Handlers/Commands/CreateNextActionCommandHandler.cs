@@ -9,9 +9,9 @@ using MediatR;
 
 using Numployable.Application.DTOs.NextActions.Validators;
 using Numployable.Application.Features.NextActions.Requests.Commands;
-using Numployable.Application.Persistence.Contracts;
-using Numployable.Application.Responses;
-using Numployable.Domain;
+using Persistence.Contracts;
+using Responses;
+using Domain;
 
 public class CreateNextActionCommandHandler(INextActionRepository nextActionRepository, IMapper mapper)
     : IRequestHandler<CreateNextActionCommand, BaseCommandResponse>

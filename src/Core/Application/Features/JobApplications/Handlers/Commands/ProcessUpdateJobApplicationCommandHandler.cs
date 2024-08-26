@@ -7,8 +7,8 @@ using AutoMapper;
 using MediatR;
 
 using Numployable.Application.Features.JobApplications.Requests.Commands;
-using Numployable.Application.Persistence.Contracts;
-using Numployable.Application.Responses;
+using Persistence.Contracts;
+using Responses;
 
 public class ProcessUpdateJobApplicationCommandHandler(IJobApplicationRepository jobApplicationRepository)
     : IRequestHandler<ProcessUpdateJobApplicationCommand, BaseCommandResponse>

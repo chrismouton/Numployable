@@ -1,4 +1,4 @@
-https://www.youtube.com/watch?v=gGa7SLk1-0Q&t=1868s
+https://www.youtube.com/watch?v=gGa7SLk1-0Q
 
 https://github.com/trevoirwilliams/HR.LeaveManagement.CleanArchitecture-dotnet5
 
@@ -10,9 +10,10 @@ dotnet add package AutoMapper
 dotnet run --project ./Server/Server.csproj
 
 
-Actions
-* Close application (rejected)
-* Expire application
-* Update process status
-* Set Interview...
-* Update details...
+nswag openapi2csclient /input:/home/chris/source/github/chrismouton/Numployable/swagger.json /namespace:Numployable.UI.Web.Services.Base /usebaseurl:false /generatebaseurlproperty:true /injecthttpclient:true /generateclientinterfaces:true /output:/home/chris/source/github/chrismouton/Numployable/src/UI/Web/Services/Base/ServiceClient.cs
+
+https://github.com/RicoSuter/NSwag/wiki/CommandLine
+https://github.com/RicoSuter/NSwag/blob/master/src/NSwag.Commands/Commands/CodeGeneration/OpenApiToCSharpClientCommand.cs
+
+
+dotnet aspnet-codegenerator razorpage -m Dashboard -dc Numployable.Persistence.NumployableDbContext -udl -outDir Views/Home --referenceScriptLibraries

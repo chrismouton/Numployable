@@ -2,9 +2,9 @@ namespace Numployable.API;
 
 using Microsoft.OpenApi.Models;
 
-using Numployable.API.Middleware;
-using Numployable.Application;
-using Numployable.Persistence;
+using Middleware;
+using Application;
+using Persistence;
 
 public class Startup(IConfiguration configuration)
 {

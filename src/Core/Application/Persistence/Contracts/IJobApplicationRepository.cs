@@ -3,7 +3,7 @@ namespace Numployable.Application.Persistence.Contracts;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-using Numployable.Domain;
+using Domain;
 
 public interface IJobApplicationRepository : IGenericRepository<JobApplication>
 {

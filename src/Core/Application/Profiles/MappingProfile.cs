@@ -2,9 +2,9 @@ namespace Numployable.Application.Profiles;
 
 using AutoMapper;
 
-using Numployable.Application.DTOs.JobApplications;
-using Numployable.Application.DTOs.NextActions;
-using Numployable.Domain;
+using DTOs.JobApplications;
+using DTOs.NextActions;
+using Domain;
 
 public class MappingProfile : Profile
 {

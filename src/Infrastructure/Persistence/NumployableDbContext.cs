@@ -1,6 +1,8 @@
 namespace Numployable.Persistence;
 
-using Numployable.Persistence.Model;
+using Microsoft.EntityFrameworkCore;
+
+using Model;
 
 public partial class NumployableDbContext : DbContext
 {

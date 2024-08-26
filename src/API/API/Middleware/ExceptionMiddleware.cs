@@ -4,7 +4,7 @@ using System.Net;
 
 using Newtonsoft.Json;
 
-using Numployable.Application.Exceptions;
+using Application.Exceptions;
 
 public class ExceptionMiddleware(RequestDelegate next)
 {

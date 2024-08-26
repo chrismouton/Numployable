@@ -3,8 +3,8 @@ namespace Numployable.Persistence.Configuration.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-using Numployable.Helpers;
-using Numployable.Persistence.Model;
+using Helpers;
+using Model;
 
 public class SourceConfiguration : IEntityTypeConfiguration<Source>
 {

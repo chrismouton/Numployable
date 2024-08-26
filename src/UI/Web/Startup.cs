@@ -2,9 +2,9 @@ namespace Numployable.UI.Web;
 
 using System.Reflection;
 
-using Numployable.UI.Web.Contracts;
-using Numployable.UI.Web.Services;
-using Numployable.UI.Web.Services.Base;
+using Contracts;
+using Services;
+using Services.Base;
 
 public class StartUp (IConfiguration configuration)
 {
@@ -12,7 +12,7 @@ public class StartUp (IConfiguration configuration)
 
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddHttpClient<IClient, Client>(cl => cl.BaseAddress = new Uri("http://localhost:5093"));
+        services.AddHttpClient<IClient, Client>(cl => cl.BaseAddress = new Uri("http://localhost:5055"));
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddScoped<INextActionService, NextActionService>();
 

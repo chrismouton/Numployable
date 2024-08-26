@@ -2,7 +2,7 @@ namespace Numployable.Persistence.Profiles;
 
 using AutoMapper;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Numployable.Helpers;
+using Helpers;
 
 public class MappingProfile : Profile
 {

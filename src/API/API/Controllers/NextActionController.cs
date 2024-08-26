@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 
 using MediatR;
 
-using Numployable.Application.DTOs.NextActions;
-using Numployable.Application.Features.NextActions.Requests.Queries;
-using Numployable.Application.Features.NextActions.Requests.Commands;
-using Numployable.Application.Responses;
+using Application.DTOs.NextActions;
+using Application.Features.NextActions.Requests.Queries;
+using Application.Features.NextActions.Requests.Commands;
+using Application.Responses;
 
 [Route("api/[controller]")]
 [ApiController]
