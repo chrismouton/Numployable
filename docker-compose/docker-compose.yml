@@ -1,0 +1,31 @@
+services:
+  numployable.database:
+    image: postgres:latest
+    container_name: numployable.database
+    environment:
+      - POSTGRES_DB=numployable
+      - POSTGRES_USER=numployable
+      - POSTGRES_PASSWORD=password1!
+    volumes:
+      - ./.containers/numployable-db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+  numployable.api:
+    image: ${DOCKER_REGISTRY-}numployable.api
+    container_name: numployable.api
+    build:
+      context: ../src
+      dockerfile: ../src/API/API/Dockerfile
+    ports:
+      - "5093:5093"
+
+  numployable.web:
+    image: ${DOCKER_REGISTRY-}numployable.web
+    container_name: numployable.web
+    build:
+      context: ../src
+      dockerfile: ../src/UI/Web/Dockerfile
+    ports:
+      - "5055:5055"
+

@@ -14,7 +14,7 @@ public static class PersistenceServicesRegistration
 {
     public static IServiceCollection ConfigurePersistenceServices(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<NumployableDbContext>(options => options.UseMySQL(configuration.GetConnectionString("NumployableDatabase")));
+        services.AddDbContext<NumployableDbContext>(options => options.UseNpgsql(configuration.GetConnectionString("NumployableDatabase")));
 
         services.AddScoped<IJobApplicationRepository, JobApplicationRepository>();
         services.AddScoped<INextActionRepository, NextActionRepository>();
