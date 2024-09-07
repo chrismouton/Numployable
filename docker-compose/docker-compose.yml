@@ -18,7 +18,7 @@ services:
       context: ../src
       dockerfile: ../src/API/API/Dockerfile
     ports:
-      - "5093:5093"
+      - "5093:8080"
 
   numployable.web:
     image: ${DOCKER_REGISTRY-}numployable.web
@@ -27,5 +27,5 @@ services:
       context: ../src
       dockerfile: ../src/UI/Web/Dockerfile
     ports:
-      - "5055:5055"
+      - "5055:8080"
 

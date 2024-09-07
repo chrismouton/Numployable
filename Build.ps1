@@ -88,16 +88,10 @@ foreach ($FileToBuild in $SolutionFiles)
         {
             $BuildSettings = Get-Content .\BuildSettings.json | ConvertFrom-Json -AsHashtable
 
-            #First remove the docker image
-            docker image rm $BuildSettings.dockerImageName
+            #First remove the conainer images
+            docker compose -f $BuildSettings.dockerComposeFile down
 
-            #Publish according to target configuration
-            dotnet publish $FileToBuild -c $TargetConfiguration -o ./out/publish /clp:verbosity=detailed /flp:Logfile=""$fileName""
-            if ($lastexitcode -eq 1) {
-                OutputErrorMessage
-            }
-
-            docker build -t $BuildSettings.dockerImageName .
+            docker compose -f $BuildSettings.dockerComposeFile up --build
             if ($lastexitcode -eq 1) {
                 OutputErrorMessage
             }

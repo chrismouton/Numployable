@@ -1,0 +1,3 @@
+{
+    "dockerComposeFile":"./docker-compose/docker-compose.yml"
+}
