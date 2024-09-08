@@ -1,16 +1,17 @@
+namespace Numployable.UI.Web.Services;
+
 using AutoMapper;
+
 using Numployable.UI.Web.Contracts;
 using Numployable.UI.Web.Models;
 using Numployable.UI.Web.Services.Base;
-
-namespace Numployable.UI.Web.Services;
 
 public class NextActionService(IMapper mapper, IClient httpClient, ILocalStorageService localStorage)
     : BaseHttpService(httpClient, localStorage), INextActionService
 {
     private readonly IMapper _mapper = mapper;
 
-    public async Task<Response<int>> CreateNextAction(NextActionViewModel nextAction)
+    public async Task<Response<int>> Create(CreateNextActionViewModel nextAction)
     {
         try
         {
@@ -35,19 +36,19 @@ public class NextActionService(IMapper mapper, IClient httpClient, ILocalStorage
         }
     }
 
-    public async Task<NextActionViewModel> GetNextActionDetails(int id)
+    public async Task<NextActionViewModel> Get(int id)
     {
         var nextActionDto = await _client.NextActionGETAsync(id);
         return _mapper.Map<NextActionViewModel>(nextActionDto);
     }
 
-    public async Task<List<NextActionViewModel>> GetNextActions()
+    public async Task<List<NextActionViewModel>> GetAll()
     {
         var nextActions = await _client.NextActionAllAsync();
         return _mapper.Map<List<NextActionViewModel>>(nextActions);
     }
 
-    public async Task<Response<int>> UpdateNextAction(int id, NextActionViewModel nextAction)
+    public async Task<Response<int>> Update(int id, NextActionViewModel nextAction)
     {
         try
         {

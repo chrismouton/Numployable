@@ -1,10 +1,15 @@
-using System.Diagnostics;
+namespace Numployable.UI.Web.Controllers;
+
 using Microsoft.AspNetCore.Mvc;
-using AspnetCoreMvcFull.Models;
+using Numployable.UI.Web.Contracts;
 
-namespace AspnetCoreMvcFull.Controllers;
-
-public class DashboardsController : Controller
+public class DashboardsController(IJobApplicationService jobApplicationService)
+    : Controller
 {
-  public IActionResult Index() => View();
+  public async Task<IActionResult> Index()
+  {
+    var model = await jobApplicationService.GetAll();
+
+    return View(model);
+  }
 }

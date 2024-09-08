@@ -18,7 +18,10 @@ public class ExceptionMiddleware(RequestDelegate next)
         }
         catch (Exception ex)
         {
-            await HandleExceptionAsync(httpContext, ex);
+            if (ex.InnerException != null)
+                await HandleExceptionAsync(httpContext, ex.InnerException);
+            else
+                await HandleExceptionAsync(httpContext, ex);
         }
     }
     
@@ -34,14 +37,14 @@ public class ExceptionMiddleware(RequestDelegate next)
 
         switch (exception)
         {
-            case BadRequestException badRequestException:
+            case BadRequestException:
                 statusCode = HttpStatusCode.BadRequest;
                 break;
             case ValidationException validationException:
                 statusCode = HttpStatusCode.BadRequest;
                 result = JsonConvert.SerializeObject(validationException.Errors);
                 break;
-            case NotFoundException notFoundException:
+            case NotFoundException:
                 statusCode = HttpStatusCode.NotFound;
                 break;
             default:

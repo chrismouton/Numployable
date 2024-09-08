@@ -16,7 +16,7 @@ public class JobApplicationController(IMediator mediator) : ControllerBase
     private readonly IMediator _mediator = mediator;
 
     [HttpGet]
-    public async Task<ActionResult<List<JobApplicationDto>>> Get()
+    public async Task<ActionResult<List<JobApplicationListDto>>> Get()
     {
         var jobApplications = await _mediator.Send(new GetJobApplicationListRequest());
 

@@ -16,4 +16,6 @@ public enum ProcessStatus
     Hired = 5,
     [Description("Rejected")]
     Rejected = 6,
+    [Description("Retracted")]
+    Retracted = 7
 }

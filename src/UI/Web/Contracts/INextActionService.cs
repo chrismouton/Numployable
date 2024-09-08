@@ -5,11 +5,11 @@ namespace Numployable.UI.Web.Contracts;
 
 public interface INextActionService
 {
-    Task<List<NextActionViewModel>> GetNextActions();
+    Task<List<NextActionViewModel>> GetAll();
 
-    Task<NextActionViewModel> GetNextActionDetails(int id);
+    Task<NextActionViewModel> Get(int id);
 
-    Task<Response<int>> CreateNextAction(NextActionViewModel nextAction);
+    Task<Response<int>> Create(CreateNextActionViewModel nextAction);
 
-    Task<Response<int>> UpdateNextAction(int id, NextActionViewModel nextAction);
+    Task<Response<int>> Update(int id, NextActionViewModel nextAction);
 }

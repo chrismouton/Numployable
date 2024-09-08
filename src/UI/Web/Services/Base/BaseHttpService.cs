@@ -39,7 +39,8 @@ public class BaseHttpService(IClient client, ILocalStorageService localStorage)
     {
         if (_localStorage.Exists("token"))
         {
-            _client.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _localStorage.GetStorageValue<string>("token"));
-        }    
+            _client.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",
+                                                                    _localStorage.GetStorageValue<string>("token"));
+        }
     }
 }

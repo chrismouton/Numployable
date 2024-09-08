@@ -1,8 +1,6 @@
-using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using AspnetCoreMvcFull.Models;
+namespace Numployable.U.Web.Controllers;
 
-namespace AspnetCoreMvcFull.Controllers;
+using Microsoft.AspNetCore.Mvc;
 
 public class AuthController : Controller
 {

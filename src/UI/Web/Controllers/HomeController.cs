@@ -1,8 +1,8 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using AspnetCoreMvcFull.Models;
+﻿namespace Numployable.UI.Web.Controllers;
 
-namespace AspnetCoreMvcFull.Controllers;
+using System.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
+using Numployable.UI.Web.Models;
 
 public class HomeController : Controller
 {

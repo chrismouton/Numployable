@@ -11,5 +11,8 @@ public enum RoleType
     [Description("Part time")]
     PartTime = 3,
     [Description("Fixed-term contract")]
-    FixedTermContract = 4
+    FixedTermContract = 4,
+    Volunteering = 5,
+    [Description("Temporary Full-time")]
+    TemporaryFullTime = 6
 }

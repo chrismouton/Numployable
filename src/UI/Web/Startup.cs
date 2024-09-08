@@ -1,23 +1,90 @@
 namespace Numployable.UI.Web;
 
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Numployable.UI.Web.Contracts;
+using Numployable.UI.Web.Services;
+using Numployable.UI.Web.Services.Base;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Reflection;
+using System.Threading.Tasks;
 
-using Contracts;
-using Services;
-using Services.Base;
 
-public class StartUp (IConfiguration configuration)
+public class Startup(IConfiguration configuration)
 {
-    public IConfiguration Configuration { get; private set; } = configuration;
+  // This method gets called by the runtime. Use this method to add services to the container.
+  public void ConfigureServices(IServiceCollection services)
+  {
+    services.AddHttpContextAccessor();
 
-    public void ConfigureServices(IServiceCollection services)
+    services.Configure<CookiePolicyOptions>(options =>
     {
-        services.AddHttpClient<IClient, Client>(cl => cl.BaseAddress = new Uri("http://localhost:5055"));
-        services.AddAutoMapper(Assembly.GetExecutingAssembly());
-        services.AddScoped<INextActionService, NextActionService>();
+      options.MinimumSameSitePolicy = SameSiteMode.None;
+    });
 
-        services.AddSingleton<ILocalStorageService, LocalStorageService>();
+    services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+        {
+          options.LoginPath = new PathString("/users/login");
+        });
 
-        services.AddControllersWithViews();
+    //services.AddTransient<IAuthenticationService, AuthenticationService>();
+
+    services.AddHttpClient<IClient, Client>(cl => cl.BaseAddress = new Uri("http://localhost:5093"));
+    services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+    services.AddScoped<IJobApplicationService, JobApplicationService>();
+    services.AddScoped<INextActionService, NextActionService>();
+    //services.AddScoped<IDashboardService, DashboardService>();
+
+    services.AddSingleton<ILocalStorageService, LocalStorageService>();
+    services.AddControllersWithViews();
+  }
+
+  // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+  public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+  {
+    if (env.IsDevelopment())
+    {
+      app.UseDeveloperExceptionPage();
     }
+    else
+    {
+      app.UseExceptionHandler("/Home/Error");
+      // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+      app.UseHsts();
+    }
+
+
+    app.UseCookiePolicy();
+    app.UseAuthentication();
+
+    app.UseHttpsRedirection();
+    app.UseStaticFiles();
+
+    app.UseRouting();
+    //app.UseMiddleware<RequestMiddleware>();
+
+    app.UseAuthorization();
+
+    app.UseEndpoints(endpoints =>
+    {
+      endpoints.MapControllerRoute(
+                  name: "default",
+                  pattern: "{controller=Home}/{action=Index}/{id?}");
+    });
+  }
 }

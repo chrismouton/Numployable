@@ -1,3 +1,5 @@
+@model List<JobApplicationViewModel>
+
 @{
   ViewData["Title"] = "Dashboard - Analytics";
 }
@@ -20,7 +22,6 @@
           <div class="card-body">
             <h5 class="card-title text-primary">Congratulations John! 🎉</h5>
             <p class="mb-4">You have done <span class="fw-medium">72%</span> more sales today. Check your new badge in your profile.</p>
-
             <a href="javascript:;" class="btn btn-sm btn-outline-primary">View Badges</a>
           </div>
         </div>
@@ -51,8 +52,10 @@
                 </div>
               </div>
             </div>
-            <span class="fw-medium d-block mb-1">Profit</span>
-            <h3 class="card-title mb-2">$12,628</h3>
+            <span class="fw-medium d-block mb-1">Count to Date</span>
+            <h3 class="card-title mb-2">
+              @Model.Count
+            </h3>
             <small class="text-success fw-medium"><i class='bx bx-up-arrow-alt'></i> +72.80%</small>
           </div>
         </div>
