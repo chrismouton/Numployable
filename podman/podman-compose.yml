@@ -1,0 +1,15 @@
+version: "3"
+volumes:
+  data: 
+  export: 
+services:
+  postgres-sql-eval:
+    image: docker.io/postgres:15.8-alpine
+    container_name: postgresql
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=password1!
+    volumes:
+      - data:/home/chris/source/github/chrismouton/Numployable/data/
+      - export:/export
