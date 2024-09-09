@@ -5,6 +5,35 @@
     "version": "v1"
   },
   "paths": {
+    "/api/Dashboard": {
+      "get": {
+        "tags": [
+          "Dashboard"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/DashboardDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DashboardDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DashboardDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/JobApplication": {
       "get": {
         "tags": [
@@ -18,7 +47,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/JobApplicationDto"
+                    "$ref": "#/components/schemas/JobApplicationListDto"
                   }
                 }
               },
@@ -26,7 +55,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/JobApplicationDto"
+                    "$ref": "#/components/schemas/JobApplicationListDto"
                   }
                 }
               },
@@ -34,7 +63,7 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/JobApplicationDto"
+                    "$ref": "#/components/schemas/JobApplicationListDto"
                   }
                 }
               }
@@ -526,6 +555,16 @@
         },
         "additionalProperties": false
       },
+      "DashboardDto": {
+        "type": "object",
+        "properties": {
+          "totalCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "JobApplicationDto": {
         "type": "object",
         "properties": {
@@ -583,6 +622,38 @@
         },
         "additionalProperties": false
       },
+      "JobApplicationListDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "roleName": {
+            "type": "string",
+            "nullable": true
+          },
+          "companyName": {
+            "type": "string",
+            "nullable": true
+          },
+          "roleType": {
+            "$ref": "#/components/schemas/RoleType"
+          },
+          "applicationDate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "applicationStatus": {
+            "$ref": "#/components/schemas/Status"
+          },
+          "applicationProcessStatus": {
+            "$ref": "#/components/schemas/ProcessStatus"
+          }
+        },
+        "additionalProperties": false
+      },
       "NextActionDto": {
         "type": "object",
         "properties": {
@@ -621,7 +692,8 @@
           3,
           4,
           5,
-          6
+          6,
+          7
         ],
         "type": "integer",
         "format": "int32"
@@ -631,7 +703,9 @@
           1,
           2,
           3,
-          4
+          4,
+          5,
+          6
         ],
         "type": "integer",
         "format": "int32"

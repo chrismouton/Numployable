@@ -4,12 +4,15 @@ using AutoMapper;
 
 using DTOs.JobApplications;
 using DTOs.NextActions;
+using DTOs.Dashboard;
 using Domain;
 
 public class MappingProfile : Profile
 {
     public MappingProfile()
     {
+        CreateMap<Dashboard, DashboardDto>().ReverseMap();
+
         #region JobApplication
 
         CreateMap<JobApplication, JobApplicationDto>().ReverseMap();

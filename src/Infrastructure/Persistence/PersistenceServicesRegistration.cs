@@ -16,6 +16,7 @@ public static class PersistenceServicesRegistration
     {
         services.AddDbContext<NumployableDbContext>(options => options.UseNpgsql(configuration.GetConnectionString("NumployableDatabase")));
 
+        services.AddScoped<IDashboardRepository, DashboardRepository>();
         services.AddScoped<IJobApplicationRepository, JobApplicationRepository>();
         services.AddScoped<INextActionRepository, NextActionRepository>();
 

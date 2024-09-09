@@ -9,6 +9,8 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
+        CreateMap<DashboardViewModel, DashboardDto>().ReverseMap();
+
         CreateMap<CreateJobApplicationViewModel, CreateJobApplicationDto>().ReverseMap();
         CreateMap<JobApplicationViewModel, JobApplicationDto>().ReverseMap();
 

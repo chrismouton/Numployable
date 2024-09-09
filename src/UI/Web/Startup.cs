@@ -48,7 +48,7 @@ public class Startup(IConfiguration configuration)
 
     services.AddScoped<IJobApplicationService, JobApplicationService>();
     services.AddScoped<INextActionService, NextActionService>();
-    //services.AddScoped<IDashboardService, DashboardService>();
+    services.AddScoped<IDashboardService, DashboardService>();
 
     services.AddSingleton<ILocalStorageService, LocalStorageService>();
     services.AddControllersWithViews();
