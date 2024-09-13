@@ -23,7 +23,7 @@ This section will focus on the command-line utility so that the instructions are
 Execute the following command from the ./src directory
 
 nswag openapi2csclient /input:swagger.json \
-                       /classname:ServiceClient \
+                       /classname:Client \
                        /namespace:Numployable.UI.Web.Services.Base \
                        /output:./UI/Web/Services/Base/ServiceClient.cs \
                        /UseBaseUrl:false \

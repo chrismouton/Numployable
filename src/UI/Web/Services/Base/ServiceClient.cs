@@ -1285,6 +1285,9 @@ namespace Numployable.UI.Web.Services.Base
         [Newtonsoft.Json.JsonProperty("applicationProcessStatus", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public ProcessStatus ApplicationProcessStatus { get; set; }
 
+        [Newtonsoft.Json.JsonProperty("url", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Url { get; set; }
+
         [Newtonsoft.Json.JsonProperty("applicationSource", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public Source ApplicationSource { get; set; }
 
@@ -1351,6 +1354,9 @@ namespace Numployable.UI.Web.Services.Base
         [Newtonsoft.Json.JsonProperty("applicationProcessStatus", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public ProcessStatus ApplicationProcessStatus { get; set; }
 
+        [Newtonsoft.Json.JsonProperty("url", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Url { get; set; }
+
         [Newtonsoft.Json.JsonProperty("applicationSource", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public Source ApplicationSource { get; set; }
 
@@ -1394,6 +1400,9 @@ namespace Numployable.UI.Web.Services.Base
 
         [Newtonsoft.Json.JsonProperty("applicationProcessStatus", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public ProcessStatus ApplicationProcessStatus { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("url", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Url { get; set; }
 
     }
 
@@ -1513,6 +1522,9 @@ namespace Numployable.UI.Web.Services.Base
 
         [Newtonsoft.Json.JsonProperty("applicationProcessStatus", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public ProcessStatus ApplicationProcessStatus { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("url", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string Url { get; set; }
 
         [Newtonsoft.Json.JsonProperty("applicationSource", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public Source ApplicationSource { get; set; }

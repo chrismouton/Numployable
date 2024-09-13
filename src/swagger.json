@@ -512,6 +512,10 @@
           "applicationProcessStatus": {
             "$ref": "#/components/schemas/ProcessStatus"
           },
+          "url": {
+            "type": "string",
+            "nullable": true
+          },
           "applicationSource": {
             "$ref": "#/components/schemas/Source"
           },
@@ -594,6 +598,10 @@
           "applicationProcessStatus": {
             "$ref": "#/components/schemas/ProcessStatus"
           },
+          "url": {
+            "type": "string",
+            "nullable": true
+          },
           "applicationSource": {
             "$ref": "#/components/schemas/Source"
           },
@@ -650,6 +658,10 @@
           },
           "applicationProcessStatus": {
             "$ref": "#/components/schemas/ProcessStatus"
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -757,6 +769,10 @@
           },
           "applicationProcessStatus": {
             "$ref": "#/components/schemas/ProcessStatus"
+          },
+          "url": {
+            "type": "string",
+            "nullable": true
           },
           "applicationSource": {
             "$ref": "#/components/schemas/Source"

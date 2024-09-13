@@ -15,4 +15,6 @@ public class JobApplicationListDto : BaseDto
     public Status? ApplicationStatus { get; set; }
 
     public ProcessStatus? ApplicationProcessStatus { get; set; }
+
+    public string? Url { get; set; }
 }

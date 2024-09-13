@@ -1,0 +1,96 @@
+@model CreateJobApplicationViewModel
+
+@{
+  ViewData["Title"] = "Dashboard - Analytics";
+}
+
+@* ************** Content ************** *@
+
+<!-- HTML5 Inputs -->
+<div class="card mb-6">
+  <h5 class="card-header">Capture Job Application</h5>
+  <form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="card-body">
+      <div class="mb-4 row">
+        <label for="html5-text-input" class="col-md-2 col-form-label">Role Type *</label>
+        <div class="col-md-10">
+        <select asp-for="RoleType" asp-items="Model.RoleTypes" class="form-control">
+            <option>Select Leave Type</option>
+        </select>
+      <select class="form-select" id="jobapplication-roletype" value='@Model.RoleType' aria-label="Role Type">
+            <option selected>Select role type</option>
+            <option value="1">Permanent</option>
+            <option value="2">Contract</option>
+            <option value="3">Part time</option>
+            <option value="4">Fixed-term contract</option>
+            <option value="5">Volunteering</option>
+            <option value="6">Temporary Full-time</option>
+          </select>
+        </div>
+      </div>
+      <div class="mb-4 row">
+        <label for="html5-text-input" class="col-md-2 col-form-label">Role Name *</label>
+        <div class="col-md-10">
+          <input class="form-control" type="text" value="@Model.RoleName" id="jobapplication-rolename" />
+        </div>
+      </div>
+      <div class="mb-4 row">
+        <label for="html5-text-input" class="col-md-2 col-form-label">Company/Advertiser *</label>
+        <div class="col-md-10">
+          <input class="form-control" type="text" value="@Model.CompanyName" id="jobapplication-companyname" />
+        </div>
+      </div>
+      <div class="mb-4 row">
+        <label for="html5-url-input" class="col-md-2 col-form-label">Application URL</label>
+        <div class="col-md-10">
+          <input class="form-control" type="url" value='@Model.Url' id="jobapplication-url" />
+        </div>
+      </div>
+      <div class="mb-4 row">
+        <label for="html5-text-input" class="col-md-2 col-form-label">Advertised Salary</label>
+        <div class="col-md-10">
+          <input class="form-control" type="text" value="@Model.AdvertisedSalary"
+            id="jobapplication-advertisedsalary" />
+        </div>
+      </div>
+      <div class="mb-4 row">
+        <label for="html5-text-input" class="col-md-2 col-form-label">Location</label>
+        <div class="col-md-10">
+          <input class="form-control" type="text" value="@Model.Location" id="jobapplication-location" />
+        </div>
+      </div>
+      <div class="mb-4 row">
+        <label for="html5-text-input" class="col-md-2 col-form-label">Commute</label>
+        <div class="col-md-10">
+          <select class="form-select" id="jobapplication-commute" value='@Model.Commute' aria-label="Commute">
+            <option selected>Select commute</option>
+            <option value="1">On-site</option>
+            <option value="2">Remote</option>
+            <option value="3">Hybrid</option>
+          </select>
+        </div>
+      </div>
+      <div class="mb-4 row">
+        <label for="html5-text-input" class="col-md-2 col-form-label">Application Status *</label>
+        <div class="col-md-10">
+          <select class="form-select" id="jobapplication-status" value='@Model.ApplicationStatus'
+            aria-label="Application Status">
+            <option selected>Select application status</option>
+            <option value="1">Active</option>
+            <option value="2">Expired</option>
+            <option value="3">Closed</option>
+          </select>
+        </div>
+      </div>
+      <div class="mb-4 row">
+        <label for="html5-date-input" class="col-md-2 col-form-label">Application Date *</label>
+        <div class="col-md-10">
+          <input class="form-control" type="date" value="@Model.ApplicationDate.ToLongDateString()"
+            id="jobapplication-applicationdate" />
+        </div>
+      </div>
+      <input type="submit" value="Save"  class="btn btn-primary" />
+      <button type="button" class="btn btn-secondary">Clear Form</button>
+    </div>
+  </form>
+</div>

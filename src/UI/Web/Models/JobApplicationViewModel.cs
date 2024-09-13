@@ -1,6 +1,7 @@
 namespace Numployable.UI.Web.Models;
 
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 public class JobApplicationViewModel : CreateJobApplicationViewModel
 
@@ -18,13 +19,16 @@ public class CreateJobApplicationViewModel
 
     public RoleType? RoleType { get; set; }
 
+    public SelectList RoleTypes { get; set; }
 
     [DataType(DataType.Date)]
     public required DateTime ApplicationDate { get; set; }
 
-    public Status? ApplicationStatus { get; set; }
+    public Status ApplicationStatus { get; set; }
 
     public ProcessStatus? ApplicationProcessStatus { get; set; }
+
+    public string? Url { get; set; }
 
     public Source? ApplicationSource { get; set; }
 
