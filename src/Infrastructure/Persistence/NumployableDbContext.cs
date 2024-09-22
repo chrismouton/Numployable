@@ -3,7 +3,7 @@ namespace Numployable.Persistence;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 
-using Model;
+using Domain;
 
 public partial class NumployableDbContext : DbContext
 {

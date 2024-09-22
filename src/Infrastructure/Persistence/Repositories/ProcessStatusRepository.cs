@@ -2,15 +2,16 @@ namespace Numployable.Persistence.Repositories;
 
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
-using Numployable.Application.Persistence.Contracts;
-using Numployable.Domain;
+
+using Application.Persistence.Contracts;
+using Domain;
 
 public class ProcessStatusRepository(NumployableDbContext dbContext, IMapper mapper) 
     : IProcessStatusRepository
 {
     public async Task<ProcessStatus> Get(int id)
     {
-        Model.ProcessStatus entity = await dbContext.Set<Model.ProcessStatus>().FindAsync(id);
+        ProcessStatus entity = await dbContext.Set<ProcessStatus>().FindAsync(id);
 
         return entity;
     }
@@ -24,7 +25,7 @@ public class ProcessStatusRepository(NumployableDbContext dbContext, IMapper map
 
     public async Task<IReadOnlyList<ProcessStatus>> GetAll()
     {
-        List<Model.ProcessStatus> entities = await dbContext.Set<Model.ProcessStatus>().ToListAsync();
+        List<ProcessStatus> entities = await dbContext.Set<ProcessStatus>().ToListAsync();
 
         List<ProcessStatus> list = new(entities.Count);
         list.AddRange(entities.Select(mapper.Map<ProcessStatus>));
@@ -34,7 +35,7 @@ public class ProcessStatusRepository(NumployableDbContext dbContext, IMapper map
 
     public ProcessStatus GetByDescription(string description)
     {
-        Model.ProcessStatus entity = dbContext.ProcessStatus
+        ProcessStatus entity = dbContext.ProcessStatus
                 .FromSql($"SELECT \"Id\", \"Description\" FROM public.\"ProcessStatus\"")
                 .Where(e => e.Description == description)
                 .FirstOrDefault();

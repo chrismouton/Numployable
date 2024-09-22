@@ -1,16 +1,16 @@
 namespace Numployable.Persistence.Repositories;
 
+using Application.Persistence.Contracts;
 using AutoMapper;
+using Domain;
 using Microsoft.EntityFrameworkCore;
-using Numployable.Application.Persistence.Contracts;
-using Numployable.Domain;
 
-public class NextActionTypeRepository(NumployableDbContext dbContext, IMapper mapper) 
+public class NextActionTypeRepository(NumployableDbContext dbContext, IMapper mapper)
     : INextActionTypeRepository
 {
     public async Task<NextActionType> Get(int id)
     {
-        Model.NextActionType entity = await dbContext.Set<Model.NextActionType>().FindAsync(id);
+        NextActionType entity = await dbContext.Set<NextActionType>().FindAsync(id);
 
         return entity;
     }
@@ -24,7 +24,7 @@ public class NextActionTypeRepository(NumployableDbContext dbContext, IMapper ma
 
     public async Task<IReadOnlyList<NextActionType>> GetAll()
     {
-        List<Model.NextActionType> entities = await dbContext.Set<Model.NextActionType>().ToListAsync();
+        List<NextActionType> entities = await dbContext.Set<NextActionType>().ToListAsync();
 
         List<NextActionType> list = new(entities.Count);
         list.AddRange(entities.Select(mapper.Map<NextActionType>));
@@ -34,10 +34,12 @@ public class NextActionTypeRepository(NumployableDbContext dbContext, IMapper ma
 
     public NextActionType GetByDescription(string description)
     {
-        Model.NextActionType entity = dbContext.NextActionType
-                .FromSql($"SELECT \"Id\", \"Description\" FROM public.\"NextActionType\"")
-                .Where(e => e.Description == description)
-                .FirstOrDefault();
+        NextActionType entity = dbContext
+            .NextActionType.FromSql(
+                $"SELECT \"Id\", \"Description\" FROM public.\"NextActionType\""
+            )
+            .Where(e => e.Description == description)
+            .FirstOrDefault();
 
         return entity;
     }

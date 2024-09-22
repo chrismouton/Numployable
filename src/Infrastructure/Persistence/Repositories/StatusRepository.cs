@@ -1,16 +1,15 @@
 namespace Numployable.Persistence.Repositories;
 
+using Application.Persistence.Contracts;
 using AutoMapper;
+using Domain;
 using Microsoft.EntityFrameworkCore;
-using Numployable.Application.Persistence.Contracts;
-using Numployable.Domain;
 
-public class StatusRepository(NumployableDbContext dbContext, IMapper mapper) 
-    : IStatusRepository
+public class StatusRepository(NumployableDbContext dbContext, IMapper mapper) : IStatusRepository
 {
     public async Task<Status> Get(int id)
     {
-        Model.Status entity = await dbContext.Set<Model.Status>().FindAsync(id);
+        Status entity = await dbContext.Set<Status>().FindAsync(id);
 
         return entity;
     }
@@ -24,7 +23,7 @@ public class StatusRepository(NumployableDbContext dbContext, IMapper mapper)
 
     public async Task<IReadOnlyList<Status>> GetAll()
     {
-        List<Model.Status> entities = await dbContext.Set<Model.Status>().ToListAsync();
+        List<Status> entities = await dbContext.Set<Status>().ToListAsync();
 
         List<Status> list = new(entities.Count);
         list.AddRange(entities.Select(mapper.Map<Status>));
@@ -34,10 +33,10 @@ public class StatusRepository(NumployableDbContext dbContext, IMapper mapper)
 
     public Status GetByDescription(string description)
     {
-        Model.Status entity = dbContext.Status
-                .FromSql($"SELECT \"Id\", \"Description\" FROM public.\"Status\"")
-                .Where(e => e.Description == description)
-                .FirstOrDefault();
+        Status entity = dbContext
+            .Status.FromSql($"SELECT \"Id\", \"Description\" FROM public.\"Status\"")
+            .Where(e => e.Description == description)
+            .FirstOrDefault();
 
         return entity;
     }

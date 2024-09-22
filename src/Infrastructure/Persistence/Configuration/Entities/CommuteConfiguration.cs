@@ -3,13 +3,14 @@ namespace Numployable.Persistence.Configuration.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-using Model;
+using Domain;
 
 public class CommuteConfiguration : IEntityTypeConfiguration<Commute>
 {
     public void Configure(EntityTypeBuilder<Commute> builder)
     {
         builder.HasKey(e => e.Id).HasName("Commute_PRIMARY");
+        builder.HasIndex(e => e.Description).IsUnique();
 
         builder.HasData(
             new Commute
