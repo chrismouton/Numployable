@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 
-using Numployable;
 using Numployable.Application.Persistence.Contracts;
 
 public class NextActionRepository(NumployableDbContext dbContext, IMapper mapper)

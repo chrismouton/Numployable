@@ -1,5 +1,6 @@
 namespace Numployable.Persistence;
 
+using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 
 using Model;
@@ -33,7 +34,7 @@ public partial class NumployableDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(NumployableDbContext).Assembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetCallingAssembly());
 
         OnModelCreatingPartial(modelBuilder);
     }

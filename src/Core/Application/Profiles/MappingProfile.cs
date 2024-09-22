@@ -2,14 +2,26 @@ namespace Numployable.Application.Profiles;
 
 using AutoMapper;
 
+using Domain;
+using DTOs.InfrastructureData;
 using DTOs.JobApplications;
 using DTOs.NextActions;
-using Domain;
 
 public class MappingProfile : Profile
 {
     public MappingProfile()
     {
+        #region Infrastructure Data
+
+        CreateMap<Commute, CommuteDto>().ReverseMap();
+        CreateMap<NextActionType, NextActionTypeDto>().ReverseMap();
+        CreateMap<ProcessStatus, ProcessStatusDto>().ReverseMap();
+        CreateMap<RoleType, RoleTypeDto>().ReverseMap();
+        CreateMap<Source, SourceDto>().ReverseMap();
+        CreateMap<Status, StatusDto>().ReverseMap();
+
+        #endregion
+
         #region JobApplication
 
         CreateMap<JobApplication, JobApplicationDto>().ReverseMap();
