@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 
-using Numployable.Application.DTOs.InfrastructureData;
-using Numployable.Application.Features.InfrastructureData.Requests.Queries;
-using Persistence.Contracts;
+using Application.DTOs.InfrastructureData;
+using Application.Features.InfrastructureData.Requests.Queries;
 using Domain;
+using Persistence.Contracts;
 
 public class GetCommuteListRequestHandler(ICommuteRepository commuteRepository, IMapper mapper) 
     : IRequestHandler<GetCommuteListRequest, List<CommuteDto>>

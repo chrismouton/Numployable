@@ -1,9 +1,8 @@
 namespace Numployable.Persistence.Configuration.Entities;
 
+using Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-using Domain;
 
 public class JobApplicationConfiguration : IEntityTypeConfiguration<Domain.JobApplication>
 {
