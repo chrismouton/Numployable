@@ -1,5 +1,7 @@
 namespace Numployable.Application.DTOs.JobApplications;
 
+using Numployable.Domain;
+
 public class CreateJobApplicationDto : JobApplicationListDto
 {
     public Source? ApplicationSource { get; set; }

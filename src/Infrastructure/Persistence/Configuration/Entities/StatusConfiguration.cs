@@ -3,23 +3,19 @@ namespace Numployable.Persistence.Configuration.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-using Helpers;
-using Model;
+using Domain;
 
 public class StatusConfiguration : IEntityTypeConfiguration<Status>
 {
     public void Configure(EntityTypeBuilder<Status> builder)
     {
-        builder.HasKey(e => e.Id).HasName("PRIMARY");
-        builder.Property(e => e.Id).HasConversion<int>();
+        builder.HasKey(e => e.Id).HasName("Status_PRIMARY");
+        builder.HasIndex(e => e.Description).IsUnique();
+
         builder.HasData(
-                Enum.GetValues(typeof(Numployable.Status))
-                    .Cast<Numployable.Status>()
-                    .Select(e => new Status()
-                    {
-                        Id = e,
-                        Description = Helpers.GetDescription(e)
-                    })
-            );
+            new Status { Id = 1, Description = "Active" },
+            new Status { Id = 2, Description = "Expired" },
+            new Status { Id = 3, Description = "Closed" }
+        );
     }
 }

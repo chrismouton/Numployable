@@ -8,5 +8,5 @@ public class ProcessUpdateJobApplicationCommand : IRequest<BaseCommandResponse>
 {
     public int Id { get; set; }
 
-    public ProcessStatus ProcessStatus { get; set; }
+    public int ProcessStatusId { get; set; }
 }

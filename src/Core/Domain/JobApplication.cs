@@ -1,32 +1,50 @@
 namespace Numployable.Domain;
 
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 public class JobApplication : BaseDomainEntity
 {
-    public string RoleName { get; set; }
+    [StringLength(255)]
+    public string RoleName { get; set; } = null!;
 
-    public string CompanyName { get; set; }
+    [StringLength(255)]
+    public string CompanyName { get; set; } = null!;
 
-    public RoleType RoleType { get; set; }
+    public int RoleTypeId { get; set; }
 
-    public Status Status { get; set; } = Status.Active;
+    public int StatusId { get; set; }
 
-    public ProcessStatus ProcessStatus { get; set; }
+    public int ProcessStatusId { get; set; }
 
-    public Source Source { get; set; } = Source.JobBoard;
+    public int SourceId { get; set; }
 
-    public string? Url { get; set; }
-
+    [StringLength(255)]
     public string? AdvertisedSalary { get; set; }
 
+    [StringLength(1024)]
+    public string? Url { get; set; }
+
+    [StringLength(255)]
     public string? Location { get; set; }
 
-    public DateTime ApplicationDate { get; set; } = DateTime.Now;
+    public int CommuteId { get; set; }
 
-    public Commute? Commute { get; set; }
+    [Column(TypeName = "date")]
+    public DateTime ApplicationDate { get; set; }
 
-    public string? Notes { get; set; }
+    [StringLength(1024)]
+    public string? Note { get; set; }
 
-    public List<NextAction> NextActions { get; set; } = [];
-};
+    public virtual Commute Commute { get; set; } = null!;
+
+    public virtual ProcessStatus ProcessStatus { get; set; } = null!;
+
+    public virtual RoleType RoleType { get; set; } = null!;
+
+    public virtual Source Source { get; set; } = null!;
+
+    public virtual Status Status { get; set; } = null!;
+
+    public virtual ICollection<NextAction> NextAction { get; set; } = [];};
