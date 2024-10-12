@@ -2,6 +2,8 @@ namespace Numployable.UI.Web.Models;
 
 using System.ComponentModel.DataAnnotations;
 
+using Numployable.UI.Web.Services.Base;
+
 public class NextActionViewModel : CreateNextActionViewModel
 {
     public int Id { get; set; }
