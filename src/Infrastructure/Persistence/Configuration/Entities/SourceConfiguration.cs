@@ -3,24 +3,20 @@ namespace Numployable.Persistence.Configuration.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-using Helpers;
-using Model;
+using Domain;
 
 public class SourceConfiguration : IEntityTypeConfiguration<Source>
 {
     public void Configure(EntityTypeBuilder<Source> builder)
     {
-        builder.HasKey(e => e.Id).HasName("PRIMARY");
-        builder.Property(e => e.Id).HasConversion<int>();
-        builder.HasData(
-                Enum.GetValues(typeof(Numployable.Source))
-                    .Cast<Numployable.Source>()
-                    .Select(e => new Source()
-                    {
-                        Id = e,
-                        Description = Helpers.GetDescription(e)
-                    })
-            );
+        builder.HasKey(e => e.Id).HasName("Source_PRIMARY");
+        builder.HasIndex(e => e.Description).IsUnique();
 
+        builder.HasData(
+            new Source { Id = 1, Description = "Job board" },
+            new Source { Id = 2, Description = "Networking" },
+            new Source { Id = 3, Description = "Recruiter contact" },
+            new Source { Id = 4, Description = "Recruiting site" }
+        );
     }
 }

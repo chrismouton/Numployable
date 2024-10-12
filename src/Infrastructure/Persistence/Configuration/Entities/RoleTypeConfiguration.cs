@@ -1,27 +1,23 @@
 namespace Numployable.Persistence.Configuration.Entities;
 
+using Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-using Helpers;
-using Model;
 
 public class RoleTypeConfiguration : IEntityTypeConfiguration<RoleType>
 {
     public void Configure(EntityTypeBuilder<RoleType> builder)
     {
-        builder.HasKey(e => e.Id).HasName("PRIMARY");
-        builder.Property(e => e.Id).HasConversion<int>();
+        builder.HasKey(e => e.Id).HasName("RoleType_PRIMARY");
+        builder.HasIndex(e => e.Description).IsUnique();
+
         builder.HasData(
-                Enum.GetValues(typeof(Numployable.RoleType))
-                    .Cast<Numployable.RoleType>()
-                    .Select(e => new RoleType()
-                    {
-                        Id = e,
-                        Description = Helpers.GetDescription(e)
-                    })
-            );
-
-
+            new RoleType { Id = 1, Description = "Permanent" },
+            new RoleType { Id = 2, Description = "Contract" },
+            new RoleType { Id = 3, Description = "Part time" },
+            new RoleType { Id = 4, Description = "Fixed-term contract" },
+            new RoleType { Id = 5, Description = "Volunteering" },
+            new RoleType { Id = 6, Description = "Temporary full-time" }
+        );
     }
 }

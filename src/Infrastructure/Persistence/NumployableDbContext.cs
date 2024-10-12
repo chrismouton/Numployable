@@ -3,7 +3,7 @@ namespace Numployable.Persistence;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 
-using Model;
+using Domain;
 
 public partial class NumployableDbContext : DbContext
 {
@@ -34,7 +34,7 @@ public partial class NumployableDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(NumployableDbContext).Assembly);
 
         OnModelCreatingPartial(modelBuilder);
     }

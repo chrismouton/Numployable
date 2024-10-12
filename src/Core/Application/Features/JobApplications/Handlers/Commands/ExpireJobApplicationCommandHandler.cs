@@ -10,7 +10,7 @@ using Numployable.Application.Features.JobApplications.Requests.Commands;
 using Persistence.Contracts;
 using Responses;
 
-public class ExpireJobApplicationCommandHandler(IJobApplicationRepository jobApplicationRepository)
+public class ExpireJobApplicationCommandHandler(IJobApplicationRepository jobApplicationRepository, IStatusRepository statusRepository)
     : IRequestHandler<ExpireJobApplicationCommand, BaseCommandResponse>
 {
     private readonly IJobApplicationRepository _jobApplicationRepository = jobApplicationRepository;
@@ -19,9 +19,19 @@ public class ExpireJobApplicationCommandHandler(IJobApplicationRepository jobApp
     {
         BaseCommandResponse response = new();
 
+        Domain.Status status = statusRepository.GetByDescription("Expired");
+        if (status == null)
+        {
+            response.Success = false;
+            response.Message = "'Status' with value 'Closed' could not be found in the repository.";
+            response.Id = request.Id;
+            return response;
+        }
+
         Domain.JobApplication jobApplication = new () {
             Id = request.Id,
-            Status = Status.Expired
+            StatusId = status.Id,
+            Status = status
         };
 
         await _jobApplicationRepository.Update(jobApplication);

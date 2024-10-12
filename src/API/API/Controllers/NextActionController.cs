@@ -41,11 +41,11 @@ public class NextActionController(IMediator mediator) : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult> Put(int id, [FromBody] UpdateNextActionDto NextAction)
+    public async Task<ActionResult<BaseCommandResponse>> Put(int id, [FromBody] UpdateNextActionDto NextAction)
     {
         var command = new UpdateNextActionCommand { Id = id, UpdateNextActionDto = NextAction };
-        await _mediator.Send(command);
+        BaseCommandResponse response = await _mediator.Send(command);
 
-        return NoContent();
+        return Ok(response);
     }
 }
