@@ -1,4 +1,4 @@
-namespace Numployable.UI.Web.Services.Base;
+namespace Numployable.APIClient.Client;
 
 public partial interface IClient
 {

@@ -1,4 +1,4 @@
-namespace Numployable.UI.Web.Services.Base;
+namespace Numployable.APIClient;
 
 public class Response<T>
 {

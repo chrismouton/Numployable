@@ -2,8 +2,9 @@ namespace Numployable.UI.Web;
 
 using AutoMapper;
 
-using Models;
-using Services.Base;
+using Numployable.APIClient.Client;
+using Numployable.UI.Web.Models;
+
 
 public class MappingProfile : Profile
 {

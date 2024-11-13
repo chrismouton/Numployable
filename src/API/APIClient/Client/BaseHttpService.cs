@@ -1,7 +1,8 @@
-using System.Net.Http.Headers;
-using Numployable.UI.Web.Contracts;
+namespace Numployable.APIClient.Client;
 
-namespace Numployable.UI.Web.Services.Base;
+using System.Net.Http.Headers;
+
+using Numployable.APIClient.Contracts;
 
 public class BaseHttpService(IClient client, ILocalStorageService localStorage)
 {

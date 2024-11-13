@@ -1,4 +1,4 @@
-namespace Numployable.UI.Web.Contracts;
+namespace Numployable.APIClient.Contracts;
 
 public interface ILocalStorageService
 {
