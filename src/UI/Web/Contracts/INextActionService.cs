@@ -1,7 +1,7 @@
-using Numployable.UI.Web.Models;
-using Numployable.UI.Web.Services.Base;
-
 namespace Numployable.UI.Web.Contracts;
+
+using Numployable.APIClient;
+using Numployable.UI.Web.Models;
 
 public interface INextActionService
 {

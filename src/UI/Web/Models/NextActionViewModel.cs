@@ -2,7 +2,7 @@ namespace Numployable.UI.Web.Models;
 
 using System.ComponentModel.DataAnnotations;
 
-using Numployable.UI.Web.Services.Base;
+using Numployable.APIClient.Client;
 
 public class NextActionViewModel : CreateNextActionViewModel
 {

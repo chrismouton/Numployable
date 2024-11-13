@@ -1,12 +1,13 @@
-using Hanssens.Net;
-using Numployable.UI.Web.Contracts;
-
 namespace Numployable.UI.Web.Services;
+
+using Hanssens.Net;
+
+using Numployable.APIClient.Contracts;
 
 public class LocalStorageService : ILocalStorageService
 {
     private LocalStorage _storage;
-    
+
     public LocalStorageService()
     {
         var config = new LocalStorageConfiguration()

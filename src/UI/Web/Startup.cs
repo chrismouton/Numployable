@@ -2,9 +2,10 @@ namespace Numployable.UI.Web;
 
 using System.Reflection;
 
+using APIClient.Client;
+using APIClient.Contracts;
 using Contracts;
 using Services;
-using Services.Base;
 
 public class StartUp (IConfiguration configuration)
 {
