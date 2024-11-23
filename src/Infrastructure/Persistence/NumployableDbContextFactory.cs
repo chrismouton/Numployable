@@ -1,7 +1,7 @@
-namespace Numployable.Persistence;
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+
+namespace Numployable.Persistence;
 
 public class NumployableDbContextFactory : IDesignTimeDbContextFactory<NumployableDbContext>
 {

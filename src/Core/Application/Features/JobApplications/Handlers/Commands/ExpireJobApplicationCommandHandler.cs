@@ -1,14 +1,10 @@
-namespace Numployable.Application.Features.JobApplications.Handlers.Commands;
-
-using System.Threading;
-using System.Threading.Tasks;
-
-using AutoMapper;
 using MediatR;
-
 using Numployable.Application.Features.JobApplications.Requests.Commands;
-using Persistence.Contracts;
-using Responses;
+using Numployable.Application.Persistence.Contracts;
+using Numployable.Application.Responses;
+using Numployable.Domain;
+
+namespace Numployable.Application.Features.JobApplications.Handlers.Commands;
 
 public class ExpireJobApplicationCommandHandler(IJobApplicationRepository jobApplicationRepository, IStatusRepository statusRepository)
     : IRequestHandler<ExpireJobApplicationCommand, BaseCommandResponse>
@@ -19,7 +15,7 @@ public class ExpireJobApplicationCommandHandler(IJobApplicationRepository jobApp
     {
         BaseCommandResponse response = new();
 
-        Domain.Status status = statusRepository.GetByDescription("Expired");
+        Status status = statusRepository.GetByDescription("Expired");
         if (status == null)
         {
             response.Success = false;
@@ -28,7 +24,7 @@ public class ExpireJobApplicationCommandHandler(IJobApplicationRepository jobApp
             return response;
         }
 
-        Domain.JobApplication jobApplication = new () {
+        JobApplication jobApplication = new () {
             Id = request.Id,
             StatusId = status.Id,
             Status = status

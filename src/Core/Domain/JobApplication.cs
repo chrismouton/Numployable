@@ -1,8 +1,7 @@
-namespace Numployable.Domain;
-
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Numployable.Domain;
 
 public class JobApplication : BaseDomainEntity
 {
@@ -47,4 +46,4 @@ public class JobApplication : BaseDomainEntity
 
     public virtual Status Status { get; set; } = null!;
 
-    public virtual ICollection<NextAction> NextAction { get; set; } = [];};
+    public virtual ICollection<NextAction> NextAction { get; set; } = [];}

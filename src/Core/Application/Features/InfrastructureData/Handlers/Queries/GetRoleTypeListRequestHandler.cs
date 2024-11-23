@@ -1,15 +1,11 @@
-namespace Numployable.Application.Features.InfrastructureData.Handlers.Queries;
-
-using System.Threading;
-using System.Threading.Tasks;
-
 using AutoMapper;
 using MediatR;
-
 using Numployable.Application.DTOs.InfrastructureData;
 using Numployable.Application.Features.InfrastructureData.Requests.Queries;
-using Persistence.Contracts;
-using Domain;
+using Numployable.Application.Persistence.Contracts;
+using Numployable.Domain;
+
+namespace Numployable.Application.Features.InfrastructureData.Handlers.Queries;
 
 public class GetRoleTypeListRequestHandler(IRoleTypeRepository RoleTypeRepository, IMapper mapper) 
     : IRequestHandler<GetRoleTypeListRequest, List<RoleTypeDto>>

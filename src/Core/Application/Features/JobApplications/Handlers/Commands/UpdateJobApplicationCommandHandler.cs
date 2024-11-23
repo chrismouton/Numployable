@@ -1,17 +1,13 @@
-namespace Numployable.Application.Features.JobApplications.Handlers.Commands;
-
-using System.Threading;
-using System.Threading.Tasks;
-
 using AutoMapper;
 using MediatR;
-
-using Numployable.Application.Features.JobApplications.Requests.Commands;
-using Persistence.Contracts;
 using Numployable.Application.DTOs.JobApplications.Validators;
-using Exceptions;
-using Responses;
-using Domain;
+using Numployable.Application.Exceptions;
+using Numployable.Application.Features.JobApplications.Requests.Commands;
+using Numployable.Application.Persistence.Contracts;
+using Numployable.Application.Responses;
+using Numployable.Domain;
+
+namespace Numployable.Application.Features.JobApplications.Handlers.Commands;
 
 public class UpdateJobApplicationCommandHandler(IJobApplicationRepository jobApplicationRepository, IMapper mapper)
     : IRequestHandler<UpdateJobApplicationCommand, BaseCommandResponse>

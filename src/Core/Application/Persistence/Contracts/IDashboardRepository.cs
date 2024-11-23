@@ -1,6 +1,6 @@
-namespace Numployable.Application.Persistence.Contracts;
-
 using Numployable.Domain;
+
+namespace Numployable.Application.Persistence.Contracts;
 
 public interface IDashboardRepository
 {

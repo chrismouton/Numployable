@@ -1,6 +1,6 @@
-namespace Numployable.Application.Persistence.Contracts;
+using Numployable.Domain;
 
-using Domain;
+namespace Numployable.Application.Persistence.Contracts;
 
 public interface IStatusRepository : IInfrastructureDataRepository<Status>
 {

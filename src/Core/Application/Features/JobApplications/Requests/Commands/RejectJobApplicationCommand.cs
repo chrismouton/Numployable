@@ -1,8 +1,7 @@
-namespace Numployable.Application.Features.JobApplications.Requests.Commands;
-
 using MediatR;
+using Numployable.Application.Responses;
 
-using Responses;
+namespace Numployable.Application.Features.JobApplications.Requests.Commands;
 
 public class RejectJobApplicationCommand : IRequest<BaseCommandResponse>
 {

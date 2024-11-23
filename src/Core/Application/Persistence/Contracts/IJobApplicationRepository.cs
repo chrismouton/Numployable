@@ -1,9 +1,6 @@
+using Numployable.Domain;
+
 namespace Numployable.Application.Persistence.Contracts;
-
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-using Domain;
 
 public interface IJobApplicationRepository : IGenericRepository<JobApplication>
 {

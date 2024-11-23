@@ -24,8 +24,8 @@ Execute the following command from the ./src directory
 
 nswag openapi2csclient /input:swagger.json \
                        /classname:Client \
-                       /namespace:Numployable.UI.Web.Services.Base \
-                       /output:./UI/Web/Services/Base/ServiceClient.cs \
+                       /namespace:Numployable.APIClient.Client \
+                       /output:./API/APIClient/Client/ServiceClient.cs \
                        /UseBaseUrl:false \
                        /GenerateExceptionClasses:true \
                        /GenerateClientClasses:true \
@@ -33,7 +33,7 @@ nswag openapi2csclient /input:swagger.json \
                        /InjectHttpClient:true \
                        /GenerateClientInterfaces:true \
                        /GenerateDtoTypes:true \
-                       /WrapDtoExceptions:true \
+                       /WrapDtoExceptions:true 
 
 ## Reference
 

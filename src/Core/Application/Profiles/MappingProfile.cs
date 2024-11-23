@@ -1,12 +1,11 @@
-namespace Numployable.Application.Profiles;
-
 using AutoMapper;
+using Numployable.Application.DTOs.Dashboard;
+using Numployable.Application.DTOs.InfrastructureData;
+using Numployable.Application.DTOs.JobApplications;
+using Numployable.Application.DTOs.NextActions;
+using Numployable.Domain;
 
-using Domain;
-using DTOs.InfrastructureData;
-using DTOs.JobApplications;
-using DTOs.NextActions;
-using DTOs.Dashboard;
+namespace Numployable.Application.Profiles;
 
 public class MappingProfile : Profile
 {

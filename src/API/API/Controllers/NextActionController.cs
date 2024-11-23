@@ -1,13 +1,11 @@
-namespace Numployable.API.Controllers;
-
-using Microsoft.AspNetCore.Mvc;
-
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Numployable.Application.DTOs.NextActions;
+using Numployable.Application.Features.NextActions.Requests.Commands;
+using Numployable.Application.Features.NextActions.Requests.Queries;
+using Numployable.Application.Responses;
 
-using Application.DTOs.NextActions;
-using Application.Features.NextActions.Requests.Queries;
-using Application.Features.NextActions.Requests.Commands;
-using Application.Responses;
+namespace Numployable.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]

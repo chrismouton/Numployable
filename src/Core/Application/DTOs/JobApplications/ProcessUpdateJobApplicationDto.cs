@@ -1,7 +1,7 @@
-namespace Numployable.Application.DTOs.JobApplications;
-
-using Common;
+using Numployable.Application.DTOs.Common;
 using Numployable.Domain;
+
+namespace Numployable.Application.DTOs.JobApplications;
 
 public class ProcessUpdateJobApplicationDto : BaseDto
 {

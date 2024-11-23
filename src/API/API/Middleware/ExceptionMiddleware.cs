@@ -1,10 +1,8 @@
-namespace Numployable.API.Middleware;
-
 using System.Net;
-
 using Newtonsoft.Json;
+using Numployable.Application.Exceptions;
 
-using Application.Exceptions;
+namespace Numployable.API.Middleware;
 
 public class ExceptionMiddleware(RequestDelegate next)
 {
@@ -46,8 +44,6 @@ public class ExceptionMiddleware(RequestDelegate next)
                 break;
             case NotFoundException:
                 statusCode = HttpStatusCode.NotFound;
-                break;
-            default:
                 break;
         }
 

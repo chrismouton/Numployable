@@ -1,10 +1,11 @@
-namespace Numployable.UI.Web.Services;
-
 using AutoMapper;
-
+using Numployable.APIClient;
+using Numployable.APIClient.Client;
+using Numployable.APIClient.Contracts;
 using Numployable.UI.Web.Contracts;
 using Numployable.UI.Web.Models;
-using Numployable.UI.Web.Services.Base;
+
+namespace Numployable.UI.Web.Services;
 
 public class NextActionService(IMapper mapper, IClient httpClient, ILocalStorageService localStorage)
     : BaseHttpService(httpClient, localStorage), INextActionService
@@ -55,8 +56,8 @@ public class NextActionService(IMapper mapper, IClient httpClient, ILocalStorage
             UpdateNextActionDto nextActionDto = _mapper.Map<UpdateNextActionDto>(nextAction);
             await _client.NextActionPUTAsync(id, nextActionDto);
 
-            return new Response<int>()
-                    {
+            return new Response<int>
+            {
                         Success = true
                     };
         }

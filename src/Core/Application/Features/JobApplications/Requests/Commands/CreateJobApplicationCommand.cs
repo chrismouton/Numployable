@@ -1,9 +1,8 @@
-namespace Numployable.Application.Features.JobApplications.Requests.Commands;
-
 using MediatR;
-
 using Numployable.Application.DTOs.JobApplications;
-using Responses;
+using Numployable.Application.Responses;
+
+namespace Numployable.Application.Features.JobApplications.Requests.Commands;
 
 public class CreateJobApplicationCommand : IRequest<BaseCommandResponse>
 {

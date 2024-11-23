@@ -1,6 +1,6 @@
-namespace Numployable.Application.DTOs.NextActions.Validators;
-
 using FluentValidation;
+
+namespace Numployable.Application.DTOs.NextActions.Validators;
 
 public class CreateNextActionsDtoValidator : AbstractValidator<CreateNextActionDto>
 {

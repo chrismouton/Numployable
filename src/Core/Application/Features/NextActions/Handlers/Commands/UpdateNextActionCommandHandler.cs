@@ -1,16 +1,12 @@
-namespace Numployable.Application.Features.NextActions.Handlers.Commands;
-
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
-
 using AutoMapper;
 using MediatR;
 using Numployable.Application.DTOs.NextActions.Validators;
-using Exceptions;
+using Numployable.Application.Exceptions;
 using Numployable.Application.Features.NextActions.Requests.Commands;
-using Persistence.Contracts;
-using Responses;
+using Numployable.Application.Persistence.Contracts;
+using Numployable.Application.Responses;
+
+namespace Numployable.Application.Features.NextActions.Handlers.Commands;
 
 public class UpdateNextActionCommandHandler(INextActionRepository nextActionRepository, IMapper mapper)
     : IRequestHandler<UpdateNextActionCommand, BaseCommandResponse>

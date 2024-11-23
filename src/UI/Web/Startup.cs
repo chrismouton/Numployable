@@ -1,27 +1,13 @@
-namespace Numployable.UI.Web;
+using System.Reflection;
 
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Features;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Routing;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+
+using Numployable.APIClient.Client;
+using Numployable.APIClient.Contracts;
 using Numployable.UI.Web.Contracts;
 using Numployable.UI.Web.Services;
-using Numployable.UI.Web.Services.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Reflection;
-using System.Threading.Tasks;
 
+namespace Numployable.UI.Web;
 
 public class Startup(IConfiguration configuration)
 {

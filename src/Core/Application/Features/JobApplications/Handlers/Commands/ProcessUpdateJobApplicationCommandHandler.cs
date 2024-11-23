@@ -1,14 +1,10 @@
-namespace Numployable.Application.Features.JobApplications.Handlers.Commands;
-
-using System.Threading;
-using System.Threading.Tasks;
-
-using AutoMapper;
 using MediatR;
-
 using Numployable.Application.Features.JobApplications.Requests.Commands;
-using Persistence.Contracts;
-using Responses;
+using Numployable.Application.Persistence.Contracts;
+using Numployable.Application.Responses;
+using Numployable.Domain;
+
+namespace Numployable.Application.Features.JobApplications.Handlers.Commands;
 
 public class ProcessUpdateJobApplicationCommandHandler(IJobApplicationRepository jobApplicationRepository, IProcessStatusRepository processStatusRepository)
     : IRequestHandler<ProcessUpdateJobApplicationCommand, BaseCommandResponse>
@@ -21,7 +17,7 @@ public class ProcessUpdateJobApplicationCommandHandler(IJobApplicationRepository
     {
         BaseCommandResponse response = new();
 
-        Domain.ProcessStatus processStatus = await _processStatusRepository.Get(request.ProcessStatusId);
+        ProcessStatus processStatus = await _processStatusRepository.Get(request.ProcessStatusId);
         if (processStatus == null)
         {
             response.Success = false;
@@ -30,7 +26,7 @@ public class ProcessUpdateJobApplicationCommandHandler(IJobApplicationRepository
             return response;
         }
 
-        Domain.JobApplication jobApplication = new () {
+        JobApplication jobApplication = new () {
             Id = request.Id,
             ProcessStatusId = request.ProcessStatusId,
             ProcessStatus = processStatus

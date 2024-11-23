@@ -1,11 +1,12 @@
-namespace Numployable.Persistence.Configuration.Entities;
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Numployable.Domain;
 
-public class NextActionConfiguration : IEntityTypeConfiguration<Domain.NextAction>
+namespace Numployable.Persistence.Configuration.Entities;
+
+public class NextActionConfiguration : IEntityTypeConfiguration<NextAction>
 {
-    public void Configure(EntityTypeBuilder<Domain.NextAction> builder)
+    public void Configure(EntityTypeBuilder<NextAction> builder)
     {
         builder.HasKey(e => e.Id).HasName("NextAction_PRIMARY");
 

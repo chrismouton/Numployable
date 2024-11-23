@@ -1,7 +1,6 @@
-namespace Numployable.Application.DTOs.JobApplications.Validators;
+using Numployable.Application.Persistence.Contracts;
 
-using FluentValidation;
-using Persistence.Contracts;
+namespace Numployable.Application.DTOs.JobApplications.Validators;
 
 public class UpdateJobApplicationDtoValidator : BaseJobApplicationDtoValidator<UpdateJobApplicationDto>
 {

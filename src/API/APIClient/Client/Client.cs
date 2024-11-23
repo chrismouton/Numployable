@@ -1,11 +1,11 @@
-namespace Numployable.UI.Web.Services.Base;
+namespace Numployable.APIClient.Client;
 
 public partial interface IClient
 {
     HttpClient HttpClient { get; }
 }
 
-public partial class Client
+public partial class Client : IClient
 {
     public HttpClient HttpClient
     {

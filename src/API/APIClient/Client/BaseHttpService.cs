@@ -1,7 +1,7 @@
 using System.Net.Http.Headers;
-using Numployable.UI.Web.Contracts;
+using Numployable.APIClient.Contracts;
 
-namespace Numployable.UI.Web.Services.Base;
+namespace Numployable.APIClient.Client;
 
 public class BaseHttpService(IClient client, ILocalStorageService localStorage)
 {
@@ -13,26 +13,25 @@ public class BaseHttpService(IClient client, ILocalStorageService localStorage)
     {
         if (exception.StatusCode == 400)
         {
-            return new Response<Guid>() {
+            return new Response<Guid> {
                 Message = "Validation errors has occurred.",
                 ValidationErrors = exception.Response,
                 Success = false
             };
         }
-        else if (exception.StatusCode == 404)
+
+        if (exception.StatusCode == 404)
         {
-            return new Response<Guid>() {
+            return new Response<Guid> {
                 Message = "The requested item could not be found.",
                 Success = false
             };
         }
-        else
-        {
-            return new Response<Guid>() {
-                Message = "Something went wrong, please try again.",
-                Success = false
-            };
-        }
+
+        return new Response<Guid> {
+            Message = "Something went wrong, please try again.",
+            Success = false
+        };
     }
 
     protected void AddBearerToken()

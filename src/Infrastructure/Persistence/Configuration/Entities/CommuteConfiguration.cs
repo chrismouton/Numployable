@@ -1,8 +1,8 @@
-namespace Numployable.Persistence.Configuration.Entities;
-
-using Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Numployable.Domain;
+
+namespace Numployable.Persistence.Configuration.Entities;
 
 public class CommuteConfiguration : IEntityTypeConfiguration<Commute>
 {

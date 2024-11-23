@@ -1,16 +1,12 @@
-namespace Numployable.Application.Features.JobApplications.Handlers.Commands;
-
-using System.Threading;
-using System.Threading.Tasks;
-
 using AutoMapper;
 using MediatR;
-
 using Numployable.Application.DTOs.JobApplications.Validators;
 using Numployable.Application.Features.JobApplications.Requests.Commands;
-using Persistence.Contracts;
-using Responses;
-using Domain;
+using Numployable.Application.Persistence.Contracts;
+using Numployable.Application.Responses;
+using Numployable.Domain;
+
+namespace Numployable.Application.Features.JobApplications.Handlers.Commands;
 
 public class CreateJobApplicationCommandHandler(IJobApplicationRepository jobApplicationRepository, IMapper mapper)
     : IRequestHandler<CreateJobApplicationCommand, BaseCommandResponse>

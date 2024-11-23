@@ -1,7 +1,7 @@
-namespace Numployable.Application.Features.Dashboard.Requests.Queries;
-
 using MediatR;
 using Numployable.Application.DTOs.Dashboard;
+
+namespace Numployable.Application.Features.Dashboard.Requests.Queries;
 
 public class GetDashboardRequest : IRequest<DashboardDto>
 {

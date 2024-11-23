@@ -1,13 +1,11 @@
-namespace Numployable.Persistence;
-
 using System.Reflection;
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
 using Numployable.Application.Persistence.Contracts;
-using Repositories;
+using Numployable.Persistence.Repositories;
+
+namespace Numployable.Persistence;
 
 public static class PersistenceServicesRegistration
 {

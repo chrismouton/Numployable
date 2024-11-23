@@ -1,15 +1,15 @@
 using Hanssens.Net;
-using Numployable.UI.Web.Contracts;
+using Numployable.APIClient.Contracts;
 
 namespace Numployable.UI.Web.Services;
 
 public class LocalStorageService : ILocalStorageService
 {
     private LocalStorage _storage;
-    
+
     public LocalStorageService()
     {
-        var config = new LocalStorageConfiguration()
+        var config = new LocalStorageConfiguration
         {
             AutoLoad = true,
             AutoSave = true,

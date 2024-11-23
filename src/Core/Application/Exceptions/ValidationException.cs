@@ -1,8 +1,6 @@
-namespace Numployable.Application.Exceptions;
-
-using System.Linq;
-
 using FluentValidation.Results;
+
+namespace Numployable.Application.Exceptions;
 
 public class ValidationException : ApplicationException
 {

@@ -1,14 +1,10 @@
-namespace Numployable.Application.Features.NextActions.Handlers.Queries;
-
-using System.Threading;
-using System.Threading.Tasks;
-
 using AutoMapper;
 using MediatR;
-
 using Numployable.Application.DTOs.NextActions;
 using Numployable.Application.Features.NextActions.Requests.Queries;
-using Persistence.Contracts;
+using Numployable.Application.Persistence.Contracts;
+
+namespace Numployable.Application.Features.NextActions.Handlers.Queries;
 
 public class GetNextActionDetailRequestHandler(INextActionRepository NextActionRepository, IMapper mapper) 
     : IRequestHandler<GetNextActionDetailRequest, NextActionDto>

@@ -1,9 +1,8 @@
-namespace Numployable.Persistence.Configuration.Entities;
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Numployable.Domain;
 
-using Domain;
+namespace Numployable.Persistence.Configuration.Entities;
 
 public class StatusConfiguration : IEntityTypeConfiguration<Status>
 {

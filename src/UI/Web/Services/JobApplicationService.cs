@@ -1,10 +1,11 @@
-namespace Numployable.UI.Web.Services;
-
 using AutoMapper;
+using Numployable.APIClient;
+using Numployable.APIClient.Client;
+using Numployable.APIClient.Contracts;
+using Numployable.UI.Web.Contracts;
+using Numployable.UI.Web.Models;
 
-using Contracts;
-using Models;
-using Base;
+namespace Numployable.UI.Web.Services;
 
 public class JobApplicationService(IMapper mapper, IClient httpClient, ILocalStorageService localStorage)
     : BaseHttpService(httpClient, localStorage), IJobApplicationService
@@ -42,7 +43,7 @@ public class JobApplicationService(IMapper mapper, IClient httpClient, ILocalSto
     {
       await _client.ExpireAsync(id);
 
-      return new Response<int>()
+      return new Response<int>
       {
         Success = true
       };
@@ -69,9 +70,9 @@ public class JobApplicationService(IMapper mapper, IClient httpClient, ILocalSto
   {
     try
     {
-      await _client.ProcessupdateAsync(id, processStatus);
+      await _client.ProcessupdateAsync(id, processStatus.Id);
 
-      return new Response<int>()
+      return new Response<int>
       {
         Success = true
       };
@@ -88,7 +89,7 @@ public class JobApplicationService(IMapper mapper, IClient httpClient, ILocalSto
     {
       await _client.RejectAsync(id);
 
-      return new Response<int>()
+      return new Response<int>
       {
         Success = true
       };
@@ -106,7 +107,7 @@ public class JobApplicationService(IMapper mapper, IClient httpClient, ILocalSto
       UpdateJobApplicationDto jobApplicationDto = _mapper.Map<UpdateJobApplicationDto>(jobApplication);
       await _client.JobApplicationPUTAsync(id, jobApplicationDto);
 
-      return new Response<int>()
+      return new Response<int>
       {
         Success = true
       };

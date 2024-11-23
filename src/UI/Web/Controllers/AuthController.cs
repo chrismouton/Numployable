@@ -1,6 +1,6 @@
-namespace Numployable.U.Web.Controllers;
-
 using Microsoft.AspNetCore.Mvc;
+
+namespace Numployable.U.Web.Controllers;
 
 public class AuthController : Controller
 {

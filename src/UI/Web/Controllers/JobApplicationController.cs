@@ -1,13 +1,16 @@
-namespace Numployable.UI.Web.Controllers;
-
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Numployable.UI.Web.Contracts;
 using Numployable.UI.Web.Models;
 
-public class JobApplicationController(IJobApplicationService jobApplicationService) : Controller
-{
-  IJobApplicationService jobApplicationService = jobApplicationService;
+namespace Numployable.UI.Web.Controllers;
 
+public class JobApplicationController(IJobApplicationService jobApplicationService,
+                                      IRoleTypeService roleTypesService,
+                                      IApplicationStatusService applicationStatusService,
+                                      IApplicationProcessStatusService applicationProcessStatusService,
+                                      ICommuteService commuteService) : Controller
+{
   public async Task<IActionResult> Index()
   {
     var model = await jobApplicationService.GetAll();
@@ -16,15 +19,26 @@ public class JobApplicationController(IJobApplicationService jobApplicationServi
   }
 
   // GET: JobApplication/Create
-  public ActionResult Create()
+  public async Task<IActionResult> Create()
   {
+    List<InfrastructureDataViewModel> roleTypes = await roleTypesService.GetAll();
+    var roleTypeItems = new SelectList(roleTypes, "Id", "Description");
+    List<InfrastructureDataViewModel> applicationStatuses = await applicationStatusService.GetAll();
+    var applicationStatusList = new SelectList(applicationStatuses, "Id", "Description");
+    List<InfrastructureDataViewModel> applicationProcessStatuses = await applicationProcessStatusService.GetAll();
+    var applicationProcessStatusList = new SelectList(applicationProcessStatuses, "Id", "Description");
+    List<InfrastructureDataViewModel> commute = await commuteService.GetAll();
+    var commuteList = new SelectList(commute, "Id", "Description");
+
     var model = new CreateJobApplicationViewModel
     {
-      RoleType = RoleType.Permanent,
+      RoleTypeList = roleTypeItems,
       RoleName = string.Empty,
       CompanyName = string.Empty,
       ApplicationDate = DateTime.Now,
-      ApplicationStatus = Status.Active,
+      ApplicationStatusList = applicationStatusList,
+      ApplicationProcessStatusList = applicationProcessStatusList,
+      CommuteList = commuteList
     };
 
     return View(model);

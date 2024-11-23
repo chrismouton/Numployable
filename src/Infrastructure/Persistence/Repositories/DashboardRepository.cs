@@ -1,10 +1,9 @@
-namespace Numployable.Persistence.Repositories;
-
-using Microsoft.EntityFrameworkCore;
 using AutoMapper;
-
+using Microsoft.EntityFrameworkCore;
 using Numployable.Application.Persistence.Contracts;
 using Numployable.Domain;
+
+namespace Numployable.Persistence.Repositories;
 
 public class DashboardRepository(NumployableDbContext dbContext, IMapper mapper)
         : IDashboardRepository

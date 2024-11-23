@@ -1,15 +1,11 @@
-namespace Numployable.Application.Features.InfrastructureData.Handlers.Queries;
-
-using System.Threading;
-using System.Threading.Tasks;
-
 using AutoMapper;
 using MediatR;
+using Numployable.Application.DTOs.InfrastructureData;
+using Numployable.Application.Features.InfrastructureData.Requests.Queries;
+using Numployable.Application.Persistence.Contracts;
+using Numployable.Domain;
 
-using Application.DTOs.InfrastructureData;
-using Application.Features.InfrastructureData.Requests.Queries;
-using Domain;
-using Persistence.Contracts;
+namespace Numployable.Application.Features.InfrastructureData.Handlers.Queries;
 
 public class GetCommuteListRequestHandler(ICommuteRepository commuteRepository, IMapper mapper) 
     : IRequestHandler<GetCommuteListRequest, List<CommuteDto>>

@@ -1,9 +1,9 @@
-namespace Numployable.Persistence.Repositories;
-
-using Application.Persistence.Contracts;
 using AutoMapper;
-using Domain;
 using Microsoft.EntityFrameworkCore;
+using Numployable.Application.Persistence.Contracts;
+using Numployable.Domain;
+
+namespace Numployable.Persistence.Repositories;
 
 public class RoleTypeRepository(NumployableDbContext dbContext, IMapper mapper)
     : IRoleTypeRepository

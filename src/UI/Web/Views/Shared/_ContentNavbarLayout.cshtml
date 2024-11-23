@@ -44,7 +44,7 @@
     <!-- Layout page -->
     <div class="layout-page">
       <!-- Navbar -->
-      @if (@ViewData["isNavbar"] != null && Convert.ToBoolean(@ViewData["isNavbar"]))
+      @if (ViewData["isNavbar"] != null && Convert.ToBoolean(ViewData["isNavbar"]))
       {
         @await Html.PartialAsync("Sections/Navbar/_Navbar")
       }
@@ -55,13 +55,13 @@
       <div class="content-wrapper">
 
         <!-- Content -->
-        <div class='@ViewData["container"] @(Convert.ToBoolean(@ViewData["isFlex"]) ? "d-flex align-items-stretch flex-grow-1 p-0" : "flex-grow-1 container-p-y")'>
+        <div class='@ViewData["container"] @(Convert.ToBoolean(ViewData["isFlex"]) ? "d-flex align-items-stretch flex-grow-1 p-0" : "flex-grow-1 container-p-y")'>
           @RenderBody()
         </div>
         <!-- / Content -->
 
         <!-- Footer -->
-        @if (@ViewData["isFooter"] != null && Convert.ToBoolean(@ViewData["isFooter"]))
+        @if (ViewData["isFooter"] != null && Convert.ToBoolean(ViewData["isFooter"]))
         {
           @await Html.PartialAsync("Sections/Footer/_Footer")
         }
@@ -74,7 +74,7 @@
   </div>
 
   <!-- Overlay -->
-  @if (@ViewData["isMenu"] != null && Convert.ToBoolean(@ViewData["isMenu"]))
+  @if (ViewData["isMenu"] != null && Convert.ToBoolean(ViewData["isMenu"]))
   {
     <div class="layout-overlay layout-menu-toggle"></div>
   }

@@ -1,7 +1,6 @@
-namespace Numployable.UI.Web.Controllers;
-
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+
+namespace Numployable.UI.Web.Controllers;
 
 public class PagesController : Controller
 {

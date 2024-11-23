@@ -1,14 +1,10 @@
-namespace Numployable.Application.Features.JobApplications.Handlers.Queries;
-
-using System.Threading;
-using System.Threading.Tasks;
-
 using AutoMapper;
 using MediatR;
-
 using Numployable.Application.DTOs.JobApplications;
 using Numployable.Application.Features.JobApplications.Requests.Queries;
-using Persistence.Contracts;
+using Numployable.Application.Persistence.Contracts;
+
+namespace Numployable.Application.Features.JobApplications.Handlers.Queries;
 
 public class GetJobApplicationDetailRequestHandler(IJobApplicationRepository jobApplicationRepository, IMapper mapper) 
     : IRequestHandler<GetJobApplicationDetailRequest, JobApplicationDto>

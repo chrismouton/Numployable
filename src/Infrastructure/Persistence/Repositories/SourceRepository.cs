@@ -1,10 +1,9 @@
-namespace Numployable.Persistence.Repositories;
-
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Numployable.Application.Persistence.Contracts;
+using Numployable.Domain;
 
-using Application.Persistence.Contracts;
-using Domain;
+namespace Numployable.Persistence.Repositories;
 
 public class SourceRepository(NumployableDbContext dbContext, IMapper mapper) 
     : ISourceRepository

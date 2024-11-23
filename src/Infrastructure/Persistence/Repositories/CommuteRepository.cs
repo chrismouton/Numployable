@@ -1,9 +1,9 @@
-namespace Numployable.Persistence.Repositories;
-
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Numployable.Application.Persistence.Contracts;
 using Numployable.Domain;
+
+namespace Numployable.Persistence.Repositories;
 
 public class CommuteRepository(NumployableDbContext dbContext, IMapper mapper) : ICommuteRepository
 {

@@ -14,18 +14,10 @@
       <div class="mb-4 row">
         <label for="html5-text-input" class="col-md-2 col-form-label">Role Type *</label>
         <div class="col-md-10">
-        <select asp-for="RoleType" asp-items="Model.RoleTypes" class="form-control">
-            <option>Select Leave Type</option>
-        </select>
-      <select class="form-select" id="jobapplication-roletype" value='@Model.RoleType' aria-label="Role Type">
-            <option selected>Select role type</option>
-            <option value="1">Permanent</option>
-            <option value="2">Contract</option>
-            <option value="3">Part time</option>
-            <option value="4">Fixed-term contract</option>
-            <option value="5">Volunteering</option>
-            <option value="6">Temporary Full-time</option>
+          <select asp-for="RoleTypeId" asp-items="Model.RoleTypeList" class="form-control">
+            <option>Select Role Type</option>
           </select>
+          <span asp-validation-for="RoleTypeId" class="text-danger"></span>
         </div>
       </div>
       <div class="mb-4 row">
@@ -61,26 +53,17 @@
       </div>
       <div class="mb-4 row">
         <label for="html5-text-input" class="col-md-2 col-form-label">Commute</label>
-        <div class="col-md-10">
-          <select class="form-select" id="jobapplication-commute" value='@Model.Commute' aria-label="Commute">
-            <option selected>Select commute</option>
-            <option value="1">On-site</option>
-            <option value="2">Remote</option>
-            <option value="3">Hybrid</option>
-          </select>
-        </div>
+        <select asp-for="CommuteId" asp-items="Model.CommuteList" class="form-control">
+          <option>Select Commute</option>
+        </select>
+        <span asp-validation-for="CommuteId" class="text-danger"></span>
       </div>
       <div class="mb-4 row">
         <label for="html5-text-input" class="col-md-2 col-form-label">Application Status *</label>
-        <div class="col-md-10">
-          <select class="form-select" id="jobapplication-status" value='@Model.ApplicationStatus'
-            aria-label="Application Status">
-            <option selected>Select application status</option>
-            <option value="1">Active</option>
-            <option value="2">Expired</option>
-            <option value="3">Closed</option>
-          </select>
-        </div>
+        <select asp-for="ApplicationStatusId" asp-items="Model.ApplicationProcessStatusList" class="form-control">
+          <option>Select Application Status</option>
+        </select>
+        <span asp-validation-for="ApplicationStatusId" class="text-danger"></span>
       </div>
       <div class="mb-4 row">
         <label for="html5-date-input" class="col-md-2 col-form-label">Application Date *</label>

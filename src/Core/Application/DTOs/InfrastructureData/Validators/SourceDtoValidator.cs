@@ -1,6 +1,6 @@
-namespace Numployable.Application.DTOs.InfrastructureData.Validators;
+using Numployable.Application.Persistence.Contracts;
 
-using Persistence.Contracts;
+namespace Numployable.Application.DTOs.InfrastructureData.Validators;
 
 public class SourceDtoValidator(IInfrastructureDataRepository<SourceDto> infrastructureDataRepository) 
     : BaseInfrastructureDataDtoValidator<SourceDto>(infrastructureDataRepository) 

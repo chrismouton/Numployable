@@ -1,10 +1,9 @@
-namespace Numployable.API;
-
 using Microsoft.OpenApi.Models;
+using Numployable.API.Middleware;
+using Numployable.Application;
+using Numployable.Persistence;
 
-using Middleware;
-using Application;
-using Persistence;
+namespace Numployable.API;
 
 public class Startup(IConfiguration configuration)
 {
@@ -76,8 +75,8 @@ public class Startup(IConfiguration configuration)
                 Scheme = "Bearer"
             });
 
-            c.AddSecurityRequirement(new OpenApiSecurityRequirement()
-              {
+            c.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
                     {
                       new OpenApiSecurityScheme
                       {
