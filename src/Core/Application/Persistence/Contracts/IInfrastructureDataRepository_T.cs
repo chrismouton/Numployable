@@ -9,5 +9,5 @@ public interface IInfrastructureDataRepository<T>
 
     Task<bool> Exists(int id);
 
-    T GetByDescription(string description);
+    Task<T> GetByDescription(string description);
 }

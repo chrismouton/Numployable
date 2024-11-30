@@ -33,7 +33,7 @@ public class SourceRepository(NumployableDbContext dbContext, IMapper mapper)
         return list;
     }
 
-    public Source GetByDescription(string description)
+    public async Task<Source> GetByDescription(string description)
     {
         Source entity = dbContext.Source
                 .FromSql($"SELECT \"Id\", \"Description\" FROM public.\"Source\"")

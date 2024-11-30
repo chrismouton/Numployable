@@ -24,7 +24,7 @@ public class SourceController(IMediator mediator) : ControllerBase
     public async Task<ActionResult<SourceDto>> GetSourceByDescription(string description)
     {
         SourceDto source = await mediator.Send(
-            new GetSourceByDescription {
+            new GetSourceByDescriptionRequest {
                 Description = description
             }
         );

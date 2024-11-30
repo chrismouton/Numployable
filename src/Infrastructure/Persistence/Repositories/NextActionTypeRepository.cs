@@ -32,7 +32,7 @@ public class NextActionTypeRepository(NumployableDbContext dbContext, IMapper ma
         return list;
     }
 
-    public NextActionType GetByDescription(string description)
+    public async Task<NextActionType> GetByDescription(string description)
     {
         NextActionType entity = dbContext
             .NextActionType.FromSql(
