@@ -21,7 +21,7 @@ public class RoleTypeController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet("{description}")]
-    public async Task<RoleTypeDto> GetRoleTypeByDescription(string description)
+    public async Task<ActionResult<RoleTypeDto>> GetRoleTypeByDescription(string description)
     {
         RoleTypeDto roleType = await mediator.Send(new GetRoleTypeByDescriptionRequest
         {

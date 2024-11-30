@@ -31,7 +31,7 @@ public class CommuteRepository(NumployableDbContext dbContext, IMapper mapper) :
         return list;
     }
 
-    public Commute GetByDescription(string description)
+    public async Task<Commute> GetByDescription(string description)
     {
         Commute entity = dbContext
             .Commute.FromSql($"SELECT \"Id\", \"Description\" FROM public.\"Commute\"")

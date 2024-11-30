@@ -19,7 +19,7 @@ public class ExpireJobApplicationCommandHandler(IJobApplicationRepository jobApp
     {
         BaseCommandResponse response = new();
 
-        Domain.Status status = statusRepository.GetByDescription("Expired");
+        Domain.Status status = await statusRepository.GetByDescription("Expired");
         if (status == null)
         {
             response.Success = false;

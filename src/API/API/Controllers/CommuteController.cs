@@ -10,13 +10,22 @@ using Application.Features.InfrastructureData.Requests.Queries;
 [ApiController]
 public class CommuteController(IMediator mediator) : ControllerBase
 {
-    private readonly IMediator _mediator = mediator;
-
     [HttpGet]
     public async Task<ActionResult<List<CommuteDto>>> GetCommuteList()
     {
-        List<CommuteDto> commuteList = await _mediator.Send(new GetCommuteListRequest());
+        List<CommuteDto> commuteList = await mediator.Send(new GetCommuteListRequest());
 
         return Ok(commuteList);
+    }
+
+    [HttpGet("{description}")]
+    public async Task<ActionResult<CommuteDto>> GetCommuteByDescription(string description)
+    {
+        CommuteDto commute = await mediator.Send(new GetCommuteByDescriptionRequest
+        {
+            Description = description
+        });
+
+        return Ok(commute);
     }
 }

@@ -31,7 +31,7 @@ public class StatusRepository(NumployableDbContext dbContext, IMapper mapper) : 
         return list;
     }
 
-    public Status GetByDescription(string description)
+    public async Task<Status> GetByDescription(string description)
     {
         Status entity = dbContext
             .Status.FromSql($"SELECT \"Id\", \"Description\" FROM public.\"Status\"")

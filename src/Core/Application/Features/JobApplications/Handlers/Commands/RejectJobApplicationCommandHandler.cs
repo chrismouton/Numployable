@@ -12,17 +12,11 @@ using Responses;
 public class RejectJobApplicationCommandHandler(IJobApplicationRepository jobApplicationRepository, IStatusRepository statusRepository, IProcessStatusRepository processStatusRepository)
     : IRequestHandler<RejectJobApplicationCommand, BaseCommandResponse>
 {
-    private readonly IJobApplicationRepository _jobApplicationRepository = jobApplicationRepository;
-
-    private readonly IStatusRepository _statusRepository = statusRepository;
-
-    private readonly IProcessStatusRepository _processStatusRepository = processStatusRepository;
-
     public async Task<BaseCommandResponse> Handle(RejectJobApplicationCommand request, CancellationToken cancellationToken)
     {
         BaseCommandResponse response = new();
 
-        Domain.Status status = _statusRepository.GetByDescription("Closed");
+        Domain.Status status = await statusRepository.GetByDescription("Closed");
         if (status == null)
         {
             response.Success = false;
@@ -30,7 +24,7 @@ public class RejectJobApplicationCommandHandler(IJobApplicationRepository jobApp
             response.Id = request.Id;
             return response;
         }
-        Domain.ProcessStatus processStatus = _processStatusRepository.GetByDescription("Rejected");
+        Domain.ProcessStatus processStatus = await processStatusRepository.GetByDescription("Rejected");
         if (processStatus == null)
         {
             response.Success = false;
@@ -48,7 +42,7 @@ public class RejectJobApplicationCommandHandler(IJobApplicationRepository jobApp
             ProcessStatus = processStatus
         };
 
-        await _jobApplicationRepository.Update(jobApplication);
+        await jobApplicationRepository.Update(jobApplication);
 
         response.Success = true;
         response.Message = "Successfully update process status for application.";
