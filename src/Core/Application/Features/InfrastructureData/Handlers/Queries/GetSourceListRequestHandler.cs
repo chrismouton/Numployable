@@ -11,16 +11,13 @@ using Numployable.Application.Features.InfrastructureData.Requests.Queries;
 using Persistence.Contracts;
 using Domain;
 
-public class GetSourceListRequestHandler(ISourceRepository SourceRepository, IMapper mapper) 
+public class GetSourceListRequestHandler(ISourceRepository sourceRepository, IMapper mapper) 
     : IRequestHandler<GetSourceListRequest, List<SourceDto>>
 {
-    private readonly ISourceRepository _SourceRepository = SourceRepository;
-    private readonly IMapper _mapper = mapper;
-
     public async Task<List<SourceDto>> Handle(GetSourceListRequest request, CancellationToken cancellationToken)
     {
-        IReadOnlyCollection<Source> Sources = await _SourceRepository.GetAll();
+        IReadOnlyCollection<Source> Sources = await sourceRepository.GetAll();
 
-        return _mapper.Map<List<SourceDto>>(Sources);
+        return mapper.Map<List<SourceDto>>(Sources);
     }
 }

@@ -487,4 +487,4 @@ $RECYCLE.BIN/
 out/
 
 # Ignore editor local config 
-/.zed
+.zed/

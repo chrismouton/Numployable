@@ -11,16 +11,13 @@ using Numployable.Application.Features.InfrastructureData.Requests.Queries;
 using Persistence.Contracts;
 using Domain;
 
-public class GetStatusListRequestHandler(IStatusRepository StatusRepository, IMapper mapper) 
+public class GetStatusListRequestHandler(IStatusRepository statusRepository, IMapper mapper) 
     : IRequestHandler<GetStatusListRequest, List<StatusDto>>
 {
-    private readonly IStatusRepository _StatusRepository = StatusRepository;
-    private readonly IMapper _mapper = mapper;
-
     public async Task<List<StatusDto>> Handle(GetStatusListRequest request, CancellationToken cancellationToken)
     {
-        IReadOnlyCollection<Status> Statuss = await _StatusRepository.GetAll();
+        IReadOnlyCollection<Status> statusList = await statusRepository.GetAll();
 
-        return _mapper.Map<List<StatusDto>>(Statuss);
+        return mapper.Map<List<StatusDto>>(statusList);
     }
 }

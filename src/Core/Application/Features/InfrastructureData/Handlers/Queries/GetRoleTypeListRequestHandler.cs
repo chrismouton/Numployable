@@ -11,16 +11,13 @@ using Numployable.Application.Features.InfrastructureData.Requests.Queries;
 using Persistence.Contracts;
 using Domain;
 
-public class GetRoleTypeListRequestHandler(IRoleTypeRepository RoleTypeRepository, IMapper mapper) 
+public class GetRoleTypeListRequestHandler(IRoleTypeRepository roleTypeRepository, IMapper mapper) 
     : IRequestHandler<GetRoleTypeListRequest, List<RoleTypeDto>>
 {
-    private readonly IRoleTypeRepository _RoleTypeRepository = RoleTypeRepository;
-    private readonly IMapper _mapper = mapper;
-
     public async Task<List<RoleTypeDto>> Handle(GetRoleTypeListRequest request, CancellationToken cancellationToken)
     {
-        IReadOnlyCollection<RoleType> RoleTypes = await _RoleTypeRepository.GetAll();
+        IReadOnlyCollection<RoleType> roleTypes = await roleTypeRepository.GetAll();
 
-        return _mapper.Map<List<RoleTypeDto>>(RoleTypes);
+        return mapper.Map<List<RoleTypeDto>>(roleTypes);
     }
 }

@@ -11,16 +11,13 @@ using Numployable.Application.Features.InfrastructureData.Requests.Queries;
 using Persistence.Contracts;
 using Domain;
 
-public class GetNextActionTypeListRequestHandler(INextActionTypeRepository NextActionTypeRepository, IMapper mapper) 
+public class GetNextActionTypeListRequestHandler(INextActionTypeRepository nextActionTypeRepository, IMapper mapper) 
     : IRequestHandler<GetNextActionTypeListRequest, List<NextActionTypeDto>>
 {
-    private readonly INextActionTypeRepository _NextActionTypeRepository = NextActionTypeRepository;
-    private readonly IMapper _mapper = mapper;
-
     public async Task<List<NextActionTypeDto>> Handle(GetNextActionTypeListRequest request, CancellationToken cancellationToken)
     {
-        IReadOnlyCollection<NextActionType> NextActionTypes = await _NextActionTypeRepository.GetAll();
+        IReadOnlyCollection<NextActionType> NextActionTypes = await nextActionTypeRepository.GetAll();
 
-        return _mapper.Map<List<NextActionTypeDto>>(NextActionTypes);
+        return mapper.Map<List<NextActionTypeDto>>(NextActionTypes);
     }
 }

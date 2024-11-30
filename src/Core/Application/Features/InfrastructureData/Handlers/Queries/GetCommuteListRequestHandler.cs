@@ -14,13 +14,10 @@ using Persistence.Contracts;
 public class GetCommuteListRequestHandler(ICommuteRepository commuteRepository, IMapper mapper) 
     : IRequestHandler<GetCommuteListRequest, List<CommuteDto>>
 {
-    private readonly ICommuteRepository _commuteRepository = commuteRepository;
-    private readonly IMapper _mapper = mapper;
-
     public async Task<List<CommuteDto>> Handle(GetCommuteListRequest request, CancellationToken cancellationToken)
     {
-        IReadOnlyCollection<Commute> commuteList = await _commuteRepository.GetAll();
+        IReadOnlyCollection<Commute> commuteList = await commuteRepository.GetAll();
 
-        return _mapper.Map<List<CommuteDto>>(commuteList);
+        return mapper.Map<List<CommuteDto>>(commuteList);
     }
 }
