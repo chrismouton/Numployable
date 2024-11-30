@@ -10,15 +10,25 @@ using Application.Features.InfrastructureData.Requests.Queries;
 [ApiController]
 public class SourceController(IMediator mediator) : ControllerBase
 {
-    private readonly IMediator _mediator = mediator;
-
     [HttpGet]
     public async Task<ActionResult<List<SourceDto>>> GetSourceList()
     {
-        List<SourceDto> sourceList = await _mediator.Send(
+        List<SourceDto> sourceList = await mediator.Send(
             new GetSourceListRequest()
         );
 
         return Ok(sourceList);
+    }
+
+    [HttpGet("{description}")]
+    public async Task<ActionResult<SourceDto>> GetSourceByDescription(string description)
+    {
+        SourceDto source = await mediator.Send(
+            new GetSourceByDescription {
+                Description = description
+            }
+        );
+
+        return Ok(source);
     }
 }

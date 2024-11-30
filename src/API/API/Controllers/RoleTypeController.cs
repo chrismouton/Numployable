@@ -10,15 +10,24 @@ using Application.Features.InfrastructureData.Requests.Queries;
 [ApiController]
 public class RoleTypeController(IMediator mediator) : ControllerBase
 {
-    private readonly IMediator _mediator = mediator;
-
     [HttpGet]
     public async Task<ActionResult<List<RoleTypeDto>>> GetRoleTypeList()
     {
-        List<RoleTypeDto> roleTypeList = await _mediator.Send(
+        List<RoleTypeDto> roleTypeList = await mediator.Send(
             new GetRoleTypeListRequest()
         );
 
         return Ok(roleTypeList);
+    }
+
+    [HttpGet("{description}")]
+    public async Task<RoleTypeDto> GetRoleTypeByDescription(string description)
+    {
+        RoleTypeDto roleType = await mediator.Send(new GetRoleTypeByDescriptionRequest
+        {
+            Description = description
+        });
+
+        return Ok(roleType);
     }
 }

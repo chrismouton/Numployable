@@ -21,4 +21,16 @@ public class ProcessStatusController(IMediator mediator) : ControllerBase
 
         return Ok(processStatusList);
     }
+
+    [HttpGet("{description}")]
+    public async Task<ActionResult<ProcessStatusDto>> GetProcessStatusByDescription(string description)
+    {
+        ProcessStatusDto processStatus = await _mediator.Send(
+            new GetProcessStatusByDescriptionRequest {
+                Description = description
+            }
+        );
+
+        return Ok(processStatus);
+    }
 }
