@@ -16,11 +16,11 @@ public class CreateJobApplicationDtoValidator : AbstractValidator<CreateJobAppli
             .NotNull();
         RuleFor(p => p.ApplicationDate)
             .NotNull();
-        RuleFor(p => p.ApplicationStatus)
+        RuleFor(p => p.Status)
             .NotNull();
-        RuleFor(p => p.ApplicationProcessStatus)
+        RuleFor(p => p.ProcessStatus)
             .NotNull();
-        RuleFor(p => p.ApplicationSource)
+        RuleFor(p => p.Source)
             .NotNull();
     }
 }

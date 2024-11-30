@@ -4,7 +4,7 @@ using Numployable.Domain;
 
 public class CreateJobApplicationDto : JobApplicationListDto
 {
-    public Source? ApplicationSource { get; set; }
+    public Source? Source { get; set; }
 
     public string? AdvertisedSalary { get; set; }
 

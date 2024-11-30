@@ -5,5 +5,5 @@ using Numployable.Domain;
 
 public class ProcessUpdateJobApplicationDto : BaseDto
 {
-    public ProcessStatus? ApplicationProcessStatus { get; set; }
+    public ProcessStatus? ProcessStatus { get; set; }
 }
