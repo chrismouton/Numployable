@@ -5,6 +5,4 @@ namespace Numployable.UI.Web.Contracts;
 public interface IInfrastractureDataService
 {
   Task<List<InfrastructureDataViewModel>> GetAll();
-
-  Task<InfrastructureDataViewModel> Get(int id);
 }

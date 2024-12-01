@@ -9,15 +9,21 @@ namespace Numployable.API.Controllers;
 [ApiController]
 public class StatusController(IMediator mediator) : ControllerBase
 {
-    private readonly IMediator _mediator = mediator;
-
     [HttpGet]
     public async Task<ActionResult<List<StatusDto>>> GetStatusList()
     {
-        List<StatusDto> statusList = await _mediator.Send(
+        List<StatusDto> statusList = await mediator.Send(
             new GetStatusListRequest()
         );
 
         return Ok(statusList);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<StatusDto>> GetStatus1(int id)
+    {
+        StatusDto status = await mediator.Send(new GetStatusDetailRequest {  Id = id });
+    
+        return Ok(status);
     }
 }
