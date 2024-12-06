@@ -2,6 +2,6 @@ namespace Numployable.Application.Persistence.Contracts;
 
 using Domain;
 
-public interface ISourceRepository : IInfrastructureDataRepository<Source>
+public interface ISourceRepository : IReferenceDataRepository<Source>
 {
 }

@@ -3,7 +3,7 @@ namespace Numployable.Application.Profiles;
 using AutoMapper;
 
 using Domain;
-using DTOs.InfrastructureData;
+using DTOs.ReferenceData;
 using DTOs.JobApplications;
 using DTOs.NextActions;
 
