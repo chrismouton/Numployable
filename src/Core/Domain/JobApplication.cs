@@ -9,7 +9,7 @@ public class JobApplication : BaseDomainEntity
     public string RoleName { get; set; } = null!;
 
     [StringLength(255)]
-    public string CompanyName { get; set; } = null!;
+    public string? CompanyName { get; set; } = null!;
 
     public int RoleTypeId { get; set; }
 
@@ -36,7 +36,7 @@ public class JobApplication : BaseDomainEntity
     [StringLength(1024)]
     public string? Note { get; set; }
 
-    public virtual Commute Commute { get; set; } = null!;
+    public virtual Commute? Commute { get; set; } = null!;
 
     public virtual ProcessStatus ProcessStatus { get; set; } = null!;
 

@@ -16,10 +16,10 @@ public class NextActionConfiguration : IEntityTypeConfiguration<NextAction>
             .OnDelete(DeleteBehavior.Restrict)
             .HasConstraintName("NextAction_JobApplication_FK");
 
-        builder
-            .HasOne(d => d.NextActionType)
-            .WithMany(p => p.NextAction)
-            .OnDelete(DeleteBehavior.Restrict)
-            .HasConstraintName("NextAction_NextActionType_FK");
+//        builder
+//            .HasOne(d => d.NextActionType)
+//            .WithMany(p => p.NextAction)
+//            .OnDelete(DeleteBehavior.Restrict)
+//            .HasConstraintName("NextAction_NextActionType_FK");
     }
 }

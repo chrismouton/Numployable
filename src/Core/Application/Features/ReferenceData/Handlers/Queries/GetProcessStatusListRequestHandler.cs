@@ -12,12 +12,12 @@ using Persistence.Contracts;
 using Domain;
 
 public class GetProcessStatusListRequestHandler(IProcessStatusRepository processStatusRepository, IMapper mapper) 
-    : IRequestHandler<GetProcessStatusListRequest, List<ProcessStatusDto>>
+    : IRequestHandler<GetProcessStatusListRequest, IEnumerable<ProcessStatusDto>>
 {
-    public async Task<List<ProcessStatusDto>> Handle(GetProcessStatusListRequest request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<ProcessStatusDto>> Handle(GetProcessStatusListRequest request, CancellationToken cancellationToken)
     {
         IReadOnlyCollection<ProcessStatus> processStatusList = await processStatusRepository.GetAll();
 
-        return mapper.Map<List<ProcessStatusDto>>(processStatusList);
+        return mapper.Map<IEnumerable<ProcessStatusDto>>(processStatusList);
     }
 }

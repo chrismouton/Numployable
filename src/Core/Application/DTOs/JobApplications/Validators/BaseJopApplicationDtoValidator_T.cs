@@ -1,5 +1,4 @@
 using FluentValidation;
-using Numployable.Application.DTOs.Common;
 using Numployable.Application.Persistence.Contracts;
 
 namespace Numployable.Application.DTOs.JobApplications.Validators;

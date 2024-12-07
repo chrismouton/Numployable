@@ -12,12 +12,12 @@ using Domain;
 using Persistence.Contracts;
 
 public class GetCommuteListRequestHandler(ICommuteRepository commuteRepository, IMapper mapper) 
-    : IRequestHandler<GetCommuteListRequest, List<CommuteDto>>
+    : IRequestHandler<GetCommuteListRequest, IEnumerable<CommuteDto>>
 {
-    public async Task<List<CommuteDto>> Handle(GetCommuteListRequest request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<CommuteDto>> Handle(GetCommuteListRequest request, CancellationToken cancellationToken)
     {
         IReadOnlyCollection<Commute> commuteList = await commuteRepository.GetAll();
 
-        return mapper.Map<List<CommuteDto>>(commuteList);
+        return mapper.Map<IEnumerable<CommuteDto>>(commuteList);
     }
 }

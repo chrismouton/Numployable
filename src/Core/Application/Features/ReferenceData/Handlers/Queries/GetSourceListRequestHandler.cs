@@ -12,12 +12,12 @@ using Persistence.Contracts;
 using Domain;
 
 public class GetSourceListRequestHandler(ISourceRepository sourceRepository, IMapper mapper) 
-    : IRequestHandler<GetSourceListRequest, List<SourceDto>>
+    : IRequestHandler<GetSourceListRequest, IEnumerable<SourceDto>>
 {
-    public async Task<List<SourceDto>> Handle(GetSourceListRequest request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<SourceDto>> Handle(GetSourceListRequest request, CancellationToken cancellationToken)
     {
         IReadOnlyCollection<Source> Sources = await sourceRepository.GetAll();
 
-        return mapper.Map<List<SourceDto>>(Sources);
+        return mapper.Map<IEnumerable<SourceDto>>(Sources);
     }
 }

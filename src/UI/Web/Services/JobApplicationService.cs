@@ -3,21 +3,20 @@ using Numployable.APIClient;
 using Numployable.APIClient.Client;
 using Numployable.APIClient.Contracts;
 using Numployable.UI.Web.Contracts;
+using Numployable.UI.Web.Mappings;
 using Numployable.UI.Web.Models;
 
 namespace Numployable.UI.Web.Services;
 
-public class JobApplicationService(IMapper mapper, IClient httpClient, ILocalStorageService localStorage)
+public class JobApplicationService(IClient httpClient, ILocalStorageService localStorage, IMapper mapper)
     : BaseHttpService(httpClient, localStorage), IJobApplicationService
 {
-  private readonly IMapper _mapper = mapper;
-
   public async Task<Response<int>> Create(CreateJobApplicationViewModel jobApplication)
   {
     try
     {
       var response = new Response<int>();
-      CreateJobApplicationDto jobApplicationDto = _mapper.Map<CreateJobApplicationDto>(jobApplication);
+      CreateJobApplicationDto jobApplicationDto = jobApplication.ToJobApplication();
       var apiResponse = await _client.JobApplicationPOSTAsync(jobApplicationDto);
       if (apiResponse.Success)
       {
@@ -56,14 +55,15 @@ public class JobApplicationService(IMapper mapper, IClient httpClient, ILocalSto
 
   public async Task<JobApplicationViewModel> Get(int id)
   {
-    var jobApplicationDto = await _client.JobApplicationGETAsync(id);
-    return _mapper.Map<JobApplicationViewModel>(jobApplicationDto);
+    JobApplicationDto jobApplicationDto = await _client.JobApplicationGETAsync(id);
+    return jobApplicationDto.ToJobApplication(mapper);
   }
 
   public async Task<List<JobApplicationViewModel>> GetAll()
   {
-    var jobApplicationDtos = await _client.JobApplicationAllAsync();
-    return _mapper.Map<List<JobApplicationViewModel>>(jobApplicationDtos);
+    ICollection<JobApplicationListDto> jobApplicationDtos = await _client.JobApplicationAllAsync();
+    return (from item in jobApplicationDtos
+          select item.ToJobApplication(mapper)).ToList();
   }
 
   public async Task<Response<int>> ProcessUpdate(int id, ProcessStatus processStatus)
@@ -104,7 +104,7 @@ public class JobApplicationService(IMapper mapper, IClient httpClient, ILocalSto
   {
     try
     {
-      UpdateJobApplicationDto jobApplicationDto = _mapper.Map<UpdateJobApplicationDto>(jobApplication);
+      UpdateJobApplicationDto jobApplicationDto = jobApplication.ToJobApplication(mapper);
       await _client.JobApplicationPUTAsync(id, jobApplicationDto);
 
       return new Response<int>

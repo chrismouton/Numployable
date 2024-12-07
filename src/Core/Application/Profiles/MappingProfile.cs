@@ -1,7 +1,6 @@
 using AutoMapper;
+
 using Numployable.Application.DTOs.Dashboard;
-using Numployable.Application.DTOs.JobApplications;
-using Numployable.Application.DTOs.NextActions;
 using Numployable.Application.DTOs.ReferenceData;
 using Numployable.Domain;
 
@@ -21,23 +20,6 @@ public class MappingProfile : Profile
         CreateMap<RoleType, RoleTypeDto>().ReverseMap();
         CreateMap<Source, SourceDto>().ReverseMap();
         CreateMap<Status, StatusDto>().ReverseMap();
-
-        #endregion
-
-        #region JobApplication
-
-        CreateMap<JobApplication, JobApplicationDto>().ReverseMap();
-        CreateMap<JobApplication, JobApplicationListDto>().ReverseMap();
-        CreateMap<JobApplication, CreateJobApplicationDto>().ReverseMap();
-        CreateMap<JobApplication, UpdateJobApplicationDto>().ReverseMap();
-        
-        #endregion
-
-        #region NextAction
-
-        CreateMap<NextAction, NextActionDto>().ReverseMap();
-        CreateMap<NextAction, CreateNextActionDto>().ReverseMap();
-        CreateMap<NextAction, UpdateNextActionDto>().ReverseMap();
 
         #endregion
     }

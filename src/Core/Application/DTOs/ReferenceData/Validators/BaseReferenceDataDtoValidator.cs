@@ -9,6 +9,8 @@ public abstract class BaseReferenceDataDtoValidator<T> : AbstractValidator<BaseR
 {
     public BaseReferenceDataDtoValidator(IReferenceDataRepository<T> repository)
     {
+        RuleFor(p => p.Description).NotEmpty().WithMessage("{PropertyName} is required.").NotNull();
+
         RuleFor(p => p.Id)
             .GreaterThan(0)
             .MustAsync(
@@ -19,7 +21,6 @@ public abstract class BaseReferenceDataDtoValidator<T> : AbstractValidator<BaseR
                 }
             )
             .WithMessage("{PropertyName} does not exists in the repository.");
-        
-        RuleFor(p => p.Description).NotEmpty().WithMessage("{PropertyName} is required.").NotNull();
+       
     }
 }

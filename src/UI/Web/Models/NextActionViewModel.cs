@@ -11,11 +11,11 @@ public class NextActionViewModel : CreateNextActionViewModel
 public class CreateNextActionViewModel
 {
     [Required]
-    public required NextActionType NextActionType { get; set; }
+    public ReferenceDataViewModel NextActionType { get; set; }
 
     [Required]
-    public required string ActionNote { get; set; }
+    public string ActionNote { get; set; }
 
     [DataType(DataType.Date)]
-    public required DateTime ActionDate { get; set; }
+    public DateTime ActionDate { get; set; }
 }

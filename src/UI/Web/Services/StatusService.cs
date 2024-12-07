@@ -9,9 +9,9 @@ namespace Numployable.UI.Web.Services;
 public class StatusService(IMapper mapper, IClient httpClient, ILocalStorageService localStorage)
   : BaseHttpService(httpClient, localStorage), IStatusService
 {
-  public async Task<List<InfrastructureDataViewModel>> GetAll()
+  public async Task<List<ReferenceDataViewModel>> GetAll()
   {
     var statusList = await _client.StatusAllAsync();
-    return mapper.Map<List<InfrastructureDataViewModel>>(statusList);
+    return mapper.Map<List<ReferenceDataViewModel>>(statusList);
   }
 }
