@@ -10,7 +10,7 @@ public class JobApplicationConfiguration : IEntityTypeConfiguration<JobApplicati
     {
         builder.HasKey(e => e.Id).HasName("JobApplication_PRIMARY");
 
-        builder
+        /*builder
             .HasOne(d => d.Commute)
             .WithMany(p => p.JobApplication)
             .OnDelete(DeleteBehavior.Restrict)
@@ -38,6 +38,6 @@ public class JobApplicationConfiguration : IEntityTypeConfiguration<JobApplicati
             .HasOne(d => d.Status)
             .WithMany(p => p.JobApplication)
             .OnDelete(DeleteBehavior.Restrict)
-            .HasConstraintName("JobApplication_Status_FK");
+            .HasConstraintName("JobApplication_Status_FK");*/
     }
 }

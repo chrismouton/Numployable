@@ -1,6 +1,6 @@
 using AutoMapper;
 
-namespace Numployable.Application;
+namespace Numployable.UI.Web;
 
 public class DateTimeTypeConverter : IValueConverter<DateTimeOffset?, DateTime?>
 {

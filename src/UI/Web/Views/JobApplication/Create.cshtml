@@ -1,7 +1,7 @@
 @model CreateJobApplicationViewModel
 
 @{
-  ViewData["Title"] = "Dashboard - Analytics";
+  ViewData["Title"] = "Create Job Application";
 }
 
 @* ************** Content ************** *@
@@ -12,7 +12,7 @@
   <form asp-action="Create">
     <div asp-validation-summary="ModelOnly" class="card-body">
       <div class="mb-4 row">
-        <label for="html5-text-input" class="col-md-2 col-form-label">Role Type *</label>
+        <label asp-for="RoleTypeId" class="col-md-2 col-form-label">Role Type *</label>
         <div class="col-md-10">
           <select asp-for="RoleTypeId" asp-items="Model.RoleTypeList" class="form-control">
             <option>Select Role Type</option>
@@ -21,55 +21,53 @@
         </div>
       </div>
       <div class="mb-4 row">
-        <label for="html5-text-input" class="col-md-2 col-form-label">Role Name *</label>
+        <label asp-for="RoleName" class="col-md-2 col-form-label">Role Name *</label>
         <div class="col-md-10">
-          <input class="form-control" type="text" value="@Model.RoleName" id="jobapplication-rolename" />
+          <input class="form-control" type="text" value="@Model.RoleName" />
         </div>
       </div>
       <div class="mb-4 row">
-        <label for="html5-text-input" class="col-md-2 col-form-label">Company/Advertiser *</label>
+        <label asp-for="CompanyName" class="col-md-2 col-form-label">Company/Advertiser *</label>
         <div class="col-md-10">
-          <input class="form-control" type="text" value="@Model.CompanyName" id="jobapplication-companyname" />
+          <input asp-for="CompanyName" type="text" value="@Model.CompanyName"/>
         </div>
       </div>
       <div class="mb-4 row">
-        <label for="html5-url-input" class="col-md-2 col-form-label">Application URL</label>
+        <label asp-for="Url" class="col-md-2 col-form-label">Application URL</label>
         <div class="col-md-10">
-          <input class="form-control" type="url" value='@Model.Url' id="jobapplication-url" />
+          <input asp-for="Url" type="url" value="@Model.Url"/>
         </div>
       </div>
       <div class="mb-4 row">
-        <label for="html5-text-input" class="col-md-2 col-form-label">Advertised Salary</label>
+        <label asp-for="AdvertisedSalary" class="col-md-2 col-form-label">Advertised Salary</label>
         <div class="col-md-10">
-          <input class="form-control" type="text" value="@Model.AdvertisedSalary"
-            id="jobapplication-advertisedsalary" />
+          <input asp-for="AdvertisedSalary" type="text" value="@Model.AdvertisedSalary" />
         </div>
       </div>
       <div class="mb-4 row">
-        <label for="html5-text-input" class="col-md-2 col-form-label">Location</label>
+        <label asp-for="Location" class="col-md-2 col-form-label">Location</label>
         <div class="col-md-10">
-          <input class="form-control" type="text" value="@Model.Location" id="jobapplication-location" />
+          <input asp-for="Location" type="text" value="@Model.Location"/>
         </div>
       </div>
       <div class="mb-4 row">
-        <label for="html5-text-input" class="col-md-2 col-form-label">Commute</label>
+        <label asp-for="CommuteId" class="col-md-2 col-form-label">Commute</label>
         <select asp-for="CommuteId" asp-items="Model.CommuteList" class="form-control">
           <option>Select Commute</option>
         </select>
         <span asp-validation-for="CommuteId" class="text-danger"></span>
       </div>
       <div class="mb-4 row">
-        <label for="html5-text-input" class="col-md-2 col-form-label">Application Status *</label>
-        <select asp-for="ApplicationStatusId" asp-items="Model.ApplicationProcessStatusList" class="form-control">
+        <label asp-for="StatusId" class="col-md-2 col-form-label">Application Status *</label>
+        <select asp-for="StatusId" asp-items="Model.ProcessStatusList" class="form-control">
           <option>Select Application Status</option>
         </select>
-        <span asp-validation-for="ApplicationStatusId" class="text-danger"></span>
+        <span asp-validation-for="StatusId" class="text-danger"></span>
       </div>
       <div class="mb-4 row">
-        <label for="html5-date-input" class="col-md-2 col-form-label">Application Date *</label>
+        <label asp-for="ApplicationDate" class="col-md-2 col-form-label">Application Date *</label>
         <div class="col-md-10">
-          <input class="form-control" type="date" value="@Model.ApplicationDate.ToLongDateString()"
-            id="jobapplication-applicationdate" />
+          <input class="form-control" type="date" value="@Model.ApplicationDate.ToLongDateString()" />
         </div>
       </div>
       <input type="submit" value="Save"  class="btn btn-primary" />

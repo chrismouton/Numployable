@@ -36,7 +36,10 @@ public class JobApplicationRepository(NumployableDbContext dbContext, IMapper ma
 
     public async Task<IReadOnlyList<JobApplication>> GetAll()
     {
-        List<JobApplication> entities = await _dbContext.Set<JobApplication>().ToListAsync();
+        List<JobApplication> entities = await _dbContext.JobApplication
+            .Include(q => q.Status)
+            .Include(q => q.ProcessStatus)
+            .Include(q => q.RoleType).ToListAsync();
 
         List<JobApplication> applications = new(entities.Count);
         applications.AddRange(entities.Select(_mapper.Map<JobApplication>));

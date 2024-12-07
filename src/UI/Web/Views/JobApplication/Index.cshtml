@@ -6,7 +6,7 @@
 
 @* ************** Content ************** *@
 <div class="card">
-  <h5 class="card-header">Table Basic</h5>
+  <h5 class="card-header">Job Applications</h5>
   <div class="table-responsive text-nowrap">
     <table class="table">
       <thead>
@@ -26,8 +26,8 @@
           {
           <td>@jobApplication.RoleName</td>
           <td>@jobApplication.CompanyName</td>
-          <td><span class="badge bg-label-primary me-1">@jobApplication.ApplicationStatus.Description</span></td>
-          <td><span class="badge bg-label-primary me-1">@jobApplication.ApplicationProcessStatus.Description</span></td>
+          <td><span class="badge bg-label-primary me-1">@jobApplication.Status.Description</span></td>
+          <td><span class="badge bg-label-primary me-1">@jobApplication.ProcessStatus.Description</span></td>
           <td>@jobApplication.ApplicationDate</td>
           <td></td>
           <td>

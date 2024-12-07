@@ -36,8 +36,8 @@ public class JobApplicationController(IJobApplicationService jobApplicationServi
       RoleName = string.Empty,
       CompanyName = string.Empty,
       ApplicationDate = DateTime.Now,
-      ApplicationStatusList = applicationStatusList,
-      ApplicationProcessStatusList = applicationProcessStatusList,
+      StatusList = applicationStatusList,
+      ProcessStatusList = applicationProcessStatusList,
       CommuteList = commuteList
     };
 

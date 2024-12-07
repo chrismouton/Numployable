@@ -9,8 +9,7 @@ This document helps do describe how to regenerate this C# client.
 The command line tool for NSwag is is distributed as a NPM package. Full details can be found here: https://www.npmjs.com/package/nswag
 
 To install globally, run the following NPM command:
-
-npm install nswag -g
+`npm install nswag -g`
 
 
 ## Running the generator
@@ -22,7 +21,7 @@ This section will focus on the command-line utility so that the instructions are
 
 Execute the following command from the ./src directory
 
-nswag openapi2csclient /input:swagger.json \
+`nswag openapi2csclient /input:swagger.json \
                        /classname:Client \
                        /namespace:Numployable.APIClient.Client \
                        /output:./API/APIClient/Client/ServiceClient.cs \
@@ -33,7 +32,7 @@ nswag openapi2csclient /input:swagger.json \
                        /InjectHttpClient:true \
                        /GenerateClientInterfaces:true \
                        /GenerateDtoTypes:true \
-                       /WrapDtoExceptions:true 
+                       /WrapDtoExceptions:true`
 
 ## Reference
 

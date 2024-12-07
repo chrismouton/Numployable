@@ -1,6 +1,6 @@
 namespace Numployable.UI.Web.Models;
 
-public class RoleTypeViewModel
+public class RoleTypeViewModel : InfrastructureDataViewModel
 {
-  
+
 }
