@@ -7,8 +7,8 @@ namespace Numployable.UI.Web.Controllers;
 
 public class JobApplicationController(IJobApplicationService jobApplicationService,
                                       IRoleTypeService roleTypesService,
-                                      IApplicationStatusService applicationStatusService,
-                                      IApplicationProcessStatusService applicationProcessStatusService,
+                                      IStatusService applicationStatusService,
+                                      IProcessStatusService applicationProcessStatusService,
                                       ICommuteService commuteService) : Controller
 {
   public async Task<IActionResult> Index()

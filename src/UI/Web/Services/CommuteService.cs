@@ -11,7 +11,7 @@ public class CommuteService(IMapper mapper, IClient httpClient, ILocalStorageSer
 {
   public async Task<List<InfrastructureDataViewModel>> GetAll()
   {
-    var commuteList = await _client.CommuteAsync();
+    var commuteList = await _client.CommuteAllAsync();
     return mapper.Map<List<InfrastructureDataViewModel>>(commuteList);
   }
 }

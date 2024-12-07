@@ -32,8 +32,8 @@ public class Startup(IConfiguration configuration)
     services.AddHttpClient<IClient, Client>(cl => cl.BaseAddress = new Uri("http://localhost:5093"));
     services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
-    services.AddScoped<IApplicationProcessStatusService, ApplicationProcessStatusService>();
-    services.AddScoped<IApplicationStatusService, ApplicationStatusService>();
+    services.AddScoped<IProcessStatusService, ProcessStatusService>();
+    services.AddScoped<IStatusService, StatusService>();
     services.AddScoped<ICommuteService, CommuteService>();
     services.AddScoped<IJobApplicationService, JobApplicationService>();
     services.AddScoped<INextActionService, NextActionService>();

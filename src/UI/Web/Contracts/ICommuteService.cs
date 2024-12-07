@@ -1,6 +1,6 @@
 namespace Numployable.UI.Web.Contracts;
 
-public interface ICommuteService : IInfrastractureDataService
+public interface ICommuteService : IReferenceDataService
 {
 
 }

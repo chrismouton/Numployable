@@ -5,44 +5,6 @@
     "version": "v1"
   },
   "paths": {
-    "/api/Commute": {
-      "get": {
-        "tags": [
-          "Commute"
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CommuteDto"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CommuteDto"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/CommuteDto"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/Dashboard": {
       "get": {
         "tags": [
@@ -554,10 +516,10 @@
         }
       }
     },
-    "/api/ProcessStatus": {
+    "/api/ReferenceData/processstatus": {
       "get": {
         "tags": [
-          "ProcessStatus"
+          "ReferenceData"
         ],
         "responses": {
           "200": {
@@ -592,10 +554,206 @@
         }
       }
     },
-    "/api/RoleType": {
+    "/api/ReferenceData/processstatus/{description}": {
       "get": {
         "tags": [
-          "RoleType"
+          "ReferenceData"
+        ],
+        "parameters": [
+          {
+            "name": "description",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProcessStatusDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProcessStatusDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProcessStatusDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ReferenceData/commute": {
+      "get": {
+        "tags": [
+          "ReferenceData"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CommuteDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CommuteDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CommuteDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ReferenceData/commute/{description}": {
+      "get": {
+        "tags": [
+          "ReferenceData"
+        ],
+        "parameters": [
+          {
+            "name": "description",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommuteDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommuteDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommuteDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ReferenceData/nextactiontype": {
+      "get": {
+        "tags": [
+          "ReferenceData"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NextActionTypeDto"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NextActionTypeDto"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/NextActionTypeDto"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ReferenceData/nextactiontype/{description}": {
+      "get": {
+        "tags": [
+          "ReferenceData"
+        ],
+        "parameters": [
+          {
+            "name": "description",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/NextActionTypeDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NextActionTypeDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NextActionTypeDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ReferenceData/roletype": {
+      "get": {
+        "tags": [
+          "ReferenceData"
         ],
         "responses": {
           "200": {
@@ -630,10 +788,50 @@
         }
       }
     },
-    "/api/Source": {
+    "/api/ReferenceData/roletype/{description}": {
       "get": {
         "tags": [
-          "Source"
+          "ReferenceData"
+        ],
+        "parameters": [
+          {
+            "name": "description",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoleTypeDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoleTypeDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoleTypeDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ReferenceData/source": {
+      "get": {
+        "tags": [
+          "ReferenceData"
         ],
         "responses": {
           "200": {
@@ -668,10 +866,50 @@
         }
       }
     },
-    "/api/Status": {
+    "/api/ReferenceData/source/{description}": {
       "get": {
         "tags": [
-          "Status"
+          "ReferenceData"
+        ],
+        "parameters": [
+          {
+            "name": "description",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SourceDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SourceDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SourceDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ReferenceData/status": {
+      "get": {
+        "tags": [
+          "ReferenceData"
         ],
         "responses": {
           "200": {
@@ -699,6 +937,46 @@
                   "items": {
                     "$ref": "#/components/schemas/StatusDto"
                   }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ReferenceData/status/{description}": {
+      "get": {
+        "tags": [
+          "ReferenceData"
+        ],
+        "parameters": [
+          {
+            "name": "description",
+            "in": "path",
+            "required": true,
+            "style": "simple",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusDto"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusDto"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusDto"
                 }
               }
             }
@@ -793,17 +1071,13 @@
             "format": "date-time",
             "nullable": true
           },
-          "applicationStatus": {
+          "status": {
             "$ref": "#/components/schemas/Status"
           },
-          "applicationProcessStatus": {
+          "processStatus": {
             "$ref": "#/components/schemas/ProcessStatus"
           },
-          "url": {
-            "type": "string",
-            "nullable": true
-          },
-          "applicationSource": {
+          "source": {
             "$ref": "#/components/schemas/Source"
           },
           "advertisedSalary": {
@@ -971,17 +1245,13 @@
             "format": "date-time",
             "nullable": true
           },
-          "applicationStatus": {
+          "status": {
             "$ref": "#/components/schemas/Status"
           },
-          "applicationProcessStatus": {
+          "processStatus": {
             "$ref": "#/components/schemas/ProcessStatus"
           },
-          "url": {
-            "type": "string",
-            "nullable": true
-          },
-          "applicationSource": {
+          "source": {
             "$ref": "#/components/schemas/Source"
           },
           "advertisedSalary": {
@@ -1032,15 +1302,11 @@
             "format": "date-time",
             "nullable": true
           },
-          "applicationStatus": {
+          "status": {
             "$ref": "#/components/schemas/Status"
           },
-          "applicationProcessStatus": {
+          "processStatus": {
             "$ref": "#/components/schemas/ProcessStatus"
-          },
-          "url": {
-            "type": "string",
-            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1119,6 +1385,20 @@
             "items": {
               "$ref": "#/components/schemas/NextAction"
             },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "NextActionTypeDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "description": {
+            "type": "string",
             "nullable": true
           }
         },
@@ -1295,17 +1575,13 @@
             "format": "date-time",
             "nullable": true
           },
-          "applicationStatus": {
+          "status": {
             "$ref": "#/components/schemas/Status"
           },
-          "applicationProcessStatus": {
+          "processStatus": {
             "$ref": "#/components/schemas/ProcessStatus"
           },
-          "url": {
-            "type": "string",
-            "nullable": true
-          },
-          "applicationSource": {
+          "source": {
             "$ref": "#/components/schemas/Source"
           },
           "advertisedSalary": {
