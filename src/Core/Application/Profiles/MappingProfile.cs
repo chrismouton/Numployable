@@ -1,8 +1,8 @@
 using AutoMapper;
 using Numployable.Application.DTOs.Dashboard;
-using Numployable.Application.DTOs.InfrastructureData;
 using Numployable.Application.DTOs.JobApplications;
 using Numployable.Application.DTOs.NextActions;
+using Numployable.Application.DTOs.ReferenceData;
 using Numployable.Domain;
 
 namespace Numployable.Application.Profiles;

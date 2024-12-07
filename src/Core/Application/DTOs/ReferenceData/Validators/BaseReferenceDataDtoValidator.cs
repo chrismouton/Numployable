@@ -1,9 +1,8 @@
-namespace Numployable.Application.DTOs.ReferenceData.Validators;
-
 using FluentValidation;
 using Numployable.Application.Persistence.Contracts;
 
-namespace Numployable.Application.DTOs.InfrastructureData.Validators;
+
+namespace Numployable.Application.DTOs.ReferenceData.Validators;
 
 public abstract class BaseReferenceDataDtoValidator<T> : AbstractValidator<BaseReferenceDataDto>
     where T : BaseReferenceDataDto

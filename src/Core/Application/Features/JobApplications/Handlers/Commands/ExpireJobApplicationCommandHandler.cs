@@ -15,7 +15,7 @@ public class ExpireJobApplicationCommandHandler(IJobApplicationRepository jobApp
     {
         BaseCommandResponse response = new();
 
-        Status status = statusRepository.GetByDescription("Expired");
+        Status status = await statusRepository.GetByDescription("Expired");
         if (status == null)
         {
             response.Success = false;

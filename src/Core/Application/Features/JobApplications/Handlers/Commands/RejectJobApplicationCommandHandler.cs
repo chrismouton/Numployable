@@ -6,14 +6,14 @@ using Numployable.Domain;
 
 namespace Numployable.Application.Features.JobApplications.Handlers.Commands;
 
-public class RejectJobApplicationCommandHandler(IJobApplicationRepository jobApplicationRepository, IStatusRepository statusRepository, IProcessStatusRepository processStatusRepository)
+public class RejectJobApplicationCommandHandler(IJobApplicationRepository jobApplicationRepository, IStatusRepository _statusRepository, IProcessStatusRepository _processStatusRepository)
     : IRequestHandler<RejectJobApplicationCommand, BaseCommandResponse>
 {
     public async Task<BaseCommandResponse> Handle(RejectJobApplicationCommand request, CancellationToken cancellationToken)
     {
         BaseCommandResponse response = new();
 
-        Status status = _statusRepository.GetByDescription("Closed");
+        Status status = await _statusRepository.GetByDescription("Closed");
         if (status == null)
         {
             response.Success = false;
@@ -21,7 +21,7 @@ public class RejectJobApplicationCommandHandler(IJobApplicationRepository jobApp
             response.Id = request.Id;
             return response;
         }
-        ProcessStatus processStatus = _processStatusRepository.GetByDescription("Rejected");
+        ProcessStatus processStatus = await _processStatusRepository.GetByDescription("Rejected");
         if (processStatus == null)
         {
             response.Success = false;
