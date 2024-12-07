@@ -1,20 +1,17 @@
-using AutoMapper;
 using MediatR;
+
 using Numployable.Application.DTOs.NextActions.Validators;
 using Numployable.Application.Exceptions;
 using Numployable.Application.Features.NextActions.Requests.Commands;
+using Numployable.Application.Mappings;
 using Numployable.Application.Persistence.Contracts;
 using Numployable.Application.Responses;
 
 namespace Numployable.Application.Features.NextActions.Handlers.Commands;
 
-public class UpdateNextActionCommandHandler(INextActionRepository nextActionRepository, IMapper mapper)
+public class UpdateNextActionCommandHandler(INextActionRepository nextActionRepository)
     : IRequestHandler<UpdateNextActionCommand, BaseCommandResponse>
 {
-    private readonly INextActionRepository _nextActionRepository = nextActionRepository;
-
-    private readonly IMapper _mapper = mapper;
-
     public async Task<BaseCommandResponse> Handle(UpdateNextActionCommand request, CancellationToken cancellationToken)
     {
         if (request.UpdateNextActionDto == null)
@@ -22,7 +19,7 @@ public class UpdateNextActionCommandHandler(INextActionRepository nextActionRepo
 
         BaseCommandResponse response = new();
 
-        UpdateNextActionsDtoValidator validator = new(_nextActionRepository);
+        UpdateNextActionsDtoValidator validator = new(nextActionRepository);
         var validationResult = await validator.ValidateAsync(request.UpdateNextActionDto, cancellationToken);
         if (!validationResult.IsValid)
         {
@@ -32,13 +29,11 @@ public class UpdateNextActionCommandHandler(INextActionRepository nextActionRepo
         }
         else
         {
-            var nextAction = await _nextActionRepository.Get(request.Id);
+            var nextAction = await nextActionRepository.Get(request.Id);
             if (nextAction == null)
                 throw new NotFoundException(nameof(nextAction), request.Id);
 
-            _mapper.Map(request.UpdateNextActionDto, nextAction);
-
-            await _nextActionRepository.Update(nextAction);
+            await nextActionRepository.Update(request.UpdateNextActionDto.ToNextAction());
 
             response.Success = true;
             response.Message = "Update successful";

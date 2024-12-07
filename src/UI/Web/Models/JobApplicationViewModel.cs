@@ -10,26 +10,26 @@ public class JobApplicationViewModel : CreateJobApplicationViewModel
 {
     public int Id { get; set; }
 
-    public RoleTypeViewModel RoleType { get; set; }
+    public ReferenceDataViewModel RoleType { get; set; }
 
-    public InfrastructureDataViewModel Status { get; set; }
+    public ReferenceDataViewModel Status { get; set; }
 
-    public InfrastructureDataViewModel ProcessStatus { get; set; }
+    public ReferenceDataViewModel ProcessStatus { get; set; }
 
-    public InfrastructureDataViewModel Source { get; set; }
+    public ReferenceDataViewModel Source { get; set; }
 
-    public InfrastructureDataViewModel Commute { get; set; }
+    public ReferenceDataViewModel Commute { get; set; }
 }
 
 public class CreateJobApplicationViewModel
 {
     [Display(Name = "Role Name")]
     [Required]
-    public required string RoleName { get; set; }
+    public string RoleName { get; set; }
 
     [Display(Name = "Company Name")]
     [Required]
-    public required string CompanyName { get; set; }
+    public string CompanyName { get; set; }
 
     [Display(Name = "Role Type")]
     public int RoleTypeId { get; set; }
@@ -38,7 +38,7 @@ public class CreateJobApplicationViewModel
 
     [Display(Name = "Application Date")]
     [DataType(DataType.Date)]
-    public required DateTime ApplicationDate { get; set; }
+    public DateTime ApplicationDate { get; set; }
 
     public SelectList StatusList { get; set; }
 

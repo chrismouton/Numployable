@@ -1,20 +1,17 @@
-using AutoMapper;
 using MediatR;
+
 using Numployable.Application.DTOs.NextActions.Validators;
 using Numployable.Application.Features.NextActions.Requests.Commands;
+using Numployable.Application.Mappings;
 using Numployable.Application.Persistence.Contracts;
 using Numployable.Application.Responses;
 using Numployable.Domain;
 
 namespace Numployable.Application.Features.NextActions.Handlers.Commands;
 
-public class CreateNextActionCommandHandler(INextActionRepository nextActionRepository, IMapper mapper)
+public class CreateNextActionCommandHandler(INextActionRepository nextActionRepository)
     : IRequestHandler<CreateNextActionCommand, BaseCommandResponse>
 {
-    private readonly INextActionRepository _nextActionRepository = nextActionRepository;
-
-    private readonly IMapper _mapper = mapper;
-
     public async Task<BaseCommandResponse> Handle(CreateNextActionCommand request, CancellationToken cancellationToken)
     {
         if (request.CreateNextActionDto == null)
@@ -32,9 +29,7 @@ public class CreateNextActionCommandHandler(INextActionRepository nextActionRepo
         }
         else
         {
-            var nextAction = _mapper.Map<NextAction>(request.CreateNextActionDto);
-
-            nextAction = await _nextActionRepository.Add(nextAction);
+            NextAction nextAction = await nextActionRepository.Add(request.CreateNextActionDto.ToNextAction());
 
             response.Success = true;
             response.Message = "Creation successful";

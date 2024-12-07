@@ -1,6 +1,6 @@
 namespace Numployable.UI.Web.Models;
 
-public class InfrastructureDataViewModel
+public class ReferenceDataViewModel
 {
   public int Id { get; set; }
 

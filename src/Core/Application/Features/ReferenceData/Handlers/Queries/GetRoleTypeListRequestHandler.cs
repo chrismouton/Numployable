@@ -12,12 +12,12 @@ using Persistence.Contracts;
 using Domain;
 
 public class GetRoleTypeListRequestHandler(IRoleTypeRepository roleTypeRepository, IMapper mapper) 
-    : IRequestHandler<GetRoleTypeListRequest, List<RoleTypeDto>>
+    : IRequestHandler<GetRoleTypeListRequest, IEnumerable<RoleTypeDto>>
 {
-    public async Task<List<RoleTypeDto>> Handle(GetRoleTypeListRequest request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<RoleTypeDto>> Handle(GetRoleTypeListRequest request, CancellationToken cancellationToken)
     {
         IReadOnlyCollection<RoleType> roleTypes = await roleTypeRepository.GetAll();
 
-        return mapper.Map<List<RoleTypeDto>>(roleTypes);
+        return mapper.Map<IEnumerable<RoleTypeDto>>(roleTypes);
     }
 }

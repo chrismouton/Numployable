@@ -1,24 +1,21 @@
-using AutoMapper;
 using MediatR;
+
 using Numployable.Application.DTOs.JobApplications.Validators;
 using Numployable.Application.Features.JobApplications.Requests.Commands;
+using Numployable.Application.Mappings;
 using Numployable.Application.Persistence.Contracts;
 using Numployable.Application.Responses;
 using Numployable.Domain;
 
 namespace Numployable.Application.Features.JobApplications.Handlers.Commands;
 
-public class CreateJobApplicationCommandHandler(IJobApplicationRepository jobApplicationRepository, IMapper mapper)
+public class CreateJobApplicationCommandHandler(IJobApplicationRepository jobApplicationRepository)
     : IRequestHandler<CreateJobApplicationCommand, BaseCommandResponse>
 {
-    private readonly IJobApplicationRepository _jobApplicationRepository = jobApplicationRepository;
-
-    private readonly IMapper _mapper = mapper;
-
     public async Task<BaseCommandResponse> Handle(CreateJobApplicationCommand request, CancellationToken cancellationToken)
     {
         if (request.CreateJobApplicationDto == null)
-            throw new ArgumentNullException(nameof(request.CreateJobApplicationDto));
+            throw new ArgumentNullException(nameof(request));
 
         BaseCommandResponse response = new();
 
@@ -32,8 +29,7 @@ public class CreateJobApplicationCommandHandler(IJobApplicationRepository jobApp
         }
         else
         {
-            JobApplication jobApplication = _mapper.Map<JobApplication>(request.CreateJobApplicationDto);
-            jobApplication = await _jobApplicationRepository.Add(jobApplication);
+            JobApplication jobApplication = await jobApplicationRepository.Add(request.CreateJobApplicationDto.ToJobApplication());
 
             response.Success = true;
             response.Message = "Creation success";

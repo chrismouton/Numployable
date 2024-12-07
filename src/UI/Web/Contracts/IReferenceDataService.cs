@@ -4,5 +4,5 @@ namespace Numployable.UI.Web.Contracts;
 
 public interface IReferenceDataService
 {
-  Task<List<InfrastructureDataViewModel>> GetAll();
+  Task<List<ReferenceDataViewModel>> GetAll();
 }

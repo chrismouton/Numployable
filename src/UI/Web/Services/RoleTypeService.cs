@@ -9,9 +9,9 @@ namespace Numployable.UI.Web.Services;
 public class RoleTypeService(IMapper mapper, IClient httpClient, ILocalStorageService localStorage)
   : BaseHttpService(httpClient, localStorage), IRoleTypeService
 {
-  public async Task<List<InfrastructureDataViewModel>> GetAll()
+  public async Task<List<ReferenceDataViewModel>> GetAll()
   {
     var roleTypeList = await _client.RoletypeAllAsync();
-    return mapper.Map<List<InfrastructureDataViewModel>>(roleTypeList);
+    return mapper.Map<List<ReferenceDataViewModel>>(roleTypeList);
   }
 }

@@ -21,13 +21,13 @@ public class JobApplicationController(IJobApplicationService jobApplicationServi
   // GET: JobApplication/Create
   public async Task<IActionResult> Create()
   {
-    List<InfrastructureDataViewModel> roleTypes = await roleTypesService.GetAll();
+    List<ReferenceDataViewModel> roleTypes = await roleTypesService.GetAll();
     var roleTypeItems = new SelectList(roleTypes, "Id", "Description");
-    List<InfrastructureDataViewModel> applicationStatuses = await applicationStatusService.GetAll();
+    List<ReferenceDataViewModel> applicationStatuses = await applicationStatusService.GetAll();
     var applicationStatusList = new SelectList(applicationStatuses, "Id", "Description");
-    List<InfrastructureDataViewModel> applicationProcessStatuses = await applicationProcessStatusService.GetAll();
+    List<ReferenceDataViewModel> applicationProcessStatuses = await applicationProcessStatusService.GetAll();
     var applicationProcessStatusList = new SelectList(applicationProcessStatuses, "Id", "Description");
-    List<InfrastructureDataViewModel> commute = await commuteService.GetAll();
+    List<ReferenceDataViewModel> commute = await commuteService.GetAll();
     var commuteList = new SelectList(commute, "Id", "Description");
 
     var model = new CreateJobApplicationViewModel
