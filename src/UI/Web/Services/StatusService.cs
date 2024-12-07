@@ -6,12 +6,12 @@ using Numployable.UI.Web.Models;
 
 namespace Numployable.UI.Web.Services;
 
-public class ApplicationStatusService(IMapper mapper, IClient httpClient, ILocalStorageService localStorage)
-  : BaseHttpService(httpClient, localStorage), IApplicationStatusService
+public class StatusService(IMapper mapper, IClient httpClient, ILocalStorageService localStorage)
+  : BaseHttpService(httpClient, localStorage), IStatusService
 {
   public async Task<List<InfrastructureDataViewModel>> GetAll()
   {
-    var statusList = await _client.StatusAsync();
+    var statusList = await _client.StatusAllAsync();
     return mapper.Map<List<InfrastructureDataViewModel>>(statusList);
   }
 }
