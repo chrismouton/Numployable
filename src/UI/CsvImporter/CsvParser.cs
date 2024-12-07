@@ -24,6 +24,7 @@ internal class CsvParser (string filePath, string Url)
             jobApplication.ApplicationStatus = null;
             jobApplication.AdvertisedSalary = record.AdvertisedSalary;
             jobApplication.Location = record.Location;
+            jobApplication.Commute = string.IsNullOrEmpty(record.Commute) ! null : GetCommute(record.Commute);
             jobApplication.Notes = record.Notes;
 
             if (record.NextActionDate is not null)
@@ -36,7 +37,46 @@ internal class CsvParser (string filePath, string Url)
 
     private RoleType GetRoleType(string roleType)
     {
+        switch (roleType)
+        {
+            case "Permanent":
+            case "Part Time":
+            case "Contract":
+            case "Fixed-Term Contract":
+            case "Volunteering":
+            case "Temporary Full-time":
+                return client.GetRoleTypeByDescription(roleType);
+        }
+    }
 
+    private Status GetStatus(string status, ref ProcessStatus processStatus)
+    {
+        switch (status)
+        {
+            case "Applied":
+            case "Networking":
+            case "Initial Call":
+            case "Waiting Response":
+            case "Interviewing":
+            case "Offer Received":
+            case "Hired":
+            case "Rejected":
+            case "Expired":
+            case "Recruiter Contacted":
+            case "Application Retracted":
+                return null;
+        }
+    }
+
+    private Commute GetCommute(string commute)
+    {
+        switch (commute)
+        {
+            case "Onsite":
+            case "Hybrid":
+            case "Remote":
+                return null;
+        }
     }
 
     private IEnumerable<ImportData> LoadRecords()

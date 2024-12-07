@@ -32,7 +32,7 @@ public class RoleTypeRepository(NumployableDbContext dbContext, IMapper mapper)
         return list;
     }
 
-    public RoleType GetByDescription(string description)
+    public async Task<RoleType> GetByDescription(string description)
     {
         RoleType entity = dbContext
             .RoleType.FromSql($"SELECT \"Id\", \"Description\" FROM public.\"RoleType\"")

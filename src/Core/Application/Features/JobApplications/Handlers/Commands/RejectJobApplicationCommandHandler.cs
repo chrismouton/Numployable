@@ -9,12 +9,6 @@ namespace Numployable.Application.Features.JobApplications.Handlers.Commands;
 public class RejectJobApplicationCommandHandler(IJobApplicationRepository jobApplicationRepository, IStatusRepository statusRepository, IProcessStatusRepository processStatusRepository)
     : IRequestHandler<RejectJobApplicationCommand, BaseCommandResponse>
 {
-    private readonly IJobApplicationRepository _jobApplicationRepository = jobApplicationRepository;
-
-    private readonly IStatusRepository _statusRepository = statusRepository;
-
-    private readonly IProcessStatusRepository _processStatusRepository = processStatusRepository;
-
     public async Task<BaseCommandResponse> Handle(RejectJobApplicationCommand request, CancellationToken cancellationToken)
     {
         BaseCommandResponse response = new();
@@ -45,7 +39,7 @@ public class RejectJobApplicationCommandHandler(IJobApplicationRepository jobApp
             ProcessStatus = processStatus
         };
 
-        await _jobApplicationRepository.Update(jobApplication);
+        await jobApplicationRepository.Update(jobApplication);
 
         response.Success = true;
         response.Message = "Successfully update process status for application.";

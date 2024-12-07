@@ -485,3 +485,6 @@ $RECYCLE.BIN/
 
 # Custom build driectories
 out/
+
+# Ignore editor local config 
+.zed/

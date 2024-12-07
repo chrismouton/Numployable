@@ -2,6 +2,6 @@ using Numployable.Domain;
 
 namespace Numployable.Application.Persistence.Contracts;
 
-public interface IRoleTypeRepository : IInfrastructureDataRepository<RoleType>
+public interface IRoleTypeRepository : IReferenceDataRepository<RoleType>
 {
 }

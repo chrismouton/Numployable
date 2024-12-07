@@ -5,5 +5,5 @@ namespace Numployable.Application.DTOs.JobApplications;
 
 public class ProcessUpdateJobApplicationDto : BaseDto
 {
-    public ProcessStatus? ApplicationProcessStatus { get; set; }
+    public ProcessStatus? ProcessStatus { get; set; }
 }

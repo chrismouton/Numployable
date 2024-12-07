@@ -8,6 +8,6 @@ public class ProcessUpdateJobApplicationDtoValidator : BaseJobApplicationDtoVali
     public ProcessUpdateJobApplicationDtoValidator(IJobApplicationRepository repository)
         : base(repository)
     {
-        RuleFor(p => p.ApplicationProcessStatus).NotNull();
+        RuleFor(p => p.ProcessStatus).NotNull();
     }
 }

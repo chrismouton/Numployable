@@ -32,7 +32,7 @@ public class ProcessStatusRepository(NumployableDbContext dbContext, IMapper map
         return list;
     }
 
-    public ProcessStatus GetByDescription(string description)
+    public async Task<ProcessStatus> GetByDescription(string description)
     {
         ProcessStatus entity = dbContext.ProcessStatus
                 .FromSql($"SELECT \"Id\", \"Description\" FROM public.\"ProcessStatus\"")

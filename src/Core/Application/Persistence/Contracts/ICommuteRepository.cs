@@ -2,6 +2,6 @@ using Numployable.Domain;
 
 namespace Numployable.Application.Persistence.Contracts;
 
-public interface ICommuteRepository : IInfrastructureDataRepository<Commute>
+public interface ICommuteRepository : IReferenceDataRepository<Commute>
 {
 }

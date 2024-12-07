@@ -2,6 +2,6 @@ using Numployable.Domain;
 
 namespace Numployable.Application.Persistence.Contracts;
 
-public interface IProcessStatusRepository : IInfrastructureDataRepository<ProcessStatus>
+public interface IProcessStatusRepository : IReferenceDataRepository<ProcessStatus>
 {
 }
