@@ -13,7 +13,7 @@ public class JobApplicationRepository(NumployableDbContext dbContext, IMapper ma
 
     public async Task<JobApplication> Add(JobApplication application)
     {
-        JobApplication entity = _mapper.Map<JobApplication>(application);
+        JobApplication? entity = _mapper.Map<JobApplication>(application);
 
         await _dbContext.AddAsync(entity);
         await _dbContext.SaveChangesAsync();
@@ -23,13 +23,13 @@ public class JobApplicationRepository(NumployableDbContext dbContext, IMapper ma
 
     public async Task<bool> Exists(int id)
     {
-        JobApplication entity = await Get(id);
+        JobApplication? entity = await Get(id);
         return entity != null;
     }
 
     public async Task<JobApplication> Get(int id)
     {
-        JobApplication entity = await _dbContext.Set<JobApplication>().FindAsync(id);
+        JobApplication? entity = await _dbContext.Set<JobApplication>().FindAsync(id);
 
         return _mapper.Map<JobApplication>(entity);
     }
@@ -49,14 +49,14 @@ public class JobApplicationRepository(NumployableDbContext dbContext, IMapper ma
 
     public async Task Update(JobApplication application)
     {
-        JobApplication entity = _mapper.Map<JobApplication>(application);
+        JobApplication? entity = _mapper.Map<JobApplication>(application);
         _dbContext.Entry(entity).State = EntityState.Modified;
         await _dbContext.SaveChangesAsync();
     }
 
     public async Task<List<JobApplication>> GetJobApplicationsWithDetails()
     {
-        var entities = await _dbContext.JobApplication.Include(q => q.NextAction).ToListAsync();
+        List<JobApplication>? entities = await _dbContext.JobApplication.Include(q => q.NextAction).ToListAsync();
 
         List<JobApplication> applications = new(entities.Count);
         applications.AddRange(entities.Select(_mapper.Map<JobApplication>));
@@ -66,7 +66,7 @@ public class JobApplicationRepository(NumployableDbContext dbContext, IMapper ma
 
     public async Task<JobApplication> GetJobApplicationWithDetails(int id)
     {
-        var entity = await _dbContext
+        JobApplication? entity = await _dbContext
             .JobApplication.Include(q => q.NextAction)
             .FirstOrDefaultAsync(q => q.Id == id);
 

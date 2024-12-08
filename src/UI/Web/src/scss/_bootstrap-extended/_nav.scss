@@ -14,13 +14,16 @@
       color: $nav-tabs-btn-color;
       border: 0;
       border-radius: 0;
+
       &:hover,
       &:focus {
         color: $nav-tabs-btn-color;
       }
+
       &:not(.active) {
         background-color: $nav-tabs-btn-bg;
       }
+
       &.disabled {
         color: $nav-link-disabled-color;
       }
@@ -35,6 +38,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+
     &:not(.active) {
       &:hover,
       &:focus {
@@ -71,13 +75,16 @@
 // Tab link
 .nav-tabs .nav-link {
   background-clip: padding-box;
+
   &.active {
     border-bottom-color: $nav-tabs-link-active-bg;
+
     &:hover,
     &:focus {
       border-bottom-color: $nav-tabs-link-active-bg;
     }
   }
+
   &:hover,
   &:focus {
     border-bottom-color: transparent;
@@ -90,6 +97,7 @@
 .nav-sm {
   @include template-nav-size($nav-link-padding-y-sm, $nav-link-padding-x-sm, $font-size-sm, $nav-link-line-height-sm);
 }
+
 .nav-lg {
   @include template-nav-size($nav-link-padding-y-lg, $nav-link-padding-x-lg, $font-size-lg, $nav-link-line-height-lg);
 }
@@ -149,11 +157,13 @@
 // Top tabs
 .nav-align-top {
   flex-direction: column;
+
   .nav-tabs {
     ~ .tab-content {
       z-index: 1;
       box-shadow: 0px 6px 7px -1px rgba($black, 0.12);
     }
+
     .nav-item {
       @include ltr-style {
         &:first-child .nav-link {
@@ -167,6 +177,7 @@
         }
       }
     }
+
     .nav-link {
       &.active {
         box-shadow: $card-box-shadow;
@@ -184,6 +195,7 @@
     margin-left: -1px;
     margin-bottom: 0;
   }
+
   .nav-link {
     text-align: right;
     justify-content: end;
@@ -193,10 +205,12 @@
     ~ .tab-content {
       box-shadow: $card-box-shadow;
     }
+
     .nav-item {
       &:not(:first-child) .nav-link {
         border-top: 1px solid $nav-tabs-border-color;
       }
+
       @include ltr-style {
         &:first-child .nav-link {
           border-top-right-radius: $border-radius;
@@ -206,6 +220,7 @@
         }
       }
     }
+
     .nav-link {
       &.active {
         @include ltr-style {
@@ -230,6 +245,7 @@
     ~ .tab-content {
       box-shadow: $card-box-shadow;
     }
+
     .nav-item {
       @include ltr-style {
         &:first-child .nav-link {
@@ -243,6 +259,7 @@
         }
       }
     }
+
     .nav-link {
       &.active {
         box-shadow: 0 4px 6px 0 rgba($black, 0.12);
@@ -258,18 +275,22 @@
     margin-right: -1px;
     margin-bottom: 0;
   }
+
   .nav-link {
     text-align: left;
     justify-content: start;
   }
+
   .nav-tabs {
     ~ .tab-content {
       box-shadow: $card-box-shadow;
     }
+
     .nav-item {
       &:not(:first-child) .nav-link {
         border-top: 1px solid $nav-tabs-border-color;
       }
+
       @include ltr-style {
         &:first-child .nav-link {
           border-top-left-radius: $border-radius;
@@ -279,6 +300,7 @@
         }
       }
     }
+
     .nav-link {
       &.active {
         @include ltr-style {
@@ -304,6 +326,7 @@
 .nav-align-top :not(.nav-pills) ~ .tab-content {
   @include border-radius(0 0 $border-radius $border-radius);
 }
+
 .nav-align-top .nav-tabs:not(.nav-fill) ~ .tab-content {
   @include ltr-style {
     @include border-top-end-radius($border-radius);

@@ -7,6 +7,6 @@ public class UpdateJobApplicationDtoValidator : BaseJobApplicationDtoValidator<U
     public UpdateJobApplicationDtoValidator(IJobApplicationRepository repository)
         : base(repository)
     {
-       Include(new CreateJobApplicationDtoValidator());
+        Include(new CreateJobApplicationDtoValidator());
     }
 }

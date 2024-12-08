@@ -7,23 +7,23 @@
 // Basic List groups
 @mixin template-list-group-item-variant($parent, $background, $color: null) {
   $background-color: if(
-    $dark-style,
-    shift-color($background, -$list-group-item-bg-scale, $card-bg),
-    shift-color($background, $list-group-item-bg-scale, $card-bg)
+      $dark-style,
+      shift-color($background, -$list-group-item-bg-scale, $card-bg),
+      shift-color($background, $list-group-item-bg-scale, $card-bg)
   );
   $border-color: if(
-    $dark-style,
-    if(
-      $parent == '.list-group-item-dark',
-      color-contrast($background),
-      shift-color($background, -$list-group-item-color-scale, $card-bg)
-    ),
-    shift-color($background, $list-group-item-color-scale, $card-bg)
+      $dark-style,
+      if(
+          $parent == '.list-group-item-dark',
+          color-contrast($background),
+          shift-color($background, -$list-group-item-color-scale, $card-bg)
+      ),
+      shift-color($background, $list-group-item-color-scale, $card-bg)
   );
   $color: if(
-    $parent == '.list-group-item-dark' and $dark-style,
-    color-contrast($background),
-    shift-color($background, $list-group-item-color-scale)
+      $parent == '.list-group-item-dark' and $dark-style,
+      color-contrast($background),
+      shift-color($background, $list-group-item-color-scale)
   );
   $hover-background: shade-color($background-color, $list-group-item-bg-hover-scale);
   #{$parent} {
@@ -35,6 +35,7 @@
   a#{$parent},
   button#{$parent} {
     color: $color;
+
     &:hover,
     &:focus {
       border-color: $border-color;

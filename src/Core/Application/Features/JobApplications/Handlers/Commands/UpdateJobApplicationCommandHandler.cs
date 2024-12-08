@@ -1,3 +1,4 @@
+using FluentValidation.Results;
 using MediatR;
 using Numployable.Application.DTOs.JobApplications.Validators;
 using Numployable.Application.Exceptions;
@@ -12,9 +13,10 @@ namespace Numployable.Application.Features.JobApplications.Handlers.Commands;
 public class UpdateJobApplicationCommandHandler(IJobApplicationRepository jobApplicationRepository)
     : IRequestHandler<UpdateJobApplicationCommand, BaseCommandResponse>
 {
-    public async Task<BaseCommandResponse> Handle(UpdateJobApplicationCommand request, CancellationToken cancellationToken)
+    public async Task<BaseCommandResponse> Handle(UpdateJobApplicationCommand request,
+        CancellationToken cancellationToken)
     {
-        JobApplication jobApplication = await jobApplicationRepository.Get(request.Id);
+        JobApplication? jobApplication = await jobApplicationRepository.Get(request.Id);
 
         if (jobApplication == null)
             throw new NotFoundException(nameof(jobApplication), request.Id);
@@ -22,7 +24,8 @@ public class UpdateJobApplicationCommandHandler(IJobApplicationRepository jobApp
         BaseCommandResponse response = new();
 
         UpdateJobApplicationDtoValidator validator = new(jobApplicationRepository);
-        var validationResult = await validator.ValidateAsync(request.UpdateJobApplicationDto, cancellationToken);
+        ValidationResult? validationResult =
+            await validator.ValidateAsync(request.UpdateJobApplicationDto, cancellationToken);
         if (!validationResult.IsValid)
         {
             response.Success = false;

@@ -4,7 +4,7 @@ namespace Numployable.Application.DTOs.NextActions;
 
 public class CreateNextActionDto : BaseDto
 {
-    public required NextActionType NextActionType {get; set; }
+    public required NextActionType NextActionType { get; set; }
 
     public required string ActionNote { get; set; }
 

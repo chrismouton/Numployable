@@ -1,7 +1,5 @@
 using System.Reflection;
-
 using Microsoft.AspNetCore.Authentication.Cookies;
-
 using Numployable.APIClient.Client;
 using Numployable.APIClient.Contracts;
 using Numployable.UI.Web.Contracts;
@@ -16,16 +14,10 @@ public class Startup(IConfiguration configuration)
   {
     services.AddHttpContextAccessor();
 
-    services.Configure<CookiePolicyOptions>(options =>
-    {
-      options.MinimumSameSitePolicy = SameSiteMode.None;
-    });
+    services.Configure<CookiePolicyOptions>(options => { options.MinimumSameSitePolicy = SameSiteMode.None; });
 
     services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>
-        {
-          options.LoginPath = new PathString("/users/login");
-        });
+      .AddCookie(options => { options.LoginPath = new PathString("/users/login"); });
 
     //services.AddTransient<IAuthenticationService, AuthenticationService>();
 
@@ -73,8 +65,8 @@ public class Startup(IConfiguration configuration)
     app.UseEndpoints(endpoints =>
     {
       endpoints.MapControllerRoute(
-                  name: "default",
-                  pattern: "{controller=Home}/{action=Index}/{id?}");
+        "default",
+        "{controller=Home}/{action=Index}/{id?}");
     });
   }
 }

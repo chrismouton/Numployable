@@ -16,7 +16,7 @@ public class NextActionController(IMediator mediator) : ControllerBase
     [HttpGet]
     public async Task<ActionResult<List<NextActionDto>>> Get()
     {
-        var nextActions = await _mediator.Send(new GetNextActionListRequest());
+        List<NextActionDto>? nextActions = await _mediator.Send(new GetNextActionListRequest());
 
         return Ok(nextActions);
     }
@@ -24,7 +24,7 @@ public class NextActionController(IMediator mediator) : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<NextActionDto>> Get(int id)
     {
-        var nextAction = await _mediator.Send(new GetNextActionDetailRequest { Id = id });
+        NextActionDto? nextAction = await _mediator.Send(new GetNextActionDetailRequest { Id = id });
 
         return Ok(nextAction);
     }
@@ -32,8 +32,8 @@ public class NextActionController(IMediator mediator) : ControllerBase
     [HttpPost]
     public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateNextActionDto application)
     {
-        var command = new CreateNextActionCommand { CreateNextActionDto = application };
-        var response = await _mediator.Send(command);
+        CreateNextActionCommand? command = new() { CreateNextActionDto = application };
+        BaseCommandResponse? response = await _mediator.Send(command);
 
         return Ok(response);
     }
@@ -41,8 +41,8 @@ public class NextActionController(IMediator mediator) : ControllerBase
     [HttpPut("{id}")]
     public async Task<ActionResult<BaseCommandResponse>> Put(int id, [FromBody] UpdateNextActionDto NextAction)
     {
-        var command = new UpdateNextActionCommand { Id = id, UpdateNextActionDto = NextAction };
-        BaseCommandResponse response = await _mediator.Send(command);
+        UpdateNextActionCommand? command = new() { Id = id, UpdateNextActionDto = NextAction };
+        BaseCommandResponse? response = await _mediator.Send(command);
 
         return Ok(response);
     }

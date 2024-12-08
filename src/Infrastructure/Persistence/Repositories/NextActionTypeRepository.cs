@@ -10,14 +10,14 @@ public class NextActionTypeRepository(NumployableDbContext dbContext, IMapper ma
 {
     public async Task<NextActionType> Get(int id)
     {
-        NextActionType entity = await dbContext.Set<NextActionType>().FindAsync(id);
+        NextActionType? entity = await dbContext.Set<NextActionType>().FindAsync(id);
 
         return entity;
     }
 
     public async Task<bool> Exists(int id)
     {
-        NextActionType entity = await Get(id);
+        NextActionType? entity = await Get(id);
 
         return entity != null;
     }
@@ -34,7 +34,7 @@ public class NextActionTypeRepository(NumployableDbContext dbContext, IMapper ma
 
     public async Task<NextActionType> GetByDescription(string description)
     {
-        NextActionType entity = dbContext
+        NextActionType? entity = dbContext
             .NextActionType.FromSql(
                 $"SELECT \"Id\", \"Description\" FROM public.\"NextActionType\""
             )

@@ -6,9 +6,11 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+
   .bx {
     line-height: 1.15;
   }
+
   &.disabled,
   &:disabled {
     cursor: default;
@@ -65,6 +67,7 @@ label.btn {
   &.btn-xl {
     width: calc(#{$btn-icon-size-xl} + #{$borders-width});
     height: calc(#{$btn-icon-size-xl} + #{$borders-width});
+
     > span {
       font-size: $btn-font-size-xl;
     }

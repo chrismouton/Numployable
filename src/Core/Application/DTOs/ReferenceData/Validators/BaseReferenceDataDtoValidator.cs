@@ -1,7 +1,6 @@
 using FluentValidation;
 using Numployable.Application.Persistence.Contracts;
 
-
 namespace Numployable.Application.DTOs.ReferenceData.Validators;
 
 public abstract class BaseReferenceDataDtoValidator<T> : AbstractValidator<BaseReferenceDataDto>
@@ -21,6 +20,5 @@ public abstract class BaseReferenceDataDtoValidator<T> : AbstractValidator<BaseR
                 }
             )
             .WithMessage("{PropertyName} does not exists in the repository.");
-       
     }
 }

@@ -16,7 +16,7 @@ public class JobApplicationController(IMediator mediator) : ControllerBase
     [HttpGet]
     public async Task<ActionResult<List<JobApplicationListDto>>> Get()
     {
-        var jobApplications = await _mediator.Send(new GetJobApplicationListRequest());
+        IEnumerable<JobApplicationListDto>? jobApplications = await _mediator.Send(new GetJobApplicationListRequest());
 
         return Ok(jobApplications);
     }
@@ -24,7 +24,7 @@ public class JobApplicationController(IMediator mediator) : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<JobApplicationDto>> Get(int id)
     {
-        var jobApplication = await _mediator.Send(new GetJobApplicationDetailRequest {Id = id});
+        JobApplicationDto? jobApplication = await _mediator.Send(new GetJobApplicationDetailRequest { Id = id });
 
         return Ok(jobApplication);
     }
@@ -32,8 +32,8 @@ public class JobApplicationController(IMediator mediator) : ControllerBase
     [HttpPost]
     public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateJobApplicationDto jobApplicationDto)
     {
-        var command = new CreateJobApplicationCommand { CreateJobApplicationDto = jobApplicationDto };
-        var response = await _mediator.Send(command);
+        CreateJobApplicationCommand? command = new() { CreateJobApplicationDto = jobApplicationDto };
+        BaseCommandResponse? response = await _mediator.Send(command);
 
         return Ok(response);
     }
@@ -41,7 +41,7 @@ public class JobApplicationController(IMediator mediator) : ControllerBase
     [HttpPut("{id}")]
     public async Task<ActionResult> Put(int id, [FromBody] UpdateJobApplicationDto jobApplicationDto)
     {
-        var command = new UpdateJobApplicationCommand { Id = id, UpdateJobApplicationDto = jobApplicationDto};
+        UpdateJobApplicationCommand? command = new() { Id = id, UpdateJobApplicationDto = jobApplicationDto };
         await _mediator.Send(command);
 
         return NoContent();
@@ -50,21 +50,23 @@ public class JobApplicationController(IMediator mediator) : ControllerBase
     [HttpPut("expire/{id}")]
     public async Task<ActionResult<BaseCommandResponse>> ExpireJobApplication(int id)
     {
-        var command = new ExpireJobApplicationCommand { Id = id };
-        BaseCommandResponse response = await _mediator.Send(command);
+        ExpireJobApplicationCommand? command = new() { Id = id };
+        BaseCommandResponse? response = await _mediator.Send(command);
 
         return Ok(response);
     }
 
     [HttpPut("processupdate/{jobApplicationId}/{processStatusId}")]
-    public async Task<ActionResult<BaseCommandResponse>> ProcessUpdateJobApplication(int jobApplicationId, int processStatusId)
+    public async Task<ActionResult<BaseCommandResponse>> ProcessUpdateJobApplication(int jobApplicationId,
+        int processStatusId)
     {
-        var command = new ProcessUpdateJobApplicationCommand { 
-            Id = jobApplicationId, 
+        ProcessUpdateJobApplicationCommand? command = new()
+        {
+            Id = jobApplicationId,
             ProcessStatusId = processStatusId
         };
 
-        BaseCommandResponse response = await _mediator.Send(command);
+        BaseCommandResponse? response = await _mediator.Send(command);
 
         return Ok(response);
     }
@@ -72,8 +74,8 @@ public class JobApplicationController(IMediator mediator) : ControllerBase
     [HttpPut("reject/{id}")]
     public async Task<ActionResult<BaseCommandResponse>> RejectJobApplication(int id)
     {
-        var command = new RejectJobApplicationCommand { Id = id };
-        BaseCommandResponse response = await _mediator.Send(command);
+        RejectJobApplicationCommand? command = new() { Id = id };
+        BaseCommandResponse? response = await _mediator.Send(command);
 
         return Ok(response);
     }

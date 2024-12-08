@@ -5,11 +5,9 @@ namespace Numployable.Domain;
 
 public class JobApplication : BaseDomainEntity
 {
-    [StringLength(255)]
-    public string RoleName { get; set; } = null!;
+    [StringLength(255)] public string RoleName { get; set; } = null!;
 
-    [StringLength(255)]
-    public string? CompanyName { get; set; } = null!;
+    [StringLength(255)] public string? CompanyName { get; set; } = null!;
 
     public int RoleTypeId { get; set; }
 
@@ -19,22 +17,17 @@ public class JobApplication : BaseDomainEntity
 
     public int SourceId { get; set; }
 
-    [StringLength(255)]
-    public string? AdvertisedSalary { get; set; }
+    [StringLength(255)] public string? AdvertisedSalary { get; set; }
 
-    [StringLength(1024)]
-    public string? Url { get; set; }
+    [StringLength(1024)] public string? Url { get; set; }
 
-    [StringLength(255)]
-    public string? Location { get; set; }
+    [StringLength(255)] public string? Location { get; set; }
 
     public int CommuteId { get; set; }
 
-    [Column(TypeName = "date")]
-    public DateTime ApplicationDate { get; set; }
+    [Column(TypeName = "date")] public DateTime ApplicationDate { get; set; }
 
-    [StringLength(1024)]
-    public string? Note { get; set; }
+    [StringLength(1024)] public string? Note { get; set; }
 
     public virtual Commute? Commute { get; set; } = null!;
 
@@ -46,4 +39,5 @@ public class JobApplication : BaseDomainEntity
 
     public virtual Status Status { get; set; } = null!;
 
-    public virtual ICollection<NextAction> NextAction { get; set; } = [];}
+    public virtual ICollection<NextAction> NextAction { get; set; } = [];
+}

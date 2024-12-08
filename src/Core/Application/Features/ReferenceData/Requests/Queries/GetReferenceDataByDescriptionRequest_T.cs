@@ -1,6 +1,6 @@
-namespace Numployable.Application.Features.ReferenceData.Requests.Queries;
-
 using MediatR;
+
+namespace Numployable.Application.Features.ReferenceData.Requests.Queries;
 
 public class GetReferenceDataByDescriptionRequest<T> : IRequest<T>
 {

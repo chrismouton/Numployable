@@ -1,11 +1,12 @@
+using FluentValidation.Results;
 using MediatR;
-
 using Numployable.Application.DTOs.NextActions.Validators;
 using Numployable.Application.Exceptions;
 using Numployable.Application.Features.NextActions.Requests.Commands;
 using Numployable.Application.Mappings;
 using Numployable.Application.Persistence.Contracts;
 using Numployable.Application.Responses;
+using Numployable.Domain;
 
 namespace Numployable.Application.Features.NextActions.Handlers.Commands;
 
@@ -20,7 +21,8 @@ public class UpdateNextActionCommandHandler(INextActionRepository nextActionRepo
         BaseCommandResponse response = new();
 
         UpdateNextActionsDtoValidator validator = new(nextActionRepository);
-        var validationResult = await validator.ValidateAsync(request.UpdateNextActionDto, cancellationToken);
+        ValidationResult? validationResult =
+            await validator.ValidateAsync(request.UpdateNextActionDto, cancellationToken);
         if (!validationResult.IsValid)
         {
             response.Success = false;
@@ -29,7 +31,7 @@ public class UpdateNextActionCommandHandler(INextActionRepository nextActionRepo
         }
         else
         {
-            var nextAction = await nextActionRepository.Get(request.Id);
+            NextAction? nextAction = await nextActionRepository.Get(request.Id);
             if (nextAction == null)
                 throw new NotFoundException(nameof(nextAction), request.Id);
 

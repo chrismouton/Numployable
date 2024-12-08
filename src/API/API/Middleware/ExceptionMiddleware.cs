@@ -22,12 +22,12 @@ public class ExceptionMiddleware(RequestDelegate next)
                 await HandleExceptionAsync(httpContext, ex);
         }
     }
-    
+
     private static Task HandleExceptionAsync(HttpContext context, Exception exception)
     {
         context.Response.ContentType = "application/json";
         HttpStatusCode statusCode = HttpStatusCode.InternalServerError;
-        string result = JsonConvert.SerializeObject(new ErrorDetails
+        string? result = JsonConvert.SerializeObject(new ErrorDetails
         {
             ErrorMessage = exception.Message,
             ErrorType = "Failure"

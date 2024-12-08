@@ -9,9 +9,11 @@ namespace Numployable.Persistence;
 
 public static class PersistenceServicesRegistration
 {
-    public static IServiceCollection ConfigurePersistenceServices(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection ConfigurePersistenceServices(this IServiceCollection services,
+        IConfiguration configuration)
     {
-        services.AddDbContext<NumployableDbContext>(options => options.UseNpgsql(configuration.GetConnectionString("NumployableDatabase")));
+        services.AddDbContext<NumployableDbContext>(options =>
+            options.UseNpgsql(configuration.GetConnectionString("NumployableDatabase")));
 
         services.AddScoped<IDashboardRepository, DashboardRepository>();
         services.AddScoped<ICommuteRepository, CommuteRepository>();
@@ -23,10 +25,7 @@ public static class PersistenceServicesRegistration
         services.AddScoped<ISourceRepository, SourceRepository>();
         services.AddScoped<IStatusRepository, StatusRepository>();
 
-        services.AddMediatR(config =>
-        {
-            config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
-        });
+        services.AddMediatR(config => { config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()); });
 
         return services;
     }

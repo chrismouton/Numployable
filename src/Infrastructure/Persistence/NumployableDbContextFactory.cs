@@ -7,7 +7,7 @@ public class NumployableDbContextFactory : IDesignTimeDbContextFactory<Numployab
 {
     public NumployableDbContext CreateDbContext(string[] args)
     {
-        var optionsBuilder = new DbContextOptionsBuilder<NumployableDbContext>();
+        DbContextOptionsBuilder<NumployableDbContext>? optionsBuilder = new();
         optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=Numployable;Username=postgres;PWD=password1!");
 
         return new NumployableDbContext(optionsBuilder.Options);

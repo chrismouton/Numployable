@@ -227,7 +227,7 @@ const Helpers = {
 
     if (layoutMenu && layoutMenu.querySelector('.menu')) {
       const inner = layoutMenu.querySelector('.menu-inner')
-      const { scrollTop } = inner
+      const {scrollTop} = inner
       const pageScrollTop = document.documentElement.scrollTop
 
       layoutMenu.style.display = 'none'
@@ -351,7 +351,7 @@ const Helpers = {
     modifier.call(this)
 
     this._transitionCallbackTimeout = setTimeout(() => {
-      this._transitionCallback.call(this, { target: menu })
+      this._transitionCallback.call(this, {target: menu})
     }, duration)
   },
 
@@ -654,7 +654,7 @@ const Helpers = {
     // let [_event, ...namespace] = event.split('.')
     namespace = namespace.join('.') || null
 
-    this._listeners.push({ event: _event, namespace, callback })
+    this._listeners.push({event: _event, namespace, callback})
   },
 
   off(event = requiredParam('event')) {
@@ -694,7 +694,7 @@ const Helpers = {
         this.off('resize._Helpers:ie10RepaintBody')
         this.on('resize._Helpers:ie10RepaintBody', () => {
           if (this.isFixed()) return
-          const { scrollTop } = document.documentElement
+          const {scrollTop} = document.documentElement
           document.body.style.display = 'none'
           // document.body.offsetHeight
           document.body.style.display = 'block'
@@ -851,4 +851,4 @@ if (typeof window !== 'undefined') {
 }
 
 // ---
-export { Helpers }
+export {Helpers}

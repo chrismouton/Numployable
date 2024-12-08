@@ -10,14 +10,14 @@ public class RoleTypeRepository(NumployableDbContext dbContext, IMapper mapper)
 {
     public async Task<RoleType> Get(int id)
     {
-        RoleType entity = await dbContext.Set<RoleType>().FindAsync(id);
+        RoleType? entity = await dbContext.Set<RoleType>().FindAsync(id);
 
         return entity;
     }
 
     public async Task<bool> Exists(int id)
     {
-        RoleType entity = await Get(id);
+        RoleType? entity = await Get(id);
 
         return entity != null;
     }
@@ -34,7 +34,7 @@ public class RoleTypeRepository(NumployableDbContext dbContext, IMapper mapper)
 
     public async Task<RoleType> GetByDescription(string description)
     {
-        RoleType entity = dbContext
+        RoleType? entity = dbContext
             .RoleType.FromSql($"SELECT \"Id\", \"Description\" FROM public.\"RoleType\"")
             .Where(e => e.Description == description)
             .FirstOrDefault();

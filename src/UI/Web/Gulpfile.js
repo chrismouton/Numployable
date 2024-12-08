@@ -17,7 +17,7 @@ conf.distPath = path.resolve(__dirname, conf.distPath).replace(/\\/g, '/');
 // Modules
 // -------------------------------------------------------------------------------
 
-const { src, dest, parallel, series, watch } = require('gulp');
+const {src, dest, parallel, series, watch} = require('gulp');
 const webpack = require('webpack');
 const sass = require('gulp-dart-sass');
 const localSass = require('sass');
@@ -82,7 +82,7 @@ const buildCssTask = function (cb) {
     )
     .pipe(gulpIf(conf.sourcemaps, sourcemaps.write()))
     .pipe(autoprefixer())
-    .pipe(rename({ extname: '.css' }))
+    .pipe(rename({extname: '.css'}))
     .pipe(
       rename(function (path) {
         path.dirname = path.dirname.replace('scss', 'css');

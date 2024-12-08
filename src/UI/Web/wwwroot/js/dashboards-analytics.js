@@ -30,7 +30,7 @@
         height: 300,
         stacked: true,
         type: 'bar',
-        toolbar: { show: false }
+        toolbar: {show: false}
       },
       plotOptions: {
         bar: {
@@ -452,10 +452,10 @@
       },
       states: {
         hover: {
-          filter: { type: 'none' }
+          filter: {type: 'none'}
         },
         active: {
-          filter: { type: 'none' }
+          filter: {type: 'none'}
         }
       },
       plotOptions: {

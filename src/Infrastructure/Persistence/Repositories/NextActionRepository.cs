@@ -13,7 +13,7 @@ public class NextActionRepository(NumployableDbContext dbContext, IMapper mapper
 
     public async Task<NextAction> Add(NextAction nextAction)
     {
-        NextAction entity = _mapper.Map<NextAction>(nextAction);
+        NextAction? entity = _mapper.Map<NextAction>(nextAction);
 
         await _dbContext.AddAsync(entity);
         await _dbContext.SaveChangesAsync();
@@ -23,13 +23,13 @@ public class NextActionRepository(NumployableDbContext dbContext, IMapper mapper
 
     public async Task<bool> Exists(int id)
     {
-        NextAction entity = await Get(id);
+        NextAction? entity = await Get(id);
         return entity != null;
     }
 
     public async Task<NextAction> Get(int id)
     {
-        NextAction entity = await _dbContext.Set<NextAction>().FindAsync(id);
+        NextAction? entity = await _dbContext.Set<NextAction>().FindAsync(id);
 
         return _mapper.Map<NextAction>(entity);
     }
@@ -46,7 +46,7 @@ public class NextActionRepository(NumployableDbContext dbContext, IMapper mapper
 
     public async Task Update(NextAction application)
     {
-        NextAction entity = _mapper.Map<NextAction>(application);
+        NextAction? entity = _mapper.Map<NextAction>(application);
         _dbContext.Entry(entity).State = EntityState.Modified;
         await _dbContext.SaveChangesAsync();
     }

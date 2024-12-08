@@ -9,61 +9,61 @@ using Numployable.UI.Web.Models;
 namespace Numployable.UI.Web.Services;
 
 public class NextActionService(IClient httpClient, ILocalStorageService localStorage, IMapper mapper)
-    : BaseHttpService(httpClient, localStorage), INextActionService
+  : BaseHttpService(httpClient, localStorage), INextActionService
 {
-    public async Task<Response<int>> Create(CreateNextActionViewModel nextAction)
+  public async Task<Response<int>> Create(CreateNextActionViewModel nextAction)
+  {
+    try
     {
-        try
-        {
-            var response = new Response<int>();
-            CreateNextActionDto nextActionDto = nextAction.ToNextAction(mapper);
-            var apiResponse = await _client.NextActionPOSTAsync(nextActionDto);
-            if (apiResponse.Success)
-            {
-                response.Data = apiResponse.Id;
-                response.Success = true;
-            }
-            else
-            {
-                response.ValidationErrors = string.Join(Environment.NewLine, apiResponse.Errors);
-            }
+      Response<int>? response = new();
+      CreateNextActionDto? nextActionDto = nextAction.ToNextAction(mapper);
+      BaseCommandResponse? apiResponse = await _client.NextActionPOSTAsync(nextActionDto);
+      if (apiResponse.Success)
+      {
+        response.Data = apiResponse.Id;
+        response.Success = true;
+      }
+      else
+      {
+        response.ValidationErrors = string.Join(Environment.NewLine, apiResponse.Errors);
+      }
 
-            return response;
-        }
-        catch (ApiException ex)
-        {
-            return ConvertApiExceptions<int>(ex);
-        }
+      return response;
     }
-
-    public async Task<NextActionViewModel> Get(int id)
+    catch (ApiException ex)
     {
-        NextActionDto nextActionDto = await _client.NextActionGETAsync(id);
-        return nextActionDto.ToNextAction(mapper);
+      return ConvertApiExceptions<int>(ex);
     }
+  }
 
-    public async Task<List<NextActionViewModel>> GetAll()
+  public async Task<NextActionViewModel> Get(int id)
+  {
+    NextActionDto? nextActionDto = await _client.NextActionGETAsync(id);
+    return nextActionDto.ToNextAction(mapper);
+  }
+
+  public async Task<List<NextActionViewModel>> GetAll()
+  {
+    ICollection<NextActionDto> nextActions = await _client.NextActionAllAsync();
+    return (from item in nextActions
+      select item.ToNextAction(mapper)).ToList();
+  }
+
+  public async Task<Response<int>> Update(int id, NextActionViewModel nextAction)
+  {
+    try
     {
-        ICollection<NextActionDto> nextActions = await _client.NextActionAllAsync();
-        return (from item in nextActions
-               select item.ToNextAction(mapper)).ToList();
-    }
+      UpdateNextActionDto? nextActionDto = nextAction.ToNextAction(mapper);
+      await _client.NextActionPUTAsync(id, nextActionDto);
 
-    public async Task<Response<int>> Update(int id, NextActionViewModel nextAction)
+      return new Response<int>
+      {
+        Success = true
+      };
+    }
+    catch (ApiException ex)
     {
-        try
-        {
-            UpdateNextActionDto nextActionDto = nextAction.ToNextAction(mapper);
-            await _client.NextActionPUTAsync(id, nextActionDto);
-
-            return new Response<int>
-            {
-                        Success = true
-                    };
-        }
-        catch (ApiException ex)
-        {
-            return ConvertApiExceptions<int>(ex);
-        }
+      return ConvertApiExceptions<int>(ex);
     }
+  }
 }

@@ -2,19 +2,19 @@ namespace Numployable.CsvImporter;
 
 public class ImportData
 {
-    public required int Id {get;set;}
+    public int Id { get; set; }
 
-    public required string RoleName {get; set;}
+    public string RoleName { get; set; }
 
-    public required string Company { get; set;}
+    public string Company { get; set; }
 
     public string? ApplicationUrl { get; set; }
 
-    public required string Status { get; set; }
+    public string Status { get; set; }
 
     public string? AdvertisedSalary { get; set; }
 
-    public required string RoleType { get; set; }
+    public string RoleType { get; set; }
 
     public string? Location { get; set; }
 
@@ -24,7 +24,7 @@ public class ImportData
 
     public string? Notes { get; set; }
 
-    public DateTime? NextAction {get; set;}
+    public DateTime? NextAction { get; set; }
 
     public string? ConfidenceLevel { get; set; }
 }

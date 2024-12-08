@@ -7,7 +7,7 @@ public static class NextActionMappings
 {
     public static NextAction ToNextAction(this CreateNextActionDto from)
     {
-        NextAction to = new ()
+        NextAction to = new()
         {
             Id = from.Id,
             ActionDate = from.ActionDate,
@@ -21,7 +21,7 @@ public static class NextActionMappings
 
     public static NextAction ToNextAction(this UpdateNextActionDto from)
     {
-        NextAction to = new ()
+        NextAction to = new()
         {
             ActionDate = from.ActionDate,
             ActionNote = from.ActionNote,

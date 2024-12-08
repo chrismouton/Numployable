@@ -5,7 +5,5 @@ namespace Numployable.Domain;
 
 public abstract class BaseDomainEntity
 {
-    [Key]
-    [Column(TypeName = "int")]
-    public int Id { get; set; }
+    [Key] [Column(TypeName = "int")] public int Id { get; set; }
 }

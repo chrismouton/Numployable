@@ -12,6 +12,7 @@
   > :not(caption) > * > * {
     background-clip: padding-box;
   }
+
   tr {
     > td {
       .dropdown {
@@ -27,6 +28,7 @@
     margin-bottom: 0;
   }
 }
+
 @supports (-moz-appearance: none) {
   .table {
     .dropdown-menu.show {
@@ -34,6 +36,7 @@
     }
   }
 }
+
 // Table heading style
 .table {
   th {
@@ -41,6 +44,7 @@
     font-size: 0.75rem;
     letter-spacing: 1px;
   }
+
   &:not(.table-dark) th {
     color: $headings-color;
   }
@@ -83,6 +87,7 @@
     tr > td:first-child {
       padding-left: 0;
     }
+
     tr > td:last-child {
       padding-right: 0;
     }

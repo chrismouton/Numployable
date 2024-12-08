@@ -1,19 +1,21 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Numployable.APIClient;
 using Numployable.UI.Web.Contracts;
 using Numployable.UI.Web.Models;
 
 namespace Numployable.UI.Web.Controllers;
 
-public class JobApplicationController(IJobApplicationService jobApplicationService,
-                                      IRoleTypeService roleTypesService,
-                                      IStatusService applicationStatusService,
-                                      IProcessStatusService applicationProcessStatusService,
-                                      ICommuteService commuteService) : Controller
+public class JobApplicationController(
+  IJobApplicationService jobApplicationService,
+  IRoleTypeService roleTypesService,
+  IStatusService applicationStatusService,
+  IProcessStatusService applicationProcessStatusService,
+  ICommuteService commuteService) : Controller
 {
   public async Task<IActionResult> Index()
   {
-    var model = await jobApplicationService.GetAll();
+    List<JobApplicationViewModel>? model = await jobApplicationService.GetAll();
 
     return View(model);
   }
@@ -22,15 +24,15 @@ public class JobApplicationController(IJobApplicationService jobApplicationServi
   public async Task<IActionResult> Create()
   {
     List<ReferenceDataViewModel> roleTypes = await roleTypesService.GetAll();
-    var roleTypeItems = new SelectList(roleTypes, "Id", "Description");
+    SelectList? roleTypeItems = new(roleTypes, "Id", "Description");
     List<ReferenceDataViewModel> applicationStatuses = await applicationStatusService.GetAll();
-    var applicationStatusList = new SelectList(applicationStatuses, "Id", "Description");
+    SelectList? applicationStatusList = new(applicationStatuses, "Id", "Description");
     List<ReferenceDataViewModel> applicationProcessStatuses = await applicationProcessStatusService.GetAll();
-    var applicationProcessStatusList = new SelectList(applicationProcessStatuses, "Id", "Description");
+    SelectList? applicationProcessStatusList = new(applicationProcessStatuses, "Id", "Description");
     List<ReferenceDataViewModel> commute = await commuteService.GetAll();
-    var commuteList = new SelectList(commute, "Id", "Description");
+    SelectList? commuteList = new(commute, "Id", "Description");
 
-    var model = new CreateJobApplicationViewModel
+    CreateJobApplicationViewModel? model = new()
     {
       RoleTypeList = roleTypeItems,
       RoleName = string.Empty,
@@ -50,11 +52,8 @@ public class JobApplicationController(IJobApplicationService jobApplicationServi
   {
     if (ModelState.IsValid)
     {
-      var response = await jobApplicationService.Create(jobApplication);
-      if (response.Success)
-      {
-        return RedirectToAction(nameof(Index));
-      }
+      Response<int>? response = await jobApplicationService.Create(jobApplication);
+      if (response.Success) return RedirectToAction(nameof(Index));
       ModelState.AddModelError("", response.ValidationErrors);
     }
 

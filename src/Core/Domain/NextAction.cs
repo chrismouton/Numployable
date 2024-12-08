@@ -7,11 +7,9 @@ public class NextAction : BaseDomainEntity
 {
     public int NextActionTypeId { get; set; }
 
-    [StringLength(255)]
-    public string ActionNote { get; set; } = null!;
+    [StringLength(255)] public string ActionNote { get; set; } = null!;
 
-    [Column(TypeName = "timestamp")]
-    public DateTime ActionDate { get; set; }
+    [Column(TypeName = "timestamp")] public DateTime ActionDate { get; set; }
 
     public int JobApplicationId { get; set; }
 

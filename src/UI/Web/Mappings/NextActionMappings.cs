@@ -8,35 +8,35 @@ public static class NextActionMappings
 {
   public static CreateNextActionDto ToNextAction(this CreateNextActionViewModel from, IMapper mapper)
   {
-      CreateNextActionDto to = new()
-      {
-          ActionDate = from.ActionDate,
-          ActionNote = from.ActionNote,
-          NextActionType = mapper.Map<NextActionType>(from.NextActionType)
-      };
+    CreateNextActionDto to = new()
+    {
+      ActionDate = from.ActionDate,
+      ActionNote = from.ActionNote,
+      NextActionType = mapper.Map<NextActionType>(from.NextActionType)
+    };
 
-      return to;
+    return to;
   }
 
   public static NextActionViewModel ToNextAction(this NextActionDto from, IMapper mapper)
   {
-    NextActionViewModel to = new ()
+    NextActionViewModel to = new()
     {
-          ActionDate = DateTimeOffsetToDateTime(from.ActionDate.Value),
-          ActionNote = from.ActionNote,
-          NextActionType = mapper.Map<ReferenceDataViewModel>(from.NextActionType)
-          };
+      ActionDate = DateTimeOffsetToDateTime(from.ActionDate.Value),
+      ActionNote = from.ActionNote,
+      NextActionType = mapper.Map<ReferenceDataViewModel>(from.NextActionType)
+    };
 
-          return to;
+    return to;
   }
 
   public static UpdateNextActionDto ToNextAction(this NextActionViewModel from, IMapper mapper)
   {
     UpdateNextActionDto to = new()
     {
-          ActionDate = from.ActionDate,
-          ActionNote = from.ActionNote,
-          NextActionType = mapper.Map<NextActionType>(from.NextActionType)
+      ActionDate = from.ActionDate,
+      ActionNote = from.ActionNote,
+      NextActionType = mapper.Map<NextActionType>(from.NextActionType)
     };
 
     return to;
@@ -44,7 +44,7 @@ public static class NextActionMappings
 
   private static DateTime DateTimeOffsetToDateTime(DateTimeOffset source)
   {
-    string dateTimeString = source.ToString();
+    string? dateTimeString = source.ToString();
     return DateTimeOffset.Parse(dateTimeString).UtcDateTime;
   }
 }

@@ -4,4 +4,3 @@ public class DashboardDto
 {
     public int TotalCount { get; set; }
 }
-

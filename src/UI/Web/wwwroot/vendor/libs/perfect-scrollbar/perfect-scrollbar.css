@@ -108,11 +108,13 @@
     overflow: auto !important;
   }
 }
+
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
   .ps {
     overflow: auto !important;
   }
 }
+
 .ps {
   position: relative;
 }
@@ -164,6 +166,7 @@
 .light-style .ps__thumb-y {
   background-color: rgba(67, 89, 113, 0.4);
 }
+
 .light-style .ps__rail-x:hover,
 .light-style .ps__rail-y:hover,
 .light-style .ps__rail-x:focus,
@@ -172,6 +175,7 @@
 .light-style .ps__rail-y.ps--clicking {
   background-color: rgba(67, 89, 113, 0.2);
 }
+
 .light-style .ps__rail-x:hover > .ps__thumb-x,
 .light-style .ps__rail-y:hover > .ps__thumb-y,
 .light-style .ps__rail-x:focus > .ps__thumb-x,
@@ -180,6 +184,7 @@
 .light-style .ps__rail-y.ps--clicking > .ps__thumb-y {
   background-color: rgba(67, 89, 113, 0.7);
 }
+
 .light-style .ps-inverted .ps__rail-x:hover,
 .light-style .ps-inverted .ps__rail-y:hover,
 .light-style .ps-inverted .ps__rail-x:focus,
@@ -188,10 +193,12 @@
 .light-style .ps-inverted .ps__rail-y.ps--clicking {
   background-color: rgba(255, 255, 255, 0.5);
 }
+
 .light-style .ps-inverted .ps__thumb-x,
 .light-style .ps-inverted .ps__thumb-y {
   background-color: rgba(255, 255, 255, 0.7);
 }
+
 .light-style .ps-inverted .ps__rail-x:hover > .ps__thumb-x,
 .light-style .ps-inverted .ps__rail-y:hover > .ps__thumb-y,
 .light-style .ps-inverted .ps__rail-x:focus > .ps__thumb-x,

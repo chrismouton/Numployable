@@ -11,7 +11,7 @@ public class RoleTypeService(IMapper mapper, IClient httpClient, ILocalStorageSe
 {
   public async Task<List<ReferenceDataViewModel>> GetAll()
   {
-    var roleTypeList = await _client.RoletypeAllAsync();
+    ICollection<RoleTypeDto>? roleTypeList = await _client.RoletypeAllAsync();
     return mapper.Map<List<ReferenceDataViewModel>>(roleTypeList);
   }
 }

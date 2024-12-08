@@ -4,5 +4,5 @@ namespace Numployable.UI.Web.Contracts;
 
 public interface IDashboardService
 {
-    Task<DashboardViewModel> Get();
+  Task<DashboardViewModel> Get();
 }

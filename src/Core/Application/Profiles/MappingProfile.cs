@@ -1,5 +1,4 @@
 using AutoMapper;
-
 using Numployable.Application.DTOs.Dashboard;
 using Numployable.Application.DTOs.ReferenceData;
 using Numployable.Domain;

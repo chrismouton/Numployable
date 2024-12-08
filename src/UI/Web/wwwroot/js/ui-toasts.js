@@ -21,6 +21,7 @@
       toast.dispose();
     }
   }
+
   // Placement Button click
   if (toastPlacementBtn) {
     toastPlacementBtn.onclick = function () {

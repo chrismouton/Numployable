@@ -1,5 +1,5 @@
+using FluentValidation.Results;
 using MediatR;
-
 using Numployable.Application.DTOs.NextActions.Validators;
 using Numployable.Application.Features.NextActions.Requests.Commands;
 using Numployable.Application.Mappings;
@@ -20,7 +20,8 @@ public class CreateNextActionCommandHandler(INextActionRepository nextActionRepo
         BaseCommandResponse response = new();
 
         CreateNextActionsDtoValidator validator = new();
-        var validationResult = await validator.ValidateAsync(request.CreateNextActionDto, cancellationToken);
+        ValidationResult? validationResult =
+            await validator.ValidateAsync(request.CreateNextActionDto, cancellationToken);
         if (!validationResult.IsValid)
         {
             response.Success = false;
@@ -29,7 +30,7 @@ public class CreateNextActionCommandHandler(INextActionRepository nextActionRepo
         }
         else
         {
-            NextAction nextAction = await nextActionRepository.Add(request.CreateNextActionDto.ToNextAction());
+            NextAction? nextAction = await nextActionRepository.Add(request.CreateNextActionDto.ToNextAction());
 
             response.Success = true;
             response.Message = "Creation successful";

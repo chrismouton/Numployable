@@ -40,5 +40,5 @@
   "git.rebaseWhenSync": true,
   "git.enableSmartCommit": true,
   // Extension: npm
-  "npm.packageManager": "yarn",
+  "npm.packageManager": "yarn"
 }

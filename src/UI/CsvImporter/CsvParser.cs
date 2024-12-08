@@ -4,33 +4,32 @@ using Numployable.APIClient.Client;
 
 namespace Numployable.CsvImporter;
 
-internal class CsvParser (string filePath, string Url)
+internal class CsvParser(string filePath, string Url)
 {
-    private string filePath = filePath;
-    private string Url = Url;
-
     public void Parse()
     {
         IEnumerable<ImportData> records = LoadRecords();
 
         foreach (ImportData record in records)
         {
-            CreateJobApplicationDto jobApplication = new CreateJobApplicationDto();
+            CreateJobApplicationDto jobApplication = new();
 
             jobApplication.RoleType = null;
             jobApplication.RoleName = record.RoleName;
-            jobApplication.CompanyName = record.CompanyName;
+            jobApplication.CompanyName = record.Company;
             jobApplication.ApplicationDate = record.ApplicationDate;
-            jobApplication.ApplicationStatus = null;
+            jobApplication.Status = null;
             jobApplication.AdvertisedSalary = record.AdvertisedSalary;
             jobApplication.Location = record.Location;
-            jobApplication.Commute = string.IsNullOrEmpty(record.Commute) ! null : GetCommute(record.Commute);
+            jobApplication.Commute = string.IsNullOrEmpty(record.Commute) ? null : GetCommute(record.Commute);
             jobApplication.Notes = record.Notes;
 
-            if (record.NextActionDate is not null)
+            if (record.NextAction is not null)
             {
-                CreateNextActionDto nextAction = new CreateNextActionDto();
-                nextAction.ActionDate = record.NextActionDate;
+                CreateNextActionDto nextAction = new()
+                {
+                    ActionDate = record.NextAction
+                };
             }
         }
     }
@@ -45,8 +44,11 @@ internal class CsvParser (string filePath, string Url)
             case "Fixed-Term Contract":
             case "Volunteering":
             case "Temporary Full-time":
-                return client.GetRoleTypeByDescription(roleType);
+                //return client.GetRoleTypeByDescription(roleType);
+                break;
         }
+
+        return null;
     }
 
     private Status GetStatus(string status, ref ProcessStatus processStatus)
@@ -64,8 +66,10 @@ internal class CsvParser (string filePath, string Url)
             case "Expired":
             case "Recruiter Contacted":
             case "Application Retracted":
-                return null;
+                break;
         }
+
+        return null;
     }
 
     private Commute GetCommute(string commute)
@@ -75,18 +79,17 @@ internal class CsvParser (string filePath, string Url)
             case "Onsite":
             case "Hybrid":
             case "Remote":
-                return null;
+                break;
         }
+
+        return null;
     }
 
     private IEnumerable<ImportData> LoadRecords()
     {
-        using (StreamReader reader = new StreamReader(filePath))
-        {
-            using (CsvReader csvReader = new CsvReader(reader, CultureInfo.InvariantCulture))
-            {
-                return csvReader.GetRecords<ImportData>();
-            }
-        }
+        using StreamReader reader = new(filePath);
+        using CsvReader csvReader = new(reader, CultureInfo.InvariantCulture);
+
+        return csvReader.GetRecords<ImportData>();
     }
 }

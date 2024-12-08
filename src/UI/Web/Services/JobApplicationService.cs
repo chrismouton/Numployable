@@ -9,15 +9,15 @@ using Numployable.UI.Web.Models;
 namespace Numployable.UI.Web.Services;
 
 public class JobApplicationService(IClient httpClient, ILocalStorageService localStorage, IMapper mapper)
-    : BaseHttpService(httpClient, localStorage), IJobApplicationService
+  : BaseHttpService(httpClient, localStorage), IJobApplicationService
 {
   public async Task<Response<int>> Create(CreateJobApplicationViewModel jobApplication)
   {
     try
     {
-      var response = new Response<int>();
-      CreateJobApplicationDto jobApplicationDto = jobApplication.ToJobApplication();
-      var apiResponse = await _client.JobApplicationPOSTAsync(jobApplicationDto);
+      Response<int>? response = new();
+      CreateJobApplicationDto? jobApplicationDto = jobApplication.ToJobApplication();
+      BaseCommandResponse? apiResponse = await _client.JobApplicationPOSTAsync(jobApplicationDto);
       if (apiResponse.Success)
       {
         response.Data = apiResponse.Id;
@@ -55,7 +55,7 @@ public class JobApplicationService(IClient httpClient, ILocalStorageService loca
 
   public async Task<JobApplicationViewModel> Get(int id)
   {
-    JobApplicationDto jobApplicationDto = await _client.JobApplicationGETAsync(id);
+    JobApplicationDto? jobApplicationDto = await _client.JobApplicationGETAsync(id);
     return jobApplicationDto.ToJobApplication(mapper);
   }
 
@@ -63,7 +63,7 @@ public class JobApplicationService(IClient httpClient, ILocalStorageService loca
   {
     ICollection<JobApplicationListDto> jobApplicationDtos = await _client.JobApplicationAllAsync();
     return (from item in jobApplicationDtos
-          select item.ToJobApplication(mapper)).ToList();
+      select item.ToJobApplication(mapper)).ToList();
   }
 
   public async Task<Response<int>> ProcessUpdate(int id, ProcessStatus processStatus)
@@ -104,7 +104,7 @@ public class JobApplicationService(IClient httpClient, ILocalStorageService loca
   {
     try
     {
-      UpdateJobApplicationDto jobApplicationDto = jobApplication.ToJobApplication(mapper);
+      UpdateJobApplicationDto? jobApplicationDto = jobApplication.ToJobApplication(mapper);
       await _client.JobApplicationPUTAsync(id, jobApplicationDto);
 
       return new Response<int>

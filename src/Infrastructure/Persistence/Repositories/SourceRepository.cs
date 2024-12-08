@@ -5,19 +5,19 @@ using Numployable.Domain;
 
 namespace Numployable.Persistence.Repositories;
 
-public class SourceRepository(NumployableDbContext dbContext, IMapper mapper) 
+public class SourceRepository(NumployableDbContext dbContext, IMapper mapper)
     : ISourceRepository
 {
     public async Task<Source> Get(int id)
     {
-        Source entity = await dbContext.Set<Source>().FindAsync(id);
+        Source? entity = await dbContext.Set<Source>().FindAsync(id);
 
         return entity;
     }
 
     public async Task<bool> Exists(int id)
     {
-        Source entity = await Get(id);
+        Source? entity = await Get(id);
 
         return entity != null;
     }
@@ -34,10 +34,10 @@ public class SourceRepository(NumployableDbContext dbContext, IMapper mapper)
 
     public async Task<Source> GetByDescription(string description)
     {
-        Source entity = dbContext.Source
-                .FromSql($"SELECT \"Id\", \"Description\" FROM public.\"Source\"")
-                .Where(e => e.Description == description)
-                .FirstOrDefault();
+        Source? entity = dbContext.Source
+            .FromSql($"SELECT \"Id\", \"Description\" FROM public.\"Source\"")
+            .Where(e => e.Description == description)
+            .FirstOrDefault();
 
         return entity;
     }

@@ -9,14 +9,14 @@ public class StatusRepository(NumployableDbContext dbContext, IMapper mapper) : 
 {
     public async Task<Status> Get(int id)
     {
-        Status entity = await dbContext.Set<Status>().FindAsync(id);
+        Status? entity = await dbContext.Set<Status>().FindAsync(id);
 
         return entity;
     }
 
     public async Task<bool> Exists(int id)
     {
-        Status entity = await Get(id);
+        Status? entity = await Get(id);
 
         return entity != null;
     }
@@ -33,7 +33,7 @@ public class StatusRepository(NumployableDbContext dbContext, IMapper mapper) : 
 
     public async Task<Status> GetByDescription(string description)
     {
-        Status entity = dbContext
+        Status? entity = dbContext
             .Status.FromSql($"SELECT \"Id\", \"Description\" FROM public.\"Status\"")
             .Where(e => e.Description == description)
             .FirstOrDefault();

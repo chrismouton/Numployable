@@ -13,11 +13,13 @@
       padding-bottom: $pagination-padding-y - 0.125rem;
     }
   }
+
   &.disabled {
     .page-link {
       border-color: $pagination-border-color;
     }
   }
+
   &.active {
     .page-link {
       margin: 0 0.1rem 0 0.3rem;
@@ -55,6 +57,7 @@
     #{'#{($font-size-lg * $pagination-line-height) + ($pagination-padding-y-lg * 2)} + calc(#{$pagination-border-width} * 2)'}
   );
 }
+
 .pagination-lg > .page-item {
   &.first,
   &.last,
@@ -74,10 +77,12 @@
   min-width: calc(
     #{'#{($font-size-sm * $pagination-line-height) + ($pagination-padding-y-sm * 2)} + calc(#{$pagination-border-width} * 2)'}
   );
+
   .tf-icon {
     font-size: $font-size-base;
   }
 }
+
 .pagination-sm > .page-item {
   &.first,
   &.last,

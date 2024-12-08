@@ -42,16 +42,16 @@
 @mixin template-form-switch-theme($background) {
   $focus-color: $background;
   $focus-bg-image: str-replace(
-    str-replace($form-switch-focus-bg-image, '#{$form-switch-focus-color}', $focus-color),
-    '#',
-    '%23'
+      str-replace($form-switch-focus-bg-image, '#{$form-switch-focus-color}', $focus-color),
+      '#',
+      '%23'
   );
 
   $checked-color: $component-active-color;
   $checked-bg-image: str-replace(
-    str-replace($form-switch-checked-bg-image, '#{$form-switch-checked-color}', $checked-color),
-    '#',
-    '%23'
+      str-replace($form-switch-checked-bg-image, '#{$form-switch-checked-color}', $checked-color),
+      '#',
+      '%23'
   );
 
   .form-switch {

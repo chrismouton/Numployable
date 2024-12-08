@@ -9,7 +9,7 @@
 
   @* ! Hide app brand if navbar-full *@
   <div
-    class='app-brand demo @((ViewData["navbarFull"] != null && Convert.ToBoolean(ViewData["navbarFull"])) ? "d-xl-none" : "")'>
+    class='app-brand demo @(ViewData["navbarFull"] != null && Convert.ToBoolean(ViewData["navbarFull"]) ? "d-xl-none" : "")'>
     <a asp-controller="Dashboards" asp-action="Index" class="app-brand-link">
       <span class="app-brand-logo demo">
         @await Html.PartialAsync("../_Partials/_Macros")
@@ -46,7 +46,8 @@
     </li>
 
     <!-- Job Applications -->
-    <li class='menu-item@(currentPage.EndsWith("/") || currentPage.StartsWith("/JobApplication/") ? " active open" : "")'>
+    <li
+      class='menu-item@(currentPage.EndsWith("/") || currentPage.StartsWith("/JobApplication/") ? " active open" : "")'>
       <a href="javascript:void(0);" class="menu-link menu-toggle">
         <i class="menu-icon tf-icons bx bx-laptop"></i>
         <div>Job Applications</div>

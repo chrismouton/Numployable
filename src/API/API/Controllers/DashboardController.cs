@@ -14,7 +14,7 @@ public class DashboardController(IMediator mediator) : ControllerBase
     [HttpGet]
     public async Task<ActionResult<DashboardDto>> Get()
     {
-        var dashboard = await _mediator.Send(new GetDashboardRequest());
+        DashboardDto? dashboard = await _mediator.Send(new GetDashboardRequest());
 
         return Ok(dashboard);
     }

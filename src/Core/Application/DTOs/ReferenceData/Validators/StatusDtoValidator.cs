@@ -1,8 +1,8 @@
+using Numployable.Application.Persistence.Contracts;
+
 namespace Numployable.Application.DTOs.ReferenceData.Validators;
 
-using Persistence.Contracts;
-
-public class StatusDtoValidator(IReferenceDataRepository<StatusDto> referenceDataRepository) 
-    : BaseReferenceDataDtoValidator<StatusDto>(referenceDataRepository) 
+public class StatusDtoValidator(IReferenceDataRepository<StatusDto> referenceDataRepository)
+    : BaseReferenceDataDtoValidator<StatusDto>(referenceDataRepository)
 {
 }

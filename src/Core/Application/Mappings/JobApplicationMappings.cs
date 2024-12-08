@@ -7,7 +7,7 @@ public static class JobApplicationMappings
 {
     public static JobApplication ToJobApplication(this CreateJobApplicationDto from)
     {
-        JobApplication to = new ()
+        JobApplication to = new()
         {
             Id = from.Id,
             AdvertisedSalary = from.AdvertisedSalary,
@@ -63,7 +63,7 @@ public static class JobApplicationMappings
             RoleName = from.RoleName,
             RoleType = from.RoleType,
             Source = from.Source,
-            Status = from.Status,            
+            Status = from.Status
         };
 
         return to;
@@ -80,7 +80,7 @@ public static class JobApplicationMappings
             RoleName = from.RoleName,
             RoleType = from.RoleType,
             Status = from.Status
-        };        
+        };
 
         return to;
     }

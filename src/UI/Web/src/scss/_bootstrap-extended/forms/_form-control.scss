@@ -6,6 +6,7 @@
   &:focus::placeholder {
     transition: $input-placeholder-transition;
   }
+
   // border color on hover state
   &:hover {
     &:not([disabled]):not([focus]) {

@@ -1,8 +1,8 @@
+using Numployable.Application.Persistence.Contracts;
+
 namespace Numployable.Application.DTOs.ReferenceData.Validators;
 
-using Persistence.Contracts;
-
-public class ProcessStatusDtoValidator(IReferenceDataRepository<ProcessStatusDto> referenceDataRepository) 
-    : BaseReferenceDataDtoValidator<ProcessStatusDto>(referenceDataRepository) 
+public class ProcessStatusDtoValidator(IReferenceDataRepository<ProcessStatusDto> referenceDataRepository)
+    : BaseReferenceDataDtoValidator<ProcessStatusDto>(referenceDataRepository)
 {
 }

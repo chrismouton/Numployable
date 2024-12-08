@@ -10,7 +10,6 @@ Force build command line utility (buildctl) is using the docker container:
 
 `export BUILDKIT_HOST=docker-container://buildkitd`
 
-
 ## Creating the individual containers:
 
 ### API:

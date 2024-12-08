@@ -6,35 +6,35 @@
   ViewData["contentNavbar"] = true;
 
   @* Display elements *@
-  ViewData["isNavbar"] = (ViewData["isNavbar"] ??= true);
-  ViewData["isMenu"] = (ViewData["isMenu"] ??= true);
-  ViewData["isFlex"] = (ViewData["isFlex"] ??= false);
-  ViewData["isFooter"] = (ViewData["isFooter"] ??= true);
+  ViewData["isNavbar"] = ViewData["isNavbar"] ??= true;
+  ViewData["isMenu"] = ViewData["isMenu"] ??= true;
+  ViewData["isFlex"] = ViewData["isFlex"] ??= false;
+  ViewData["isFooter"] = ViewData["isFooter"] ??= true;
   @* ViewData["customizerHidden"] = (ViewData["customizerHidden"] ??= "customizer-hide"); *@
 
 
   @*HTML Classes *@
-  ViewData["navbarDetached"] = (ViewData["navbarDetached"] ?? "navbar-detached");
+  ViewData["navbarDetached"] = ViewData["navbarDetached"] ?? "navbar-detached";
 
   @*Content classes *@
-  ViewData["container"] = (ViewData["container"] ?? "container-xxl");
-  ViewData["containerNav"] = (ViewData["containerNav"] ?? "container-xxl");
+  ViewData["container"] = ViewData["container"] ?? "container-xxl";
+  ViewData["containerNav"] = ViewData["containerNav"] ?? "container-xxl";
 }
 
-@section VendorStyles{ @RenderSection("VendorStyles", required: false) }
+@section VendorStyles{ @RenderSection("VendorStyles", false) }
 
-@section PageStyles{ @RenderSection("PageStyles", required: false) }
+@section PageStyles{ @RenderSection("PageStyles", false) }
 
-@section VendorScripts{ @RenderSection("VendorScripts", required: false) }
+@section VendorScripts{ @RenderSection("VendorScripts", false) }
 
-@section PageScripts{ @RenderSection("PageScripts", required: false) }
+@section PageScripts{ @RenderSection("PageScripts", false) }
 
 @{
   bool isMenu = ViewData["isMenu"] != null && Convert.ToBoolean(ViewData["isMenu"]);
 }
 
 <div class='layout-wrapper layout-content-navbar @(isMenu ? "" : "layout-without-menu")'>
-  <div class='layout-container'>
+  <div class="layout-container">
 
     @if (isMenu)
     {
@@ -55,7 +55,8 @@
       <div class="content-wrapper">
 
         <!-- Content -->
-        <div class='@ViewData["container"] @(Convert.ToBoolean(ViewData["isFlex"]) ? "d-flex align-items-stretch flex-grow-1 p-0" : "flex-grow-1 container-p-y")'>
+        <div
+          class='@ViewData["container"] @(Convert.ToBoolean(ViewData["isFlex"]) ? "d-flex align-items-stretch flex-grow-1 p-0" : "flex-grow-1 container-p-y")'>
           @RenderBody()
         </div>
         <!-- / Content -->

@@ -6,16 +6,19 @@ using Numployable.Domain;
 
 namespace Numployable.Application.Features.JobApplications.Handlers.Commands;
 
-public class ExpireJobApplicationCommandHandler(IJobApplicationRepository jobApplicationRepository, IStatusRepository statusRepository)
+public class ExpireJobApplicationCommandHandler(
+    IJobApplicationRepository jobApplicationRepository,
+    IStatusRepository statusRepository)
     : IRequestHandler<ExpireJobApplicationCommand, BaseCommandResponse>
 {
     private readonly IJobApplicationRepository _jobApplicationRepository = jobApplicationRepository;
 
-    public async Task<BaseCommandResponse> Handle(ExpireJobApplicationCommand request, CancellationToken cancellationToken)
+    public async Task<BaseCommandResponse> Handle(ExpireJobApplicationCommand request,
+        CancellationToken cancellationToken)
     {
         BaseCommandResponse response = new();
 
-        Status status = await statusRepository.GetByDescription("Expired");
+        Status? status = await statusRepository.GetByDescription("Expired");
         if (status == null)
         {
             response.Success = false;
@@ -24,7 +27,8 @@ public class ExpireJobApplicationCommandHandler(IJobApplicationRepository jobApp
             return response;
         }
 
-        JobApplication jobApplication = new () {
+        JobApplication jobApplication = new()
+        {
             Id = request.Id,
             StatusId = status.Id,
             Status = status

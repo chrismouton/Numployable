@@ -1,20 +1,17 @@
-namespace Numployable.Application.Features.ReferenceData.Handlers.Queries;
-
-using System.Threading;
-using System.Threading.Tasks;
-
 using AutoMapper;
 using MediatR;
+using Numployable.Application.DTOs.ReferenceData;
+using Numployable.Application.Features.ReferenceData.Requests.Queries;
+using Numployable.Application.Persistence.Contracts;
+using Numployable.Domain;
 
-using Application.DTOs.ReferenceData;
-using Application.Features.ReferenceData.Requests.Queries;
-using Domain;
-using Persistence.Contracts;
+namespace Numployable.Application.Features.ReferenceData.Handlers.Queries;
 
-public class GetCommuteListRequestHandler(ICommuteRepository commuteRepository, IMapper mapper) 
+public class GetCommuteListRequestHandler(ICommuteRepository commuteRepository, IMapper mapper)
     : IRequestHandler<GetCommuteListRequest, IEnumerable<CommuteDto>>
 {
-    public async Task<IEnumerable<CommuteDto>> Handle(GetCommuteListRequest request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<CommuteDto>> Handle(GetCommuteListRequest request,
+        CancellationToken cancellationToken)
     {
         IReadOnlyCollection<Commute> commuteList = await commuteRepository.GetAll();
 

@@ -28,14 +28,14 @@ const collectEntries = () => {
     .filter(p => !/\.dist\.(?:js|css)$/.test(p))
     .reduce((entries, file) => {
       const filePath = file.replace(/\\/g, '/');
-      return { ...entries, [filePath.replace(/^src\/|\.(?:js|es6)$/g, '')]: `./${filePath}` };
+      return {...entries, [filePath.replace(/^src\/|\.(?:js|es6)$/g, '')]: `./${filePath}`};
     }, {});
 };
 
 const babelLoader = () => ({
   loader: 'babel-loader',
   options: {
-    presets: [['@babel/preset-env', { targets: 'last 2 versions, ie >= 10' }]],
+    presets: [['@babel/preset-env', {targets: 'last 2 versions, ie >= 10'}]],
     plugins: [
       '@babel/plugin-transform-destructuring',
       '@babel/plugin-proposal-object-rest-spread',
@@ -75,18 +75,18 @@ const webpackConfig = {
       },
       {
         test: /\.css$/,
-        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }]
+        use: [{loader: 'style-loader'}, {loader: 'css-loader'}]
       },
       {
         test: /\.scss$/,
-        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }, { loader: 'sass-loader' }]
+        use: [{loader: 'style-loader'}, {loader: 'css-loader'}, {loader: 'sass-loader'}]
       },
       {
         test: /\.html$/,
         use: [
           {
             loader: 'html-loader',
-            options: { minimize: true }
+            options: {minimize: true}
           }
         ]
       }

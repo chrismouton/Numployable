@@ -4,9 +4,28 @@ namespace Numployable.UI.Web.Controllers;
 
 public class PagesController : Controller
 {
-  public IActionResult AccountSettings() => View();
-  public IActionResult AccountSettingsConnections() => View();
-  public IActionResult AccountSettingsNotifications() => View();
-  public IActionResult MiscError() => View();
-  public IActionResult MiscUnderMaintenance() => View();
+  public IActionResult AccountSettings()
+  {
+    return View();
+  }
+
+  public IActionResult AccountSettingsConnections()
+  {
+    return View();
+  }
+
+  public IActionResult AccountSettingsNotifications()
+  {
+    return View();
+  }
+
+  public IActionResult MiscError()
+  {
+    return View();
+  }
+
+  public IActionResult MiscUnderMaintenance()
+  {
+    return View();
+  }
 }

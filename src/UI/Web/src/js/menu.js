@@ -1,4 +1,5 @@
 const TRANSITION_EVENTS = ['transitionend', 'webkitTransitionEnd', 'oTransitionEnd']
+
 // const TRANSITION_PROPERTIES = ['transition', 'MozTransition', 'webkitTransition', 'WebkitTransition', 'OTransition']
 
 class Menu {
@@ -8,10 +9,14 @@ class Menu {
     this._accordion = config.accordion !== false
     this._closeChildren = Boolean(config.closeChildren)
 
-    this._onOpen = config.onOpen || (() => {})
-    this._onOpened = config.onOpened || (() => {})
-    this._onClose = config.onClose || (() => {})
-    this._onClosed = config.onClosed || (() => {})
+    this._onOpen = config.onOpen || (() => {
+    })
+    this._onOpened = config.onOpened || (() => {
+    })
+    this._onClose = config.onClose || (() => {
+    })
+    this._onClosed = config.onClosed || (() => {
+    })
 
     this._psScroll = null
     this._topParent = null
@@ -51,88 +56,35 @@ class Menu {
     el.menuInstance = this
   }
 
-  _bindEvents() {
-    // Click Event
-    this._evntElClick = e => {
-      // Find top parent element
-      if (e.target.closest('ul') && e.target.closest('ul').classList.contains('menu-inner')) {
-        const menuItem = Menu._findParent(e.target, 'menu-item', false)
+  get _innerWidth() {
+    const items = this._inner.childNodes
+    let width = 0
 
-        // eslint-disable-next-line prefer-destructuring
-        if (menuItem) this._topParent = menuItem.childNodes[0]
-      }
-
-      const toggleLink = e.target.classList.contains('menu-toggle')
-        ? e.target
-        : Menu._findParent(e.target, 'menu-toggle', false)
-
-      if (toggleLink) {
-        e.preventDefault()
-
-        if (toggleLink.getAttribute('data-hover') !== 'true') {
-          this.toggle(toggleLink)
-        }
+    for (let i = 0, l = items.length; i < l; i++) {
+      if (items[i].tagName) {
+        width += Math.round(items[i].getBoundingClientRect().width)
       }
     }
-    if (window.Helpers.isMobileDevice) this._el.addEventListener('click', this._evntElClick)
 
-    this._evntWindowResize = () => {
-      this.update()
-      if (this._lastWidth !== window.innerWidth) {
-        this._lastWidth = window.innerWidth
-        this.update()
-      }
+    return width
+  }
 
-      const horizontalMenuTemplate = document.querySelector("[data-template^='horizontal-menu']")
-      if (!this._horizontal && !horizontalMenuTemplate) this.manageScroll()
-    }
-    window.addEventListener('resize', this._evntWindowResize)
+  get _innerPosition() {
+    return parseInt(this._inner.style[this._rtl ? 'marginRight' : 'marginLeft'] || '0px', 10)
+  }
+
+  set _innerPosition(value) {
+    this._inner.style[this._rtl ? 'marginRight' : 'marginLeft'] = `${value}px`
+    return value
   }
 
   static childOf(/* child node */ c, /* parent node */ p) {
     // returns boolean
     if (c.parentNode) {
-      while ((c = c.parentNode) && c !== p);
+      while ((c = c.parentNode) && c !== p) ;
       return !!c
     }
     return false
-  }
-
-  _unbindEvents() {
-    if (this._evntElClick) {
-      this._el.removeEventListener('click', this._evntElClick)
-      this._evntElClick = null
-    }
-
-    if (this._evntElMouseOver) {
-      this._el.removeEventListener('mouseover', this._evntElMouseOver)
-      this._evntElMouseOver = null
-    }
-
-    if (this._evntElMouseOut) {
-      this._el.removeEventListener('mouseout', this._evntElMouseOut)
-      this._evntElMouseOut = null
-    }
-
-    if (this._evntWindowResize) {
-      window.removeEventListener('resize', this._evntWindowResize)
-      this._evntWindowResize = null
-    }
-
-    if (this._evntBodyClick) {
-      document.body.removeEventListener('click', this._evntBodyClick)
-      this._evntBodyClick = null
-    }
-
-    if (this._evntInnerMousemove) {
-      this._inner.removeEventListener('mousemove', this._evntInnerMousemove)
-      this._evntInnerMousemove = null
-    }
-
-    if (this._evntInnerMouseleave) {
-      this._inner.removeEventListener('mouseleave', this._evntInnerMouseleave)
-      this._evntInnerMouseleave = null
-    }
   }
 
   static _isRoot(item) {
@@ -197,6 +149,169 @@ class Menu {
     return result
   }
 
+  static _getItem(el, toggle) {
+    let item = null
+    const selector = toggle ? 'menu-toggle' : 'menu-link'
+
+    if (el.classList.contains('menu-item')) {
+      if (Menu._findChild(el, [selector]).length) item = el
+    } else if (el.classList.contains(selector)) {
+      item = el.parentNode.classList.contains('menu-item') ? el.parentNode : null
+    }
+
+    if (!item) {
+      throw new Error(`${toggle ? 'Toggable ' : ''}\`.menu-item\` element not found.`)
+    }
+
+    return item
+  }
+
+  static _getLink(el, toggle) {
+    let found = []
+    const selector = toggle ? 'menu-toggle' : 'menu-link'
+
+    if (el.classList.contains(selector)) found = [el]
+    else if (el.classList.contains('menu-item')) found = Menu._findChild(el, [selector])
+
+    if (!found.length) throw new Error(`\`${selector}\` element not found.`)
+
+    return found[0]
+  }
+
+  static _bindAnimationEndEvent(el, handler) {
+    const cb = e => {
+      if (e.target !== el) return
+      Menu._unbindAnimationEndEvent(el)
+      handler(e)
+    }
+
+    let duration = window.getComputedStyle(el).transitionDuration
+    duration = parseFloat(duration) * (duration.indexOf('ms') !== -1 ? 1 : 1000)
+
+    el._menuAnimationEndEventCb = cb
+    TRANSITION_EVENTS.forEach(ev => el.addEventListener(ev, el._menuAnimationEndEventCb, false))
+
+    el._menuAnimationEndEventTimeout = setTimeout(() => {
+      cb({target: el})
+    }, duration + 50)
+  }
+
+  static _promisify(fn, ...args) {
+    const result = fn(...args)
+    if (result instanceof Promise) {
+      return result
+    }
+    if (result === false) {
+      return Promise.reject()
+    }
+    return Promise.resolve()
+  }
+
+  static _unbindAnimationEndEvent(el) {
+    const cb = el._menuAnimationEndEventCb
+
+    if (el._menuAnimationEndEventTimeout) {
+      clearTimeout(el._menuAnimationEndEventTimeout)
+      el._menuAnimationEndEventTimeout = null
+    }
+
+    if (!cb) return
+
+    TRANSITION_EVENTS.forEach(ev => el.removeEventListener(ev, cb, false))
+    el._menuAnimationEndEventCb = null
+  }
+
+  static setDisabled(el, disabled) {
+    Menu._getItem(el, false).classList[disabled ? 'add' : 'remove']('disabled')
+  }
+
+  static isActive(el) {
+    return Menu._getItem(el, false).classList.contains('active')
+  }
+
+  static isOpened(el) {
+    return Menu._getItem(el, false).classList.contains('open')
+  }
+
+  static isDisabled(el) {
+    return Menu._getItem(el, false).classList.contains('disabled')
+  }
+
+  _bindEvents() {
+    // Click Event
+    this._evntElClick = e => {
+      // Find top parent element
+      if (e.target.closest('ul') && e.target.closest('ul').classList.contains('menu-inner')) {
+        const menuItem = Menu._findParent(e.target, 'menu-item', false)
+
+        // eslint-disable-next-line prefer-destructuring
+        if (menuItem) this._topParent = menuItem.childNodes[0]
+      }
+
+      const toggleLink = e.target.classList.contains('menu-toggle')
+        ? e.target
+        : Menu._findParent(e.target, 'menu-toggle', false)
+
+      if (toggleLink) {
+        e.preventDefault()
+
+        if (toggleLink.getAttribute('data-hover') !== 'true') {
+          this.toggle(toggleLink)
+        }
+      }
+    }
+    if (window.Helpers.isMobileDevice) this._el.addEventListener('click', this._evntElClick)
+
+    this._evntWindowResize = () => {
+      this.update()
+      if (this._lastWidth !== window.innerWidth) {
+        this._lastWidth = window.innerWidth
+        this.update()
+      }
+
+      const horizontalMenuTemplate = document.querySelector("[data-template^='horizontal-menu']")
+      if (!this._horizontal && !horizontalMenuTemplate) this.manageScroll()
+    }
+    window.addEventListener('resize', this._evntWindowResize)
+  }
+
+  _unbindEvents() {
+    if (this._evntElClick) {
+      this._el.removeEventListener('click', this._evntElClick)
+      this._evntElClick = null
+    }
+
+    if (this._evntElMouseOver) {
+      this._el.removeEventListener('mouseover', this._evntElMouseOver)
+      this._evntElMouseOver = null
+    }
+
+    if (this._evntElMouseOut) {
+      this._el.removeEventListener('mouseout', this._evntElMouseOut)
+      this._evntElMouseOut = null
+    }
+
+    if (this._evntWindowResize) {
+      window.removeEventListener('resize', this._evntWindowResize)
+      this._evntWindowResize = null
+    }
+
+    if (this._evntBodyClick) {
+      document.body.removeEventListener('click', this._evntBodyClick)
+      this._evntBodyClick = null
+    }
+
+    if (this._evntInnerMousemove) {
+      this._inner.removeEventListener('mousemove', this._evntInnerMousemove)
+      this._evntInnerMousemove = null
+    }
+
+    if (this._evntInnerMouseleave) {
+      this._inner.removeEventListener('mouseleave', this._evntInnerMouseleave)
+      this._evntInnerMouseleave = null
+    }
+  }
+
   open(el, closeChildren = this._closeChildren) {
     const item = this._findUnopenedParent(Menu._getItem(el, true), closeChildren)
 
@@ -224,7 +339,8 @@ class Menu {
           this._onOpened && this._onOpened(this, item, toggleLink, Menu._findMenu(item))
         }
       })
-      .catch(() => {})
+      .catch(() => {
+      })
   }
 
   close(el, closeChildren = this._closeChildren, _autoClose = false) {
@@ -254,7 +370,8 @@ class Menu {
           this._onClosed && this._onClosed(this, item, toggleLink, Menu._findMenu(item))
         }
       })
-      .catch(() => {})
+      .catch(() => {
+      })
   }
 
   _closeOther(item, closeChildren) {
@@ -271,35 +388,6 @@ class Menu {
 
     if (item.classList.contains('open')) this.close(item, closeChildren)
     else this.open(item, closeChildren)
-  }
-
-  static _getItem(el, toggle) {
-    let item = null
-    const selector = toggle ? 'menu-toggle' : 'menu-link'
-
-    if (el.classList.contains('menu-item')) {
-      if (Menu._findChild(el, [selector]).length) item = el
-    } else if (el.classList.contains(selector)) {
-      item = el.parentNode.classList.contains('menu-item') ? el.parentNode : null
-    }
-
-    if (!item) {
-      throw new Error(`${toggle ? 'Toggable ' : ''}\`.menu-item\` element not found.`)
-    }
-
-    return item
-  }
-
-  static _getLink(el, toggle) {
-    let found = []
-    const selector = toggle ? 'menu-toggle' : 'menu-link'
-
-    if (el.classList.contains(selector)) found = [el]
-    else if (el.classList.contains('menu-item')) found = Menu._findChild(el, [selector])
-
-    if (!found.length) throw new Error(`\`${selector}\` element not found.`)
-
-    return found[0]
   }
 
   _findUnopenedParent(item, closeChildren) {
@@ -402,24 +490,6 @@ class Menu {
     }
   }
 
-  static _bindAnimationEndEvent(el, handler) {
-    const cb = e => {
-      if (e.target !== el) return
-      Menu._unbindAnimationEndEvent(el)
-      handler(e)
-    }
-
-    let duration = window.getComputedStyle(el).transitionDuration
-    duration = parseFloat(duration) * (duration.indexOf('ms') !== -1 ? 1 : 1000)
-
-    el._menuAnimationEndEventCb = cb
-    TRANSITION_EVENTS.forEach(ev => el.addEventListener(ev, el._menuAnimationEndEventCb, false))
-
-    el._menuAnimationEndEventTimeout = setTimeout(() => {
-      cb({ target: el })
-    }, duration + 50)
-  }
-
   _getItemOffset(item) {
     let curItem = this._inner.childNodes[0]
     let left = 0
@@ -435,73 +505,10 @@ class Menu {
     return left
   }
 
-  static _promisify(fn, ...args) {
-    const result = fn(...args)
-    if (result instanceof Promise) {
-      return result
-    }
-    if (result === false) {
-      return Promise.reject()
-    }
-    return Promise.resolve()
-  }
-
-  get _innerWidth() {
-    const items = this._inner.childNodes
-    let width = 0
-
-    for (let i = 0, l = items.length; i < l; i++) {
-      if (items[i].tagName) {
-        width += Math.round(items[i].getBoundingClientRect().width)
-      }
-    }
-
-    return width
-  }
-
-  get _innerPosition() {
-    return parseInt(this._inner.style[this._rtl ? 'marginRight' : 'marginLeft'] || '0px', 10)
-  }
-
-  set _innerPosition(value) {
-    this._inner.style[this._rtl ? 'marginRight' : 'marginLeft'] = `${value}px`
-    return value
-  }
-
-  static _unbindAnimationEndEvent(el) {
-    const cb = el._menuAnimationEndEventCb
-
-    if (el._menuAnimationEndEventTimeout) {
-      clearTimeout(el._menuAnimationEndEventTimeout)
-      el._menuAnimationEndEventTimeout = null
-    }
-
-    if (!cb) return
-
-    TRANSITION_EVENTS.forEach(ev => el.removeEventListener(ev, cb, false))
-    el._menuAnimationEndEventCb = null
-  }
-
   closeAll(closeChildren = this._closeChildren) {
     const opened = this._el.querySelectorAll('.menu-inner > .menu-item.open')
 
     for (let i = 0, l = opened.length; i < l; i++) this.close(opened[i], closeChildren)
-  }
-
-  static setDisabled(el, disabled) {
-    Menu._getItem(el, false).classList[disabled ? 'add' : 'remove']('disabled')
-  }
-
-  static isActive(el) {
-    return Menu._getItem(el, false).classList.contains('active')
-  }
-
-  static isOpened(el) {
-    return Menu._getItem(el, false).classList.contains('open')
-  }
-
-  static isDisabled(el) {
-    return Menu._getItem(el, false).classList.contains('disabled')
   }
 
   update() {
@@ -511,7 +518,7 @@ class Menu {
   }
 
   manageScroll() {
-    const { PerfectScrollbar } = window
+    const {PerfectScrollbar} = window
     const menuInner = document.querySelector('.menu-inner')
 
     if (window.innerWidth < window.Helpers.LAYOUT_BREAKPOINT) {
@@ -586,4 +593,4 @@ class Menu {
   }
 }
 
-export { Menu }
+export {Menu}

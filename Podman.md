@@ -11,4 +11,5 @@ Install podman-compose
 `python3 -m pip install podman-compose`
 
 ## Starting PostgreSQL in Podman
+
 `podman-compose -f podman-compose.yml up`

@@ -1,5 +1,5 @@
+using FluentValidation.Results;
 using MediatR;
-
 using Numployable.Application.DTOs.JobApplications.Validators;
 using Numployable.Application.Features.JobApplications.Requests.Commands;
 using Numployable.Application.Mappings;
@@ -12,15 +12,17 @@ namespace Numployable.Application.Features.JobApplications.Handlers.Commands;
 public class CreateJobApplicationCommandHandler(IJobApplicationRepository jobApplicationRepository)
     : IRequestHandler<CreateJobApplicationCommand, BaseCommandResponse>
 {
-    public async Task<BaseCommandResponse> Handle(CreateJobApplicationCommand request, CancellationToken cancellationToken)
+    public async Task<BaseCommandResponse> Handle(CreateJobApplicationCommand request,
+        CancellationToken cancellationToken)
     {
         if (request.CreateJobApplicationDto == null)
             throw new ArgumentNullException(nameof(request));
 
         BaseCommandResponse response = new();
 
-        var validator = new CreateJobApplicationDtoValidator();
-        var validationResult = await validator.ValidateAsync(request.CreateJobApplicationDto, cancellationToken);
+        CreateJobApplicationDtoValidator? validator = new();
+        ValidationResult? validationResult =
+            await validator.ValidateAsync(request.CreateJobApplicationDto, cancellationToken);
         if (!validationResult.IsValid)
         {
             response.Success = false;
@@ -29,7 +31,8 @@ public class CreateJobApplicationCommandHandler(IJobApplicationRepository jobApp
         }
         else
         {
-            JobApplication jobApplication = await jobApplicationRepository.Add(request.CreateJobApplicationDto.ToJobApplication());
+            JobApplication? jobApplication =
+                await jobApplicationRepository.Add(request.CreateJobApplicationDto.ToJobApplication());
 
             response.Success = true;
             response.Message = "Creation success";

@@ -9,7 +9,7 @@ public class UpdateNextActionsDtoValidator : AbstractValidator<CreateNextActionD
     {
         RuleFor(p => p.Id)
             .GreaterThan(0)
-            .MustAsync(async(id, token) => 
+            .MustAsync(async (id, token) =>
             {
                 bool exists = await repository.Exists(id);
                 return !exists;

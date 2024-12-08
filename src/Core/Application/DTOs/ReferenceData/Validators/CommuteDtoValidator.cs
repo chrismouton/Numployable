@@ -1,8 +1,8 @@
+using Numployable.Application.Persistence.Contracts;
+
 namespace Numployable.Application.DTOs.ReferenceData.Validators;
 
-using Persistence.Contracts;
-
-public class CommuteDtoValidator(IReferenceDataRepository<CommuteDto> referenceDataRepository) 
-    : BaseReferenceDataDtoValidator<CommuteDto>(referenceDataRepository) 
+public class CommuteDtoValidator(IReferenceDataRepository<CommuteDto> referenceDataRepository)
+    : BaseReferenceDataDtoValidator<CommuteDto>(referenceDataRepository)
 {
 }

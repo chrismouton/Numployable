@@ -1,16 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
 using Numployable.UI.Web.Contracts;
+using Numployable.UI.Web.Models;
 
 namespace Numployable.UI.Web.Controllers;
 
 public class DashboardsController(IDashboardService dashboardService)
-    : Controller
+  : Controller
 {
-  IDashboardService dashboardService = dashboardService;
+  private readonly IDashboardService dashboardService = dashboardService;
 
   public async Task<IActionResult> Index()
   {
-    var model = await dashboardService.Get();
+    DashboardViewModel? model = await dashboardService.Get();
 
     return View(model);
   }
