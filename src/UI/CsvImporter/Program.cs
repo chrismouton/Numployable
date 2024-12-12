@@ -1,5 +1,7 @@
 ﻿using CommandLine;
 
+using Numployable.APIClient.Client;
+
 namespace Numployable.CsvImporter;
 
 public class Program
@@ -9,7 +11,9 @@ public class Program
         Parser.Default.ParseArguments<CommandLineOptions>(args)
             .WithParsed<CommandLineOptions>(o =>
             {
-                CsvParser parser = new(o.FilePath, o.Url);
+                Client httpClient = null; // new Client(cl => cl.BaseAddress = new Uri("http://localhost:5093"));
+                //httpClient.HttpClient.BaseAddress = new Uri("http://localhost:5093");
+                CsvParser parser = new(o.FilePath, httpClient);
             });
     }
 }
