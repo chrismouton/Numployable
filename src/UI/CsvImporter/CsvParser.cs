@@ -100,6 +100,8 @@ internal class CsvParser(string filePath, IClient client)
             case "Application Retracted":
                 convertedStatus = await client.StatusAsync("Closed");
                 break;
+            default:
+                return await Task.FromException<StatusDto>(new ApplicationException("Unrecognized Status Type"));                
         }
 
         return convertedStatus;
@@ -140,6 +142,8 @@ internal class CsvParser(string filePath, IClient client)
             case "Application Retracted":
                 processStatus = await client.ProcessstatusAsync("Retracted");
                 break;
+            default:
+                return await Task.FromException<ProcessStatusDto>(new ApplicationException("Unrecognized Process Status Type"));                
         }
 
         return processStatus;
@@ -175,6 +179,8 @@ internal class CsvParser(string filePath, IClient client)
                 break;
             case "Application Retracted":
                 break;
+            default:
+                return await Task.FromException<SourceDto>(new ApplicationException("Unrecognized Source Type"));
         }
 
         return source;
