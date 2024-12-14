@@ -37,15 +37,18 @@ internal class CsvParser(string filePath, IClient client)
                     {
                         ActionDate = record.NextAction
                     };
-                }
+                } // if
 
                 await client.JobApplicationPOSTAsync(jobApplication);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
-                failedRecords.Add(record);
-            } // try/catch            
+                lock(failedRecords)
+                {
+                    failedRecords.Add(record);
+                } // lock
+            } // try/catch
         });
     }
 
@@ -63,7 +66,7 @@ internal class CsvParser(string filePath, IClient client)
             case "Temporary Full-time":
                 return await client.RoletypeAsync("Temporary full-time");
                 break;
-        }
+        } // switch
 
         return await Task.FromException<RoleTypeDto>(new ApplicationException("Unrecognized Role Type"));
     }
@@ -101,7 +104,7 @@ internal class CsvParser(string filePath, IClient client)
                 convertedStatus = await client.StatusAsync("Closed");
                 break;
             default:
-                return await Task.FromException<StatusDto>(new ApplicationException("Unrecognized Status Type"));                
+                return await Task.FromException<StatusDto>(new ApplicationException("Unrecognized Status Type"));
         }
 
         return convertedStatus;
@@ -143,7 +146,7 @@ internal class CsvParser(string filePath, IClient client)
                 processStatus = await client.ProcessstatusAsync("Retracted");
                 break;
             default:
-                return await Task.FromException<ProcessStatusDto>(new ApplicationException("Unrecognized Process Status Type"));                
+                return await Task.FromException<ProcessStatusDto>(new ApplicationException("Unrecognized Process Status Type"));
         }
 
         return processStatus;

@@ -11,8 +11,10 @@ public class Program
         Parser.Default.ParseArguments<CommandLineOptions>(args)
             .WithParsed<CommandLineOptions>(o =>
             {
-                Client httpClient = null; // new Client(cl => cl.BaseAddress = new Uri("http://localhost:5093"));
-                //httpClient.HttpClient.BaseAddress = new Uri("http://localhost:5093");
+                Client httpClient = new (new System.Net.Http.HttpClient()
+                    {
+                        BaseAddress = new Uri("http://localhost:5093")
+                    });
                 CsvParser parser = new(o.FilePath, httpClient);
             });
     }
