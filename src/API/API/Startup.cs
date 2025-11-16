@@ -1,3 +1,4 @@
+using Microsoft.OpenApi;
 using Microsoft.OpenApi.Models;
 using Numployable.API.Middleware;
 using Numployable.Application;
@@ -74,11 +75,6 @@ public class Startup(IConfiguration configuration)
                 {
                     new OpenApiSecurityScheme
                     {
-                        Reference = new OpenApiReference
-                        {
-                            Type = ReferenceType.SecurityScheme,
-                            Id = "Bearer"
-                        },
                         Scheme = "oauth2",
                         Name = "Bearer",
                         In = ParameterLocation.Header
