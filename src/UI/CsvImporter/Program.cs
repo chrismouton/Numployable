@@ -13,8 +13,9 @@ public class Program
             {
                 Client httpClient = new (new System.Net.Http.HttpClient()
                     {
-                        BaseAddress = new Uri("http://localhost:5093")
-                    });
+                        BaseAddress = new Uri(o.Url) //"http://localhost:5093")
+                    }
+                );
                 CsvParser parser = new(o.FilePath, httpClient);
             });
     }
