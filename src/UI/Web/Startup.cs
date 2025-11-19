@@ -22,7 +22,7 @@ public class Startup(IConfiguration configuration)
     //services.AddTransient<IAuthenticationService, AuthenticationService>();
 
     services.AddHttpClient<IClient, Client>(cl => cl.BaseAddress = new Uri("http://localhost:5093"));
-    services.AddAutoMapper(Assembly.GetExecutingAssembly());
+    services.AddAutoMapper(cfg => { },Assembly.GetExecutingAssembly());
 
     services.AddScoped<IProcessStatusService, ProcessStatusService>();
     services.AddScoped<IStatusService, StatusService>();
