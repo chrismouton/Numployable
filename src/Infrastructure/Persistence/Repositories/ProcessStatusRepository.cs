@@ -8,7 +8,7 @@ namespace Numployable.Persistence.Repositories;
 public class ProcessStatusRepository(NumployableDbContext dbContext, IMapper mapper)
     : IProcessStatusRepository
 {
-    public async Task<ProcessStatus> Get(int id)
+    public async Task<ProcessStatus?> Get(int id)
     {
         ProcessStatus? entity = await dbContext.Set<ProcessStatus>().FindAsync(id);
 
@@ -32,13 +32,13 @@ public class ProcessStatusRepository(NumployableDbContext dbContext, IMapper map
         return list;
     }
 
-    public async Task<ProcessStatus> GetByDescription(string description)
+    public Task<ProcessStatus?> GetByDescription(string description)
     {
         ProcessStatus? entity = dbContext.ProcessStatus
             .FromSql($"SELECT \"Id\", \"Description\" FROM public.\"ProcessStatus\"")
             .Where(e => e.Description == description)
             .FirstOrDefault();
 
-        return entity;
+        return Task.FromResult(entity);
     }
 }

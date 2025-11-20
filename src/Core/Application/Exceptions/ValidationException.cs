@@ -2,9 +2,9 @@ using FluentValidation.Results;
 
 namespace Numployable.Application.Exceptions;
 
-public class ValidationException : ApplicationException
+public abstract class ValidationException : ApplicationException
 {
-    public ValidationException(ValidationResult validationResult)
+    protected ValidationException(ValidationResult validationResult)
     {
         Errors = new List<string>(validationResult.Errors.Count);
         Errors = validationResult.Errors.Select(item => item.ErrorMessage).ToList();

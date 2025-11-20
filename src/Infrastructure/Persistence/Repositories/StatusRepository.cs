@@ -7,7 +7,7 @@ namespace Numployable.Persistence.Repositories;
 
 public class StatusRepository(NumployableDbContext dbContext, IMapper mapper) : IStatusRepository
 {
-    public async Task<Status> Get(int id)
+    public async Task<Status?> Get(int id)
     {
         Status? entity = await dbContext.Set<Status>().FindAsync(id);
 
@@ -31,13 +31,13 @@ public class StatusRepository(NumployableDbContext dbContext, IMapper mapper) : 
         return list;
     }
 
-    public async Task<Status> GetByDescription(string description)
+    public Task<Status?> GetByDescription(string description)
     {
         Status? entity = dbContext
             .Status.FromSql($"SELECT \"Id\", \"Description\" FROM public.\"Status\"")
             .Where(e => e.Description == description)
             .FirstOrDefault();
 
-        return entity;
+        return Task.FromResult(entity);
     }
 }

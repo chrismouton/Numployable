@@ -55,7 +55,7 @@ function OutputErrorMessage
 $CurrentDate = Get-Date
 $fileName = [string]::Format(".\out\logs\build-{0}-{1}.log", $CurrentDate.ToString("yyyyMMdd"), $CurrentDate.ToString("HHmmss"))
 
-$SolutionFiles = Get-ChildItem -Path . -Filter *.sln -Recurse
+$SolutionFiles = Get-ChildItem -Path . -Filter *.sln* -Recurse
 
 foreach ($FileToBuild in $SolutionFiles)
 {

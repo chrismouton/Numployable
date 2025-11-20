@@ -8,7 +8,7 @@ namespace Numployable.Persistence.Repositories;
 public class SourceRepository(NumployableDbContext dbContext, IMapper mapper)
     : ISourceRepository
 {
-    public async Task<Source> Get(int id)
+    public async Task<Source?> Get(int id)
     {
         Source? entity = await dbContext.Set<Source>().FindAsync(id);
 
@@ -32,13 +32,13 @@ public class SourceRepository(NumployableDbContext dbContext, IMapper mapper)
         return list;
     }
 
-    public async Task<Source> GetByDescription(string description)
+    public Task<Source?> GetByDescription(string description)
     {
         Source? entity = dbContext.Source
             .FromSql($"SELECT \"Id\", \"Description\" FROM public.\"Source\"")
             .Where(e => e.Description == description)
             .FirstOrDefault();
 
-        return entity;
+        return Task.FromResult(entity);
     }
 }

@@ -6,7 +6,7 @@ namespace Numployable.Application.DTOs.ReferenceData.Validators;
 public abstract class BaseReferenceDataDtoValidator<T> : AbstractValidator<BaseReferenceDataDto>
     where T : BaseReferenceDataDto
 {
-    public BaseReferenceDataDtoValidator(IReferenceDataRepository<T> repository)
+    protected BaseReferenceDataDtoValidator(IReferenceDataRepository<T> repository)
     {
         RuleFor(p => p.Description).NotEmpty().WithMessage("{PropertyName} is required.").NotNull();
 

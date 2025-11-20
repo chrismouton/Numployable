@@ -35,7 +35,7 @@ public class JobApplication : BaseDomainEntity
 
     public virtual RoleType RoleType { get; set; } = null!;
 
-    public virtual Source Source { get; set; } = null!;
+    public virtual Source? Source { get; set; } = null!;
 
     public virtual Status Status { get; set; } = null!;
 

@@ -8,7 +8,7 @@ namespace Numployable.Persistence.Repositories;
 public class NextActionTypeRepository(NumployableDbContext dbContext, IMapper mapper)
     : INextActionTypeRepository
 {
-    public async Task<NextActionType> Get(int id)
+    public async Task<NextActionType?> Get(int id)
     {
         NextActionType? entity = await dbContext.Set<NextActionType>().FindAsync(id);
 
@@ -32,7 +32,7 @@ public class NextActionTypeRepository(NumployableDbContext dbContext, IMapper ma
         return list;
     }
 
-    public async Task<NextActionType> GetByDescription(string description)
+    public Task<NextActionType?> GetByDescription(string description)
     {
         NextActionType? entity = dbContext
             .NextActionType.FromSql(
@@ -41,6 +41,6 @@ public class NextActionTypeRepository(NumployableDbContext dbContext, IMapper ma
             .Where(e => e.Description == description)
             .FirstOrDefault();
 
-        return entity;
+        return Task.FromResult(entity);
     }
 }

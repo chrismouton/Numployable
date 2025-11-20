@@ -8,7 +8,7 @@ namespace Numployable.Persistence.Repositories;
 public class RoleTypeRepository(NumployableDbContext dbContext, IMapper mapper)
     : IRoleTypeRepository
 {
-    public async Task<RoleType> Get(int id)
+    public async Task<RoleType?> Get(int id)
     {
         RoleType? entity = await dbContext.Set<RoleType>().FindAsync(id);
 
@@ -32,13 +32,13 @@ public class RoleTypeRepository(NumployableDbContext dbContext, IMapper mapper)
         return list;
     }
 
-    public async Task<RoleType> GetByDescription(string description)
+    public Task<RoleType?> GetByDescription(string description)
     {
         RoleType? entity = dbContext
             .RoleType.FromSql($"SELECT \"Id\", \"Description\" FROM public.\"RoleType\"")
             .Where(e => e.Description == description)
             .FirstOrDefault();
 
-        return entity;
+        return Task.FromResult(entity);
     }
 }
