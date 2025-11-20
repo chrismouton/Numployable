@@ -1,5 +1,5 @@
 using AutoMapper;
-using MediatR;
+using Mediator;
 using Numployable.Application.DTOs.ReferenceData;
 using Numployable.Application.Features.ReferenceData.Requests.Queries;
 using Numployable.Application.Persistence.Contracts;
@@ -10,7 +10,7 @@ namespace Numployable.Application.Features.ReferenceData.Handlers.Queries;
 public class GetCommuteListRequestHandler(ICommuteRepository commuteRepository, IMapper mapper)
     : IRequestHandler<GetCommuteListRequest, IEnumerable<CommuteDto>>
 {
-    public async Task<IEnumerable<CommuteDto>> Handle(GetCommuteListRequest request,
+    public async ValueTask<IEnumerable<CommuteDto>> Handle(GetCommuteListRequest request,
         CancellationToken cancellationToken)
     {
         IReadOnlyCollection<Commute> commuteList = await commuteRepository.GetAll();

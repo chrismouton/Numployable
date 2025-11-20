@@ -1,4 +1,4 @@
-using MediatR;
+using Mediator;
 using Numployable.Application.DTOs.NextActions;
 using Numployable.Application.Responses;
 

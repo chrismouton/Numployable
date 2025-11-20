@@ -1,4 +1,4 @@
-using MediatR;
+using Mediator;
 using Numployable.Application.Responses;
 
 namespace Numployable.Application.Features.JobApplications.Requests.Commands;

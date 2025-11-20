@@ -1,5 +1,5 @@
 using AutoMapper;
-using MediatR;
+using Mediator;
 using Numployable.Application.DTOs.ReferenceData;
 using Numployable.Application.Features.ReferenceData.Requests.Queries;
 using Numployable.Application.Persistence.Contracts;
@@ -12,7 +12,7 @@ public class GetProcessStatusByDescriptionRequestHandler(
     IMapper mapper)
     : IRequestHandler<GetProcessStatusByDescriptionRequest, ProcessStatusDto>
 {
-    public async Task<ProcessStatusDto> Handle(GetProcessStatusByDescriptionRequest request,
+    public async ValueTask<ProcessStatusDto> Handle(GetProcessStatusByDescriptionRequest request,
         CancellationToken cancellationToken)
     {
         ProcessStatus? processStatus = await processStatusRepository.GetByDescription(request.Description);

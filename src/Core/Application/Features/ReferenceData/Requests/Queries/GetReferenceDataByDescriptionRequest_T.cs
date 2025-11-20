@@ -1,4 +1,4 @@
-using MediatR;
+using Mediator;
 
 namespace Numployable.Application.Features.ReferenceData.Requests.Queries;
 

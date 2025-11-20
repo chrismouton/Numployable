@@ -6,59 +6,62 @@ namespace Numployable.UI.Web.Models;
 public class JobApplicationViewModel : CreateJobApplicationViewModel
 
 {
-  public int Id { get; set; }
+  public int Id { get; init; }
 
-  public ReferenceDataViewModel RoleType { get; set; }
+  public ReferenceDataViewModel RoleType { get; init; }
 
-  public ReferenceDataViewModel Status { get; set; }
+  public ReferenceDataViewModel Status { get; init; }
 
-  public ReferenceDataViewModel ProcessStatus { get; set; }
+  public ReferenceDataViewModel ProcessStatus { get; init; }
 
-  public ReferenceDataViewModel Source { get; set; }
+  public ReferenceDataViewModel Source { get; init; }
 
-  public ReferenceDataViewModel Commute { get; set; }
+  public ReferenceDataViewModel Commute { get; init; }
 }
 
 public class CreateJobApplicationViewModel
 {
   [Display(Name = "Role Name")]
   [Required]
-  public string RoleName { get; set; }
+  public string RoleName { get; init; }
 
   [Display(Name = "Company Name")]
   [Required]
-  public string CompanyName { get; set; }
+  public string CompanyName { get; init; }
 
-  [Display(Name = "Role Type")] public int RoleTypeId { get; set; }
+  [Display(Name = "Role Type")] public int RoleTypeId { get; init; }
 
-  public SelectList RoleTypeList { get; set; }
+  public SelectList RoleTypeList { get; init; }
 
   [Display(Name = "Application Date")]
   [DataType(DataType.Date)]
-  public DateTime ApplicationDate { get; set; }
+  public DateTime ApplicationDate { get; init; }
 
-  public SelectList StatusList { get; set; }
+  public SelectList StatusList { get; init; }
 
-  [Display(Name = "Application Status")] public int StatusId { get; set; }
+  [Display(Name = "Application Status")]
+  public int StatusId { get; init; }
 
-  public SelectList ProcessStatusList { get; set; }
+  public SelectList ProcessStatusList { get; init; }
 
   [Display(Name = "Application Process Status")]
-  public int ProcessStatusId { get; set; }
+  public int ProcessStatusId { get; init; }
 
-  public string? Url { get; set; }
+  public string? Url { get; init; }
 
-  public SelectList SourceList { get; set; }
+  public SelectList SourceList { get; init; }
 
-  [Display(Name = "Source")] public int SourceId { get; set; }
+  [Display(Name = "Source")]
+  public int SourceId { get; init; }
 
-  [Display(Name = "Advertised Salary")] public string? AdvertisedSalary { get; set; }
+  [Display(Name = "Advertised Salary")]
+  public string? AdvertisedSalary { get; init; }
 
-  public string? Location { get; set; }
+  public string? Location { get; init; }
 
-  public SelectList CommuteList { get; set; }
+  public SelectList CommuteList { get; init; }
 
-  [Display(Name = "Commute")] public int CommuteId { get; set; }
+  [Display(Name = "Commute")] public int CommuteId { get; init; }
 
-  public string? Notes { get; set; }
+  public string? Notes { get; init; }
 }

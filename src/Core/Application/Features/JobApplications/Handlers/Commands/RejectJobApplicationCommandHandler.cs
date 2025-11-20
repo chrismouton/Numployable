@@ -1,4 +1,4 @@
-using MediatR;
+using Mediator;
 using Numployable.Application.Features.JobApplications.Requests.Commands;
 using Numployable.Application.Persistence.Contracts;
 using Numployable.Application.Responses;
@@ -12,7 +12,7 @@ public class RejectJobApplicationCommandHandler(
     IProcessStatusRepository _processStatusRepository)
     : IRequestHandler<RejectJobApplicationCommand, BaseCommandResponse>
 {
-    public async Task<BaseCommandResponse> Handle(RejectJobApplicationCommand request,
+    public async ValueTask<BaseCommandResponse> Handle(RejectJobApplicationCommand request,
         CancellationToken cancellationToken)
     {
         BaseCommandResponse response = new();

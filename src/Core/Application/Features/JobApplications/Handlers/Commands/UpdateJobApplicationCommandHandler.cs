@@ -1,5 +1,5 @@
 using FluentValidation.Results;
-using MediatR;
+using Mediator;
 using Numployable.Application.DTOs.JobApplications.Validators;
 using Numployable.Application.Exceptions;
 using Numployable.Application.Features.JobApplications.Requests.Commands;
@@ -13,7 +13,7 @@ namespace Numployable.Application.Features.JobApplications.Handlers.Commands;
 public class UpdateJobApplicationCommandHandler(IJobApplicationRepository jobApplicationRepository)
     : IRequestHandler<UpdateJobApplicationCommand, BaseCommandResponse>
 {
-    public async Task<BaseCommandResponse> Handle(UpdateJobApplicationCommand request,
+    public async ValueTask<BaseCommandResponse> Handle(UpdateJobApplicationCommand request,
         CancellationToken cancellationToken)
     {
         JobApplication? jobApplication = await jobApplicationRepository.Get(request.Id);

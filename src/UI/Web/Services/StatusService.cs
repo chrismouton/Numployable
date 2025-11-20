@@ -11,7 +11,7 @@ public class StatusService(IMapper mapper, IClient httpClient, ILocalStorageServ
 {
   public async Task<List<ReferenceDataViewModel>> GetAll()
   {
-    ICollection<StatusDto>? statusList = await _client.StatusAllAsync();
+    ICollection<StatusDto>? statusList = await httpClient.StatusAllAsync();
     return mapper.Map<List<ReferenceDataViewModel>>(statusList);
   }
 }

@@ -1,4 +1,4 @@
-using MediatR;
+using Mediator;
 using Microsoft.AspNetCore.Mvc;
 using Numployable.Application.DTOs.ReferenceData;
 using Numployable.Application.Features.ReferenceData.Requests.Queries;

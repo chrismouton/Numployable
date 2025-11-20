@@ -25,8 +25,6 @@ public static class PersistenceServicesRegistration
         services.AddScoped<ISourceRepository, SourceRepository>();
         services.AddScoped<IStatusRepository, StatusRepository>();
 
-        services.AddMediatR(config => { config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()); });
-
         return services;
     }
 }

@@ -7,7 +7,11 @@
     <ItemGroup>
         <PackageReference Include="AutoMapper" Version="15.1.0" />
         <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.0" />
-        <PackageReference Include="Mediatr" Version="13.1.0" />
+        <PackageReference Include="Mediator.SourceGenerator" Version="3.0.1">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="Mediator.Abstractions" Version="3.0.*" />
     </ItemGroup>
 
     <PropertyGroup>

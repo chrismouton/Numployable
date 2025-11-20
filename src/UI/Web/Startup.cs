@@ -50,7 +50,6 @@ public class Startup(IConfiguration configuration)
       app.UseHsts();
     }
 
-
     app.UseCookiePolicy();
     app.UseAuthentication();
 

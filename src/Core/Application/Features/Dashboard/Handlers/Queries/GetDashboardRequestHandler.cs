@@ -1,5 +1,5 @@
 using AutoMapper;
-using MediatR;
+using Mediator;
 using Numployable.Application.DTOs.Dashboard;
 using Numployable.Application.Features.Dashboard.Requests.Queries;
 using Numployable.Application.Persistence.Contracts;
@@ -11,7 +11,7 @@ public class GetDashboardRequestHandler(IDashboardRepository dashboardRepository
 {
     private readonly IDashboardRepository _dashboardRepository = dashboardRepository;
 
-    public async Task<DashboardDto> Handle(GetDashboardRequest request, CancellationToken cancellationToken)
+    public async ValueTask<DashboardDto> Handle(GetDashboardRequest request, CancellationToken cancellationToken)
     {
         Domain.Dashboard? dashboard = await _dashboardRepository.Get();
 

@@ -1,5 +1,5 @@
 using FluentValidation.Results;
-using MediatR;
+using Mediator;
 using Numployable.Application.DTOs.NextActions.Validators;
 using Numployable.Application.Exceptions;
 using Numployable.Application.Features.NextActions.Requests.Commands;
@@ -13,7 +13,7 @@ namespace Numployable.Application.Features.NextActions.Handlers.Commands;
 public class UpdateNextActionCommandHandler(INextActionRepository nextActionRepository)
     : IRequestHandler<UpdateNextActionCommand, BaseCommandResponse>
 {
-    public async Task<BaseCommandResponse> Handle(UpdateNextActionCommand request, CancellationToken cancellationToken)
+    public async ValueTask<BaseCommandResponse> Handle(UpdateNextActionCommand request, CancellationToken cancellationToken)
     {
         if (request.UpdateNextActionDto == null)
             throw new NullReferenceException(nameof(request.UpdateNextActionDto));

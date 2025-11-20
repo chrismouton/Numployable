@@ -17,7 +17,7 @@ public class NextActionService(IClient httpClient, ILocalStorageService localSto
     {
       Response<int>? response = new();
       CreateNextActionDto? nextActionDto = nextAction.ToNextAction(mapper);
-      BaseCommandResponse? apiResponse = await _client.NextActionPOSTAsync(nextActionDto);
+      BaseCommandResponse? apiResponse = await httpClient.NextActionPOSTAsync(nextActionDto);
       if (apiResponse.Success)
       {
         response.Data = apiResponse.Id;
@@ -38,13 +38,13 @@ public class NextActionService(IClient httpClient, ILocalStorageService localSto
 
   public async Task<NextActionViewModel> Get(int id)
   {
-    NextActionDto? nextActionDto = await _client.NextActionGETAsync(id);
+    NextActionDto? nextActionDto = await httpClient.NextActionGETAsync(id);
     return nextActionDto.ToNextAction(mapper);
   }
 
   public async Task<List<NextActionViewModel>> GetAll()
   {
-    ICollection<NextActionDto> nextActions = await _client.NextActionAllAsync();
+    ICollection<NextActionDto> nextActions = await httpClient.NextActionAllAsync();
     return (from item in nextActions
       select item.ToNextAction(mapper)).ToList();
   }
@@ -54,7 +54,7 @@ public class NextActionService(IClient httpClient, ILocalStorageService localSto
     try
     {
       UpdateNextActionDto? nextActionDto = nextAction.ToNextAction(mapper);
-      await _client.NextActionPUTAsync(id, nextActionDto);
+      await httpClient.NextActionPUTAsync(id, nextActionDto);
 
       return new Response<int>
       {

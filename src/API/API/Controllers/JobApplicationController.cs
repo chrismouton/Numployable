@@ -1,4 +1,4 @@
-using MediatR;
+using Mediator;
 using Microsoft.AspNetCore.Mvc;
 using Numployable.Application.DTOs.JobApplications;
 using Numployable.Application.Features.JobApplications.Requests.Commands;

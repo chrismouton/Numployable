@@ -1,3 +1,4 @@
+using Microsoft.OpenApi;
 using Numployable.API.Middleware;
 using Numployable.Application;
 using Numployable.Persistence;
@@ -16,6 +17,11 @@ public class Startup(IConfiguration configuration)
         {
             // Specify the OpenAPI version to use
             options.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi3_0;
+        });
+
+        services.AddSwaggerGen(options =>
+        {
+            options.SwaggerDoc("v1", new OpenApiInfo { Title = "Numployable API", Version = "v1" });
         });
 
         services.ConfigureApplicationServices();
@@ -46,10 +52,10 @@ public class Startup(IConfiguration configuration)
 
         app.UseAuthentication();
 
-        //app.UseSwagger();
-        //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Numployable.Api v1"));
+        app.UseSwagger();
+        app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Numployable.Api v1"));
 
-        //app.UseHttpsRedirection(); - Currently broken
+        app.UseHttpsRedirection();
 
         app.UseRouting();
 

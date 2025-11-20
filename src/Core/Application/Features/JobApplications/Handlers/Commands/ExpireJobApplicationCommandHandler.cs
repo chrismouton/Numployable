@@ -1,4 +1,4 @@
-using MediatR;
+using Mediator;
 using Numployable.Application.Features.JobApplications.Requests.Commands;
 using Numployable.Application.Persistence.Contracts;
 using Numployable.Application.Responses;
@@ -13,7 +13,7 @@ public class ExpireJobApplicationCommandHandler(
 {
     private readonly IJobApplicationRepository _jobApplicationRepository = jobApplicationRepository;
 
-    public async Task<BaseCommandResponse> Handle(ExpireJobApplicationCommand request,
+    public async ValueTask<BaseCommandResponse> Handle(ExpireJobApplicationCommand request,
         CancellationToken cancellationToken)
     {
         BaseCommandResponse response = new();

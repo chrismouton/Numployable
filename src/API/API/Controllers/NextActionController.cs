@@ -1,4 +1,4 @@
-using MediatR;
+using Mediator;
 using Microsoft.AspNetCore.Mvc;
 using Numployable.Application.DTOs.NextActions;
 using Numployable.Application.Features.NextActions.Requests.Commands;

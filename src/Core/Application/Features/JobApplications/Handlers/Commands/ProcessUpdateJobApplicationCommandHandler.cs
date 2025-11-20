@@ -1,4 +1,4 @@
-using MediatR;
+using Mediator;
 using Numployable.Application.Features.JobApplications.Requests.Commands;
 using Numployable.Application.Persistence.Contracts;
 using Numployable.Application.Responses;
@@ -15,7 +15,7 @@ public class ProcessUpdateJobApplicationCommandHandler(
 
     private readonly IProcessStatusRepository _processStatusRepository = processStatusRepository;
 
-    public async Task<BaseCommandResponse> Handle(ProcessUpdateJobApplicationCommand request,
+    public async ValueTask<BaseCommandResponse> Handle(ProcessUpdateJobApplicationCommand request,
         CancellationToken cancellationToken)
     {
         BaseCommandResponse response = new();

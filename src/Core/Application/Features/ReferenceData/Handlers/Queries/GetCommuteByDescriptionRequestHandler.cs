@@ -1,5 +1,5 @@
 using AutoMapper;
-using MediatR;
+using Mediator;
 using Numployable.Application.DTOs.ReferenceData;
 using Numployable.Application.Features.ReferenceData.Requests.Queries;
 using Numployable.Application.Persistence.Contracts;
@@ -10,7 +10,7 @@ namespace Numployable.Application.Features.ReferenceData.Handlers.Queries;
 public class GetCommuteByDescriptionRequestHandler(ICommuteRepository commuteRepository, IMapper mapper)
     : IRequestHandler<GetCommuteByDescriptionRequest, CommuteDto>
 {
-    public async Task<CommuteDto> Handle(GetCommuteByDescriptionRequest request, CancellationToken cancellationToken)
+    public async ValueTask<CommuteDto> Handle(GetCommuteByDescriptionRequest request, CancellationToken cancellationToken)
     {
         Commute? commute = await commuteRepository.GetByDescription(request.Description);
 
