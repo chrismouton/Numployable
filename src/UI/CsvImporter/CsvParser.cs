@@ -4,85 +4,203 @@ using Numployable.APIClient.Client;
 
 namespace Numployable.CsvImporter;
 
-internal class CsvParser(string filePath, string Url)
+internal class CsvParser(string filePath, IClient client)
 {
     public void Parse()
     {
         IEnumerable<ImportData> records = LoadRecords();
+        List<ImportData> failedRecords = new List<ImportData>();
 
-        foreach (ImportData record in records)
+        Parallel.ForEach(records, async record =>
         {
-            CreateJobApplicationDto jobApplication = new();
-
-            jobApplication.RoleType = null;
-            jobApplication.RoleName = record.RoleName;
-            jobApplication.CompanyName = record.Company;
-            jobApplication.ApplicationDate = record.ApplicationDate;
-            jobApplication.Status = null;
-            jobApplication.AdvertisedSalary = record.AdvertisedSalary;
-            jobApplication.Location = record.Location;
-            jobApplication.Commute = string.IsNullOrEmpty(record.Commute) ? null : GetCommute(record.Commute);
-            jobApplication.Notes = record.Notes;
-
-            if (record.NextAction is not null)
+            try
             {
-                CreateNextActionDto nextAction = new()
+                CreateJobApplicationDto jobApplication = new();
+
+                jobApplication.RoleType = (await GetRoleType(record.RoleType)).ToRoleType();
+                jobApplication.RoleName = record.RoleName;
+                jobApplication.CompanyName = record.Company;
+                jobApplication.ApplicationDate = record.ApplicationDate;
+
+                ProcessStatus processStatus = (await GetProcessStatus(record.Status)).ToProcessStatus();
+                Source source = (await GetSource(record.Status)).ToSource();
+                jobApplication.Status = (await GetStatus(record.Status)).ToStatus();
+
+                jobApplication.AdvertisedSalary = record.AdvertisedSalary;
+                jobApplication.Location = record.Location;
+                jobApplication.Commute = string.IsNullOrEmpty(record.Commute) ? null : (await GetCommute(record.Commute)).ToCommute();
+                jobApplication.Notes = record.Notes;
+
+                if (record.NextAction is not null)
                 {
-                    ActionDate = record.NextAction
-                };
+                    CreateNextActionDto nextAction = new()
+                    {
+                        ActionDate = record.NextAction
+                    };
+                } // if
+
+                await client.JobApplicationPOSTAsync(jobApplication);
             }
-        }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+                lock(failedRecords)
+                {
+                    failedRecords.Add(record);
+                } // lock
+            } // try/catch
+        });
     }
 
-    private RoleType GetRoleType(string roleType)
+    private async Task<RoleTypeDto> GetRoleType(string roleType)
     {
         switch (roleType)
         {
             case "Permanent":
-            case "Part Time":
             case "Contract":
-            case "Fixed-Term Contract":
+            case "Part Time":
             case "Volunteering":
+                return await client.RoletypeAsync(roleType);
+            case "Fixed-Term Contract":
+                return await client.RoletypeAsync("Fixed-term contract");
             case "Temporary Full-time":
-                //return client.GetRoleTypeByDescription(roleType);
+                return await client.RoletypeAsync("Temporary full-time");
                 break;
-        }
+        } // switch
 
-        return null;
+        return await Task.FromException<RoleTypeDto>(new ApplicationException("Unrecognized Role Type"));
     }
 
-    private Status GetStatus(string status, ref ProcessStatus processStatus)
+    private async Task<StatusDto> GetStatus(string status)
     {
+        StatusDto convertedStatus = await client.StatusAsync("Active");
+
         switch (status)
         {
             case "Applied":
-            case "Networking":
-            case "Initial Call":
-            case "Waiting Response":
-            case "Interviewing":
-            case "Offer Received":
-            case "Hired":
-            case "Rejected":
-            case "Expired":
-            case "Recruiter Contacted":
-            case "Application Retracted":
                 break;
+            case "Networking":
+                break;
+            case "Initial Call":
+                break;
+            case "Waiting Response":
+                break;
+            case "Interviewing":
+                break;
+            case "Offer Received":
+                break;
+            case "Hired":
+                convertedStatus = await client.StatusAsync("Closed");
+                break;
+            case "Rejected":
+                convertedStatus = await client.StatusAsync("Closed");
+                break;
+            case "Expired":
+                convertedStatus = await client.StatusAsync("Expired");
+                break;
+            case "Recruiter Contacted":
+                break;
+            case "Application Retracted":
+                convertedStatus = await client.StatusAsync("Closed");
+                break;
+            default:
+                return await Task.FromException<StatusDto>(new ApplicationException("Unrecognized Status Type"));
         }
 
-        return null;
+        return convertedStatus;
     }
 
-    private Commute GetCommute(string commute)
+    private async Task<ProcessStatusDto> GetProcessStatus(string status)
+    {
+        ProcessStatusDto processStatus = await client.ProcessstatusAsync("Applied");
+
+        switch (status)
+        {
+            case "Applied":
+                break;
+            case "Networking":
+                break;
+            case "Initial Call":
+                processStatus = await client.ProcessstatusAsync("Interviewing");
+                break;
+            case "Waiting Response":
+                processStatus = await client.ProcessstatusAsync("Waiting response");
+                break;
+            case "Interviewing":
+                processStatus = await client.ProcessstatusAsync("Interviewing");
+                break;
+            case "Offer Received":
+                processStatus = await client.ProcessstatusAsync("Offer received");
+                break;
+            case "Hired":
+                processStatus = await client.ProcessstatusAsync("Hired");
+                break;
+            case "Rejected":
+                processStatus = await client.ProcessstatusAsync("Rejected");
+                break;
+            case "Expired":
+                break;
+            case "Recruiter Contacted":
+                break;
+            case "Application Retracted":
+                processStatus = await client.ProcessstatusAsync("Retracted");
+                break;
+            default:
+                return await Task.FromException<ProcessStatusDto>(new ApplicationException("Unrecognized Process Status Type"));
+        }
+
+        return processStatus;
+    }
+
+    private async Task<SourceDto> GetSource(string status)
+    {
+        SourceDto source = await client.SourceAsync("Job board");
+
+        switch (status)
+        {
+            case "Applied":
+                break;
+            case "Networking":
+                source = await client.SourceAsync("Networking");
+                break;
+            case "Initial Call":
+                break;
+            case "Waiting Response":
+                break;
+            case "Interviewing":
+                break;
+            case "Offer Received":
+                break;
+            case "Hired":
+                break;
+            case "Rejected":
+                break;
+            case "Expired":
+                break;
+            case "Recruiter Contacted":
+                source = await client.SourceAsync("Recruiter contact");
+                break;
+            case "Application Retracted":
+                break;
+            default:
+                return await Task.FromException<SourceDto>(new ApplicationException("Unrecognized Source Type"));
+        }
+
+        return source;
+    }
+
+    private async Task<CommuteDto> GetCommute(string commute)
     {
         switch (commute)
         {
             case "Onsite":
+                return await client.CommuteAsync("On-site");
             case "Hybrid":
             case "Remote":
-                break;
+                return await client.CommuteAsync(commute);
         }
 
-        return null;
+        return await Task.FromException<CommuteDto>(new ApplicationException("Unrecognized Commute Type"));
     }
 
     private IEnumerable<ImportData> LoadRecords()
@@ -91,5 +209,13 @@ internal class CsvParser(string filePath, string Url)
         using CsvReader csvReader = new(reader, CultureInfo.InvariantCulture);
 
         return csvReader.GetRecords<ImportData>();
+    }
+
+    private void SaveRecords(IEnumerable<ImportData> records, string filePath)
+    {
+        using StreamWriter writer = new(filePath);
+        using CsvWriter csvWriter = new(writer, CultureInfo.InvariantCulture);
+
+        csvWriter.WriteRecords(records);
     }
 }
