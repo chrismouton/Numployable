@@ -11,20 +11,18 @@ namespace Numployable.API.Controllers;
 [ApiController]
 public class NextActionController(IMediator mediator) : ControllerBase
 {
-    private readonly IMediator _mediator = mediator;
-
     [HttpGet]
     public async Task<ActionResult<List<NextActionDto>>> Get()
     {
-        List<NextActionDto>? nextActions = await _mediator.Send(new GetNextActionListRequest());
+        List<NextActionDto>? nextActions = await mediator.Send(new GetNextActionListRequest());
 
         return Ok(nextActions);
     }
 
-    [HttpGet("{id}")]
+    [HttpGet("{id:int}")]
     public async Task<ActionResult<NextActionDto>> Get(int id)
     {
-        NextActionDto? nextAction = await _mediator.Send(new GetNextActionDetailRequest { Id = id });
+        NextActionDto? nextAction = await mediator.Send(new GetNextActionDetailRequest { Id = id });
 
         return Ok(nextAction);
     }
@@ -33,16 +31,16 @@ public class NextActionController(IMediator mediator) : ControllerBase
     public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateNextActionDto application)
     {
         CreateNextActionCommand? command = new() { CreateNextActionDto = application };
-        BaseCommandResponse? response = await _mediator.Send(command);
+        BaseCommandResponse? response = await mediator.Send(command);
 
         return Ok(response);
     }
 
-    [HttpPut("{id}")]
+    [HttpPut("{id:int}")]
     public async Task<ActionResult<BaseCommandResponse>> Put(int id, [FromBody] UpdateNextActionDto NextAction)
     {
         UpdateNextActionCommand? command = new() { Id = id, UpdateNextActionDto = NextAction };
-        BaseCommandResponse? response = await _mediator.Send(command);
+        BaseCommandResponse? response = await mediator.Send(command);
 
         return Ok(response);
     }

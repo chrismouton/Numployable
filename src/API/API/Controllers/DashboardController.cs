@@ -9,12 +9,10 @@ namespace Numployable.API.Controllers;
 [ApiController]
 public class DashboardController(IMediator mediator) : ControllerBase
 {
-    private readonly IMediator _mediator = mediator;
-
     [HttpGet]
     public async Task<ActionResult<DashboardDto>> Get()
     {
-        DashboardDto? dashboard = await _mediator.Send(new GetDashboardRequest());
+        DashboardDto? dashboard = await mediator.Send(new GetDashboardRequest());
 
         return Ok(dashboard);
     }
