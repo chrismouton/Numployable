@@ -8,7 +8,7 @@ using Numployable.Domain;
 namespace Numployable.Application.Features.JobApplications.Handlers.Queries;
 
 public class GetJobApplicationDetailRequestHandler(IJobApplicationRepository jobApplicationRepository)
-    : IRequestHandler<GetJobApplicationDetailRequest, JobApplicationDto>
+    : IQueryHandler<GetJobApplicationDetailRequest, JobApplicationDto>
 {
     public async ValueTask<JobApplicationDto> Handle(GetJobApplicationDetailRequest request,
         CancellationToken cancellationToken)

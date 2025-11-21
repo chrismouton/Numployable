@@ -10,7 +10,7 @@ namespace Numployable.Application.Features.ReferenceData.Handlers.Queries;
 public class GetNextActionTypeByDescriptionRequestHandler(
     INextActionTypeRepository nextActionTypeRepository,
     IMapper mapper)
-    : IRequestHandler<GetNextActionTypeByDescriptionRequest, NextActionTypeDto>
+    : IQueryHandler<GetNextActionTypeByDescriptionRequest, NextActionTypeDto>
 {
     public async ValueTask<NextActionTypeDto> Handle(GetNextActionTypeByDescriptionRequest request,
         CancellationToken cancellationToken)

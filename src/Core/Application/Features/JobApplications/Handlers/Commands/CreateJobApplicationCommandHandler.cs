@@ -10,19 +10,19 @@ using Numployable.Domain;
 namespace Numployable.Application.Features.JobApplications.Handlers.Commands;
 
 public class CreateJobApplicationCommandHandler(IJobApplicationRepository jobApplicationRepository)
-    : IRequestHandler<CreateJobApplicationCommand, BaseCommandResponse>
+    : ICommandHandler<CreateJobApplicationCommand, BaseCommandResponse>
 {
     public async ValueTask<BaseCommandResponse> Handle(CreateJobApplicationCommand request,
         CancellationToken cancellationToken)
     {
-        if (request.CreateJobApplicationDto == null)
+        if (request.CreateJobApplication == null)
             throw new ArgumentNullException(nameof(request));
 
         BaseCommandResponse response = new();
 
         CreateJobApplicationDtoValidator? validator = new();
         ValidationResult? validationResult =
-            await validator.ValidateAsync(request.CreateJobApplicationDto, cancellationToken);
+            await validator.ValidateAsync(request.CreateJobApplication, cancellationToken);
         if (!validationResult.IsValid)
         {
             response.Success = false;
@@ -32,7 +32,7 @@ public class CreateJobApplicationCommandHandler(IJobApplicationRepository jobApp
         else
         {
             JobApplication? jobApplication =
-                await jobApplicationRepository.Add(request.CreateJobApplicationDto.ToJobApplication());
+                await jobApplicationRepository.Add(request.CreateJobApplication.ToJobApplication());
 
             response.Success = true;
             response.Message = "Creation success";

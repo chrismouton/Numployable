@@ -16,7 +16,7 @@ public class Startup(IConfiguration configuration)
         services.AddOpenApi(options =>
         {
             // Specify the OpenAPI version to use
-            options.OpenApiVersion = Microsoft.OpenApi.OpenApiSpecVersion.OpenApi3_0;
+            options.OpenApiVersion = OpenApiSpecVersion.OpenApi3_0;
         });
 
         services.AddSwaggerGen(options =>
@@ -55,7 +55,7 @@ public class Startup(IConfiguration configuration)
         app.UseSwagger();
         app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Numployable.Api v1"));
 
-        app.UseHttpsRedirection();
+        //app.UseHttpsRedirection();
 
         app.UseRouting();
 

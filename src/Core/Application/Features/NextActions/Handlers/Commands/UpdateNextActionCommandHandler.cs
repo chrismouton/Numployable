@@ -2,7 +2,7 @@ using FluentValidation.Results;
 using Mediator;
 using Numployable.Application.DTOs.NextActions.Validators;
 using Numployable.Application.Exceptions;
-using Numployable.Application.Features.NextActions.Requests.Commands;
+using Numployable.Application.Features.NextActions.Requests.Command;
 using Numployable.Application.Mappings;
 using Numployable.Application.Persistence.Contracts;
 using Numployable.Application.Responses;
@@ -11,7 +11,7 @@ using Numployable.Domain;
 namespace Numployable.Application.Features.NextActions.Handlers.Commands;
 
 public class UpdateNextActionCommandHandler(INextActionRepository nextActionRepository)
-    : IRequestHandler<UpdateNextActionCommand, BaseCommandResponse>
+    : ICommandHandler<UpdateNextActionCommand, BaseCommandResponse>
 {
     public async ValueTask<BaseCommandResponse> Handle(UpdateNextActionCommand request, CancellationToken cancellationToken)
     {

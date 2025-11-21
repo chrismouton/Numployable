@@ -10,7 +10,7 @@ namespace Numployable.Application.Features.ReferenceData.Handlers.Queries;
 public class GetProcessStatusByDescriptionRequestHandler(
     IProcessStatusRepository processStatusRepository,
     IMapper mapper)
-    : IRequestHandler<GetProcessStatusByDescriptionRequest, ProcessStatusDto>
+    : IQueryHandler<GetProcessStatusByDescriptionRequest, ProcessStatusDto>
 {
     public async ValueTask<ProcessStatusDto> Handle(GetProcessStatusByDescriptionRequest request,
         CancellationToken cancellationToken)

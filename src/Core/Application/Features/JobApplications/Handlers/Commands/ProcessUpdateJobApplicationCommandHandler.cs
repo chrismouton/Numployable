@@ -9,7 +9,7 @@ namespace Numployable.Application.Features.JobApplications.Handlers.Commands;
 public class ProcessUpdateJobApplicationCommandHandler(
     IJobApplicationRepository jobApplicationRepository,
     IProcessStatusRepository processStatusRepository)
-    : IRequestHandler<ProcessUpdateJobApplicationCommand, BaseCommandResponse>
+    : ICommandHandler<ProcessUpdateJobApplicationCommand, BaseCommandResponse>
 {
     private readonly IJobApplicationRepository _jobApplicationRepository = jobApplicationRepository;
 

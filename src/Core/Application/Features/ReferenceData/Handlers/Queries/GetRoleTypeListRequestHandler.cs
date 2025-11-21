@@ -8,7 +8,7 @@ using Numployable.Domain;
 namespace Numployable.Application.Features.ReferenceData.Handlers.Queries;
 
 public class GetRoleTypeListRequestHandler(IRoleTypeRepository roleTypeRepository, IMapper mapper)
-    : IRequestHandler<GetRoleTypeListRequest, IEnumerable<RoleTypeDto>>
+    : IQueryHandler<GetRoleTypeListRequest, IEnumerable<RoleTypeDto>>
 {
     public async ValueTask<IEnumerable<RoleTypeDto>> Handle(GetRoleTypeListRequest request,
         CancellationToken cancellationToken)

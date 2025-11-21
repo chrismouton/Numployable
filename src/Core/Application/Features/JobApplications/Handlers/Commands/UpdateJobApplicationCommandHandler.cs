@@ -11,7 +11,7 @@ using Numployable.Domain;
 namespace Numployable.Application.Features.JobApplications.Handlers.Commands;
 
 public class UpdateJobApplicationCommandHandler(IJobApplicationRepository jobApplicationRepository)
-    : IRequestHandler<UpdateJobApplicationCommand, BaseCommandResponse>
+    : ICommandHandler<UpdateJobApplicationCommand, BaseCommandResponse>
 {
     public async ValueTask<BaseCommandResponse> Handle(UpdateJobApplicationCommand request,
         CancellationToken cancellationToken)
@@ -25,7 +25,7 @@ public class UpdateJobApplicationCommandHandler(IJobApplicationRepository jobApp
 
         UpdateJobApplicationDtoValidator validator = new(jobApplicationRepository);
         ValidationResult? validationResult =
-            await validator.ValidateAsync(request.UpdateJobApplicationDto, cancellationToken);
+            await validator.ValidateAsync(request.UpdateJobApplication, cancellationToken);
         if (!validationResult.IsValid)
         {
             response.Success = false;
@@ -34,7 +34,7 @@ public class UpdateJobApplicationCommandHandler(IJobApplicationRepository jobApp
         }
         else
         {
-            await jobApplicationRepository.Update(request.UpdateJobApplicationDto.ToJobApplication());
+            await jobApplicationRepository.Update(request.UpdateJobApplication.ToJobApplication());
 
             response.Success = true;
             response.Message = "Update successful";

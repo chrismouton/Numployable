@@ -3,6 +3,6 @@ using Numployable.Application.DTOs.ReferenceData;
 
 namespace Numployable.Application.Features.ReferenceData.Requests.Queries;
 
-public class GetCommuteListRequest : IRequest<List<CommuteDto>>
+public class GetCommuteListRequest : IQuery<List<CommuteDto>>
 {
 }

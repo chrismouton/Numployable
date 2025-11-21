@@ -8,7 +8,7 @@ using Numployable.Domain;
 namespace Numployable.Application.Features.ReferenceData.Handlers.Queries;
 
 public class GetCommuteListRequestHandler(ICommuteRepository commuteRepository, IMapper mapper)
-    : IRequestHandler<GetCommuteListRequest, IEnumerable<CommuteDto>>
+    : IQueryHandler<GetCommuteListRequest, IEnumerable<CommuteDto>>
 {
     public async ValueTask<IEnumerable<CommuteDto>> Handle(GetCommuteListRequest request,
         CancellationToken cancellationToken)

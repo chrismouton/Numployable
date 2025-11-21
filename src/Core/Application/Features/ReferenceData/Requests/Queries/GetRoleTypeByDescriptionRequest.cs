@@ -3,7 +3,8 @@ using Numployable.Application.DTOs.ReferenceData;
 
 namespace Numployable.Application.Features.ReferenceData.Requests.Queries;
 
-public class GetRoleTypeByDescriptionRequest : IRequest<RoleTypeDto>
+public class GetRoleTypeByDescriptionRequest(string description)
+    : IQuery<RoleTypeDto>
 {
-    public required string Description { get; set; }
+    public string Description { get; init; } = description;
 }

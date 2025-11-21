@@ -7,7 +7,7 @@ using Numployable.Application.Persistence.Contracts;
 namespace Numployable.Application.Features.Dashboard.Handlers.Queries;
 
 public class GetDashboardRequestHandler(IDashboardRepository dashboardRepository, IMapper mapper)
-    : IRequestHandler<GetDashboardRequest, DashboardDto>
+    : IQueryHandler<GetDashboardRequest, DashboardDto>
 {
     private readonly IDashboardRepository _dashboardRepository = dashboardRepository;
 

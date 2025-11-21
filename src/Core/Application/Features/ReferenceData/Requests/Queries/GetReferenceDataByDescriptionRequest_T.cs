@@ -2,7 +2,8 @@ using Mediator;
 
 namespace Numployable.Application.Features.ReferenceData.Requests.Queries;
 
-public class GetReferenceDataByDescriptionRequest<T> : IRequest<T>
+public abstract class GetReferenceDataByDescriptionRequest<T>(string description)
+    : IQuery<T>
 {
-    public required string Description { get; set; }
+    public string Description { get; init; } = description;
 }

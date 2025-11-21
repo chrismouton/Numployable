@@ -8,7 +8,7 @@ using Numployable.Domain;
 namespace Numployable.Application.Features.ReferenceData.Handlers.Queries;
 
 public class GetStatusListRequestHandler(IStatusRepository statusRepository, IMapper mapper)
-    : IRequestHandler<GetStatusListRequest, IEnumerable<StatusDto>>
+    : IQueryHandler<GetStatusListRequest, IEnumerable<StatusDto>>
 {
     public async ValueTask<IEnumerable<StatusDto>> Handle(GetStatusListRequest request, CancellationToken cancellationToken)
     {

@@ -9,7 +9,7 @@ namespace Numployable.Application.Features.JobApplications.Handlers.Commands;
 public class ExpireJobApplicationCommandHandler(
     IJobApplicationRepository jobApplicationRepository,
     IStatusRepository statusRepository)
-    : IRequestHandler<ExpireJobApplicationCommand, BaseCommandResponse>
+    : ICommandHandler<ExpireJobApplicationCommand, BaseCommandResponse>
 {
     private readonly IJobApplicationRepository _jobApplicationRepository = jobApplicationRepository;
 

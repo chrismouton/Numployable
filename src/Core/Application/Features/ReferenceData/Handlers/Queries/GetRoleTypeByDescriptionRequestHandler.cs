@@ -8,7 +8,7 @@ using Numployable.Domain;
 namespace Numployable.Application.Features.ReferenceData.Handlers.Queries;
 
 public class GetRoleTypeByDescriptionRequestHandler(IRoleTypeRepository roleTypeRepository, IMapper mapper)
-    : IRequestHandler<GetRoleTypeByDescriptionRequest, RoleTypeDto>
+    : IQueryHandler<GetRoleTypeByDescriptionRequest, RoleTypeDto>
 {
     public async ValueTask<RoleTypeDto> Handle(GetRoleTypeByDescriptionRequest request, CancellationToken cancellationToken)
     {

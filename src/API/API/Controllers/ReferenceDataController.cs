@@ -23,11 +23,7 @@ public class ReferenceDataController(IMediator mediator) : ControllerBase
     public async Task<ActionResult<ProcessStatusDto>> GetProcessStatusByDescription(string description)
     {
         ProcessStatusDto? processStatus = await mediator.Send(
-            new GetProcessStatusByDescriptionRequest
-            {
-                Description = description
-            }
-        );
+            new GetProcessStatusByDescriptionRequest(description));
 
         return Ok(processStatus);
     }
@@ -43,10 +39,7 @@ public class ReferenceDataController(IMediator mediator) : ControllerBase
     [HttpGet("commute/{description}")]
     public async Task<ActionResult<CommuteDto>> GetCommuteByDescription(string description)
     {
-        CommuteDto? commute = await mediator.Send(new GetCommuteByDescriptionRequest
-        {
-            Description = description
-        });
+        CommuteDto? commute = await mediator.Send(new GetCommuteByDescriptionRequest(description));
 
         return Ok(commute);
     }
@@ -62,10 +55,7 @@ public class ReferenceDataController(IMediator mediator) : ControllerBase
     [HttpGet("nextactiontype/{description}")]
     public async Task<ActionResult<NextActionTypeDto>> GetNextActionTypeByDescription(string description)
     {
-        NextActionTypeDto? nextActionType = await mediator.Send(new GetNextActionTypeByDescriptionRequest
-        {
-            Description = description
-        });
+        NextActionTypeDto? nextActionType = await mediator.Send(new GetNextActionTypeByDescriptionRequest(description));
 
         return Ok(nextActionType);
     }
@@ -83,10 +73,7 @@ public class ReferenceDataController(IMediator mediator) : ControllerBase
     [HttpGet("roletype/{description}")]
     public async Task<ActionResult<RoleTypeDto>> GetRoleTypeByDescription(string description)
     {
-        RoleTypeDto? roleType = await mediator.Send(new GetRoleTypeByDescriptionRequest
-        {
-            Description = description
-        });
+        RoleTypeDto? roleType = await mediator.Send(new GetRoleTypeByDescriptionRequest(description));
 
         return Ok(roleType);
     }
@@ -105,10 +92,7 @@ public class ReferenceDataController(IMediator mediator) : ControllerBase
     public async Task<ActionResult<SourceDto>> GetSourceByDescription(string description)
     {
         SourceDto? source = await mediator.Send(
-            new GetSourceByDescriptionRequest
-            {
-                Description = description
-            }
+            new GetSourceByDescriptionRequest(description)
         );
 
         return Ok(source);
@@ -127,10 +111,7 @@ public class ReferenceDataController(IMediator mediator) : ControllerBase
     [HttpGet("status/{description}")]
     public async Task<ActionResult<StatusDto>> GetStatusByDescription(string description)
     {
-        StatusDto? status = await mediator.Send(new GetStatusByDescriptionRequest
-        {
-            Description = description
-        });
+        StatusDto? status = await mediator.Send(new GetStatusByDescriptionRequest(description));
 
         return Ok(status);
     }

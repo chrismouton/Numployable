@@ -4,9 +4,10 @@ using Numployable.Application.Responses;
 
 namespace Numployable.Application.Features.JobApplications.Requests.Commands;
 
-public class UpdateJobApplicationCommand : IRequest<BaseCommandResponse>
+public class UpdateJobApplicationCommand(int id, UpdateJobApplicationDto jobApplication) 
+    : ICommand<BaseCommandResponse>
 {
-    public int Id { get; set; }
+    public int Id { get; init; } = id;
 
-    public UpdateJobApplicationDto? UpdateJobApplicationDto { get; set; }
+    public UpdateJobApplicationDto? UpdateJobApplication { get; init; } = jobApplication;
 }

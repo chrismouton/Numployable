@@ -488,3 +488,7 @@ out/
 
 # Ignore editor local config 
 .zed/
+
+# docker related
+.containers/
+.pgdata/

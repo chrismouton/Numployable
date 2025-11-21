@@ -1,7 +1,7 @@
 using Mediator;
 using Microsoft.AspNetCore.Mvc;
 using Numployable.Application.DTOs.NextActions;
-using Numployable.Application.Features.NextActions.Requests.Commands;
+using Numployable.Application.Features.NextActions.Requests.Command;
 using Numployable.Application.Features.NextActions.Requests.Queries;
 using Numployable.Application.Responses;
 

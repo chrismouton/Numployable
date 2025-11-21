@@ -8,7 +8,7 @@ using Numployable.Domain;
 namespace Numployable.Application.Features.ReferenceData.Handlers.Queries;
 
 public class GetSourceByDescriptionRequestHandler(ISourceRepository sourceRepository, IMapper mapper)
-    : IRequestHandler<GetSourceByDescriptionRequest, SourceDto>
+    : IQueryHandler<GetSourceByDescriptionRequest, SourceDto>
 {
     public async ValueTask<SourceDto> Handle(GetSourceByDescriptionRequest request, CancellationToken cancellationToken)
     {

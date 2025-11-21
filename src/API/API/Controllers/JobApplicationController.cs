@@ -22,7 +22,7 @@ public class JobApplicationController(IMediator mediator) : ControllerBase
     [HttpGet("{id:int}")]
     public async Task<ActionResult<JobApplicationDto>> Get(int id)
     {
-        JobApplicationDto? jobApplication = await mediator.Send(new GetJobApplicationDetailRequest { Id = id });
+        JobApplicationDto? jobApplication = await mediator.Send(new GetJobApplicationDetailRequest(id));
 
         return Ok(jobApplication);
     }
@@ -30,7 +30,7 @@ public class JobApplicationController(IMediator mediator) : ControllerBase
     [HttpPost]
     public async Task<ActionResult<BaseCommandResponse>> Post([FromBody] CreateJobApplicationDto jobApplicationDto)
     {
-        CreateJobApplicationCommand? command = new() { CreateJobApplicationDto = jobApplicationDto };
+        CreateJobApplicationCommand command = new(jobApplicationDto);
         BaseCommandResponse? response = await mediator.Send(command);
 
         return Ok(response);
@@ -39,7 +39,7 @@ public class JobApplicationController(IMediator mediator) : ControllerBase
     [HttpPut("{id:int}")]
     public async Task<ActionResult> Put(int id, [FromBody] UpdateJobApplicationDto jobApplicationDto)
     {
-        UpdateJobApplicationCommand? command = new() { Id = id, UpdateJobApplicationDto = jobApplicationDto };
+        UpdateJobApplicationCommand command = new(id, jobApplicationDto);
         await mediator.Send(command);
 
         return NoContent();
@@ -48,7 +48,7 @@ public class JobApplicationController(IMediator mediator) : ControllerBase
     [HttpPut("expire/{id:int}")]
     public async Task<ActionResult<BaseCommandResponse>> ExpireJobApplication(int id)
     {
-        ExpireJobApplicationCommand? command = new() { Id = id };
+        ExpireJobApplicationCommand command = new(id);
         BaseCommandResponse? response = await mediator.Send(command);
 
         return Ok(response);
@@ -58,11 +58,7 @@ public class JobApplicationController(IMediator mediator) : ControllerBase
     public async Task<ActionResult<BaseCommandResponse>> ProcessUpdateJobApplication(int jobApplicationId,
         int processStatusId)
     {
-        ProcessUpdateJobApplicationCommand? command = new()
-        {
-            Id = jobApplicationId,
-            ProcessStatusId = processStatusId
-        };
+        ProcessUpdateJobApplicationCommand command = new(jobApplicationId, processStatusId);
 
         BaseCommandResponse? response = await mediator.Send(command);
 
@@ -72,7 +68,7 @@ public class JobApplicationController(IMediator mediator) : ControllerBase
     [HttpPut("reject/{id:int}")]
     public async Task<ActionResult<BaseCommandResponse>> RejectJobApplication(int id)
     {
-        RejectJobApplicationCommand? command = new() { Id = id };
+        RejectJobApplicationCommand command = new(id);
         BaseCommandResponse? response = await mediator.Send(command);
 
         return Ok(response);

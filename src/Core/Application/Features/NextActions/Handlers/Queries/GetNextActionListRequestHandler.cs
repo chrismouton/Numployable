@@ -8,7 +8,7 @@ using Numployable.Domain;
 namespace Numployable.Application.Features.NextActions.Handlers.Queries;
 
 public class GetNextActionListRequestHandler(INextActionRepository nextActionRepository)
-    : IRequestHandler<GetNextActionListRequest, IEnumerable<NextActionDto>>
+    : IQueryHandler<GetNextActionListRequest, IEnumerable<NextActionDto>>
 {
     public async ValueTask<IEnumerable<NextActionDto>> Handle(GetNextActionListRequest request,
         CancellationToken cancellationToken)
