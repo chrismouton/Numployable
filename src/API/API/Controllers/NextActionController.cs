@@ -12,9 +12,9 @@ namespace Numployable.API.Controllers;
 public class NextActionController(IMediator mediator) : ControllerBase
 {
     [HttpGet]
-    public async Task<ActionResult<List<NextActionDto>>> Get()
+    public async Task<ActionResult<IEnumerable<NextActionDto>>> Get()
     {
-        List<NextActionDto>? nextActions = await mediator.Send(new GetNextActionListRequest());
+        IEnumerable<NextActionDto>? nextActions = await mediator.Send(new GetNextActionListRequest());
 
         return Ok(nextActions);
     }

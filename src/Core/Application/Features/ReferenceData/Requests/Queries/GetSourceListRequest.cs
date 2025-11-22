@@ -3,6 +3,6 @@ using Numployable.Application.DTOs.ReferenceData;
 
 namespace Numployable.Application.Features.ReferenceData.Requests.Queries;
 
-public class GetSourceListRequest : IQuery<List<SourceDto>>
+public class GetSourceListRequest : IQuery<IEnumerable<SourceDto>>
 {
 }

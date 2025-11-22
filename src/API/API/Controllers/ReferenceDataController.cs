@@ -10,9 +10,9 @@ namespace Numployable.API.Controllers;
 public class ReferenceDataController(IMediator mediator) : ControllerBase
 {
     [HttpGet("processstatus")]
-    public async Task<ActionResult<List<ProcessStatusDto>>> GetProcessStatusList()
+    public async Task<ActionResult<IEnumerable<ProcessStatusDto>>> GetProcessStatusList()
     {
-        List<ProcessStatusDto>? processStatusList = await mediator.Send(
+        IEnumerable<ProcessStatusDto>? processStatusList = await mediator.Send(
             new GetProcessStatusListRequest()
         );
 
@@ -29,9 +29,9 @@ public class ReferenceDataController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet("commute")]
-    public async Task<ActionResult<List<CommuteDto>>> GetCommuteList()
+    public async Task<ActionResult<IEnumerable<CommuteDto>>> GetCommuteList()
     {
-        List<CommuteDto>? commuteList = await mediator.Send(new GetCommuteListRequest());
+        IEnumerable<CommuteDto>? commuteList = await mediator.Send(new GetCommuteListRequest());
 
         return Ok(commuteList);
     }
@@ -45,9 +45,9 @@ public class ReferenceDataController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet("nextactiontype")]
-    public async Task<ActionResult<List<NextActionTypeDto>>> GetNextActionTypeList()
+    public async Task<ActionResult<IEnumerable<NextActionTypeDto>>> GetNextActionTypeList()
     {
-        List<NextActionTypeDto>? nextActionTypeList = await mediator.Send(new GetNextActionTypeListRequest());
+        IEnumerable<NextActionTypeDto>? nextActionTypeList = await mediator.Send(new GetNextActionTypeListRequest());
 
         return Ok(nextActionTypeList);
     }
@@ -61,9 +61,9 @@ public class ReferenceDataController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet("roletype")]
-    public async Task<ActionResult<List<RoleTypeDto>>> GetRoleTypeList()
+    public async Task<ActionResult<IEnumerable<RoleTypeDto>>> GetRoleTypeList()
     {
-        List<RoleTypeDto>? roleTypeList = await mediator.Send(
+        IEnumerable<RoleTypeDto>? roleTypeList = await mediator.Send(
             new GetRoleTypeListRequest()
         );
 
@@ -79,9 +79,9 @@ public class ReferenceDataController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet("source")]
-    public async Task<ActionResult<List<SourceDto>>> GetSourceList()
+    public async Task<ActionResult<IEnumerable<SourceDto>>> GetSourceList()
     {
-        List<SourceDto>? sourceList = await mediator.Send(
+        IEnumerable<SourceDto>? sourceList = await mediator.Send(
             new GetSourceListRequest()
         );
 
@@ -99,9 +99,9 @@ public class ReferenceDataController(IMediator mediator) : ControllerBase
     }
 
     [HttpGet("status")]
-    public async Task<ActionResult<List<StatusDto>>> GetStatusList()
+    public async Task<ActionResult<IEnumerable<StatusDto>>> GetStatusList()
     {
-        List<StatusDto>? statusList = await mediator.Send(
+        IEnumerable<StatusDto>? statusList = await mediator.Send(
             new GetStatusListRequest()
         );
 
