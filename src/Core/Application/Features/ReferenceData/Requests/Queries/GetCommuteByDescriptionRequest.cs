@@ -1,9 +1,10 @@
-using MediatR;
+using Mediator;
 using Numployable.Application.DTOs.ReferenceData;
 
 namespace Numployable.Application.Features.ReferenceData.Requests.Queries;
 
-public class GetCommuteByDescriptionRequest : IRequest<CommuteDto>
+public class GetCommuteByDescriptionRequest(string description)
+    : IQuery<CommuteDto>
 {
-    public required string Description { get; set; }
+    public string Description { get; init; } = description;
 }

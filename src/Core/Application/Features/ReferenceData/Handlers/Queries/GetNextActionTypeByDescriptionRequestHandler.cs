@@ -1,5 +1,5 @@
 using AutoMapper;
-using MediatR;
+using Mediator;
 using Numployable.Application.DTOs.ReferenceData;
 using Numployable.Application.Features.ReferenceData.Requests.Queries;
 using Numployable.Application.Persistence.Contracts;
@@ -10,9 +10,9 @@ namespace Numployable.Application.Features.ReferenceData.Handlers.Queries;
 public class GetNextActionTypeByDescriptionRequestHandler(
     INextActionTypeRepository nextActionTypeRepository,
     IMapper mapper)
-    : IRequestHandler<GetNextActionTypeByDescriptionRequest, NextActionTypeDto>
+    : IQueryHandler<GetNextActionTypeByDescriptionRequest, NextActionTypeDto>
 {
-    public async Task<NextActionTypeDto> Handle(GetNextActionTypeByDescriptionRequest request,
+    public async ValueTask<NextActionTypeDto> Handle(GetNextActionTypeByDescriptionRequest request,
         CancellationToken cancellationToken)
     {
         NextActionType? nextActionType = await nextActionTypeRepository.GetByDescription(request.Description);

@@ -11,7 +11,7 @@ public class ProcessStatusService(IMapper mapper, IClient httpClient, ILocalStor
 {
   public async Task<List<ReferenceDataViewModel>> GetAll()
   {
-    ICollection<ProcessStatusDto>? processStatusList = await _client.ProcessstatusAllAsync();
+    ICollection<ProcessStatusDto>? processStatusList = await httpClient.ProcessstatusAllAsync();
     return mapper.Map<List<ReferenceDataViewModel>>(processStatusList);
   }
 }

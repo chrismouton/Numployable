@@ -1,8 +1,8 @@
-using MediatR;
+using Mediator;
 using Numployable.Application.DTOs.ReferenceData;
 
 namespace Numployable.Application.Features.ReferenceData.Requests.Queries;
 
-public class GetNextActionTypeListRequest : IRequest<List<NextActionTypeDto>>
+public class GetNextActionTypeListRequest : IQuery<IEnumerable<NextActionTypeDto>>
 {
 }

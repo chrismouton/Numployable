@@ -11,7 +11,7 @@ public class DashboardService(IMapper mapper, IClient httpClient, ILocalStorageS
 {
   public async Task<DashboardViewModel> Get()
   {
-    DashboardDto? dashboardDto = await _client.DashboardAsync();
+    DashboardDto? dashboardDto = await httpClient.DashboardAsync();
     return mapper.Map<DashboardViewModel>(dashboardDto);
   }
 }

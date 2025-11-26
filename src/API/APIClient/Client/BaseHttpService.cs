@@ -5,11 +5,7 @@ namespace Numployable.APIClient.Client;
 
 public class BaseHttpService(IClient client, ILocalStorageService localStorage)
 {
-    protected readonly ILocalStorageService _localStorage = localStorage;
-
-    protected IClient _client = client;
-
-    protected Response<Guid> ConvertApiExceptions<Guid>(ApiException exception)
+    protected static Response<Guid> ConvertApiExceptions<Guid>(ApiException exception)
     {
         if (exception.StatusCode == 400)
             return new Response<Guid>
@@ -35,8 +31,8 @@ public class BaseHttpService(IClient client, ILocalStorageService localStorage)
 
     protected void AddBearerToken()
     {
-        if (_localStorage.Exists("token"))
-            _client.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",
-                _localStorage.GetStorageValue<string>("token"));
+        if (localStorage.Exists("token"))
+            client.HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",
+                localStorage.GetStorageValue<string>("token"));
     }
 }

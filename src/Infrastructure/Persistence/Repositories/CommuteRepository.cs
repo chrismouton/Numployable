@@ -7,16 +7,16 @@ namespace Numployable.Persistence.Repositories;
 
 public class CommuteRepository(NumployableDbContext dbContext, IMapper mapper) : ICommuteRepository
 {
-    public async Task<Commute> Get(int id)
+    public async Task<Commute?> Get(int id)
     {
-        Commute entity = await dbContext.Commute.FindAsync(id);
+        Commute? entity = await dbContext.Commute.FindAsync(id);
 
         return entity;
     }
 
     public async Task<bool> Exists(int id)
     {
-        Commute entity = await Get(id);
+        Commute? entity = await Get(id);
 
         return entity != null;
     }
@@ -31,13 +31,13 @@ public class CommuteRepository(NumployableDbContext dbContext, IMapper mapper) :
         return list;
     }
 
-    public async Task<Commute> GetByDescription(string description)
+    public Task<Commute?> GetByDescription(string description)
     {
-        Commute entity = dbContext
-            .Commute.FromSql($"SELECT \"Id\", \"Description\" FROM public.\"Commute\"")
-            .Where(e => e.Description == description)
-            .FirstOrDefault();
+        Commute? entity = dbContext
+            .Commute
+            .FromSql($"SELECT \"Id\", \"Description\" FROM public.\"Commute\"")
+            .FirstOrDefault(e => e.Description == description);
 
-        return entity;
+        return Task.FromResult(entity);
     }
 }

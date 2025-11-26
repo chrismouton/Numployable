@@ -7,5 +7,5 @@ public partial interface IClient
 
 public partial class Client : IClient
 {
-    public HttpClient HttpClient => _httpClient;
+    public HttpClient HttpClient { get; }
 }

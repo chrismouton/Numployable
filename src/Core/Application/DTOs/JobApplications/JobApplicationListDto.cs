@@ -4,15 +4,15 @@ namespace Numployable.Application.DTOs.JobApplications;
 
 public class JobApplicationListDto : BaseDto
 {
-    public required string RoleName { get; set; }
+    public required string RoleName { get; init; }
 
-    public string? CompanyName { get; set; }
+    public string? CompanyName { get; init; }
 
-    public required RoleType RoleType { get; set; }
+    public required RoleType RoleType { get; init; }
 
-    public required DateTime ApplicationDate { get; set; }
+    public required DateTime ApplicationDate { get; init; }
 
-    public required Status Status { get; set; }
+    public required Status Status { get; init; }
 
-    public required ProcessStatus ProcessStatus { get; set; }
+    public required ProcessStatus ProcessStatus { get; init; }
 }

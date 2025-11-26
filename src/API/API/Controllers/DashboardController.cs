@@ -1,4 +1,4 @@
-using MediatR;
+using Mediator;
 using Microsoft.AspNetCore.Mvc;
 using Numployable.Application.DTOs.Dashboard;
 using Numployable.Application.Features.Dashboard.Requests.Queries;

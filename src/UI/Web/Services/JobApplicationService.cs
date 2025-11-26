@@ -17,7 +17,7 @@ public class JobApplicationService(IClient httpClient, ILocalStorageService loca
     {
       Response<int>? response = new();
       CreateJobApplicationDto? jobApplicationDto = jobApplication.ToJobApplication();
-      BaseCommandResponse? apiResponse = await _client.JobApplicationPOSTAsync(jobApplicationDto);
+      BaseCommandResponse? apiResponse = await httpClient.JobApplicationPOSTAsync(jobApplicationDto);
       if (apiResponse.Success)
       {
         response.Data = apiResponse.Id;
@@ -40,7 +40,7 @@ public class JobApplicationService(IClient httpClient, ILocalStorageService loca
   {
     try
     {
-      await _client.ExpireAsync(id);
+      await httpClient.ExpireAsync(id);
 
       return new Response<int>
       {
@@ -55,13 +55,13 @@ public class JobApplicationService(IClient httpClient, ILocalStorageService loca
 
   public async Task<JobApplicationViewModel> Get(int id)
   {
-    JobApplicationDto? jobApplicationDto = await _client.JobApplicationGETAsync(id);
+    JobApplicationDto? jobApplicationDto = await httpClient.JobApplicationGETAsync(id);
     return jobApplicationDto.ToJobApplication(mapper);
   }
 
   public async Task<List<JobApplicationViewModel>> GetAll()
   {
-    ICollection<JobApplicationListDto> jobApplicationDtos = await _client.JobApplicationAllAsync();
+    ICollection<JobApplicationListDto> jobApplicationDtos = await httpClient.JobApplicationAllAsync();
     return (from item in jobApplicationDtos
       select item.ToJobApplication(mapper)).ToList();
   }
@@ -70,7 +70,7 @@ public class JobApplicationService(IClient httpClient, ILocalStorageService loca
   {
     try
     {
-      await _client.ProcessupdateAsync(id, processStatus.Id);
+      await httpClient.ProcessupdateAsync(id, processStatus.Id);
 
       return new Response<int>
       {
@@ -87,7 +87,7 @@ public class JobApplicationService(IClient httpClient, ILocalStorageService loca
   {
     try
     {
-      await _client.RejectAsync(id);
+      await httpClient.RejectAsync(id);
 
       return new Response<int>
       {
@@ -105,7 +105,7 @@ public class JobApplicationService(IClient httpClient, ILocalStorageService loca
     try
     {
       UpdateJobApplicationDto? jobApplicationDto = jobApplication.ToJobApplication(mapper);
-      await _client.JobApplicationPUTAsync(id, jobApplicationDto);
+      await httpClient.JobApplicationPUTAsync(id, jobApplicationDto);
 
       return new Response<int>
       {

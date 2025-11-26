@@ -245,14 +245,13 @@ namespace Numployable.APIClient.Client
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "14.0.8.0 (NJsonSchema v11.0.1.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class Client : IClient
     {
-        private System.Net.Http.HttpClient _httpClient;
         private static System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(CreateSerializerSettings, true);
 
     #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public Client(System.Net.Http.HttpClient httpClient)
     #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         {
-            _httpClient = httpClient;
+            HttpClient = httpClient;
         }
 
         private static Newtonsoft.Json.JsonSerializerSettings CreateSerializerSettings()
@@ -282,7 +281,7 @@ namespace Numployable.APIClient.Client
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<DashboardDto> DashboardAsync(System.Threading.CancellationToken cancellationToken)
         {
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -360,7 +359,7 @@ namespace Numployable.APIClient.Client
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<JobApplicationListDto>> JobApplicationAllAsync(System.Threading.CancellationToken cancellationToken)
         {
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -438,7 +437,7 @@ namespace Numployable.APIClient.Client
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<BaseCommandResponse> JobApplicationPOSTAsync(CreateJobApplicationDto body, System.Threading.CancellationToken cancellationToken)
         {
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -523,7 +522,7 @@ namespace Numployable.APIClient.Client
             if (id == null)
                 throw new System.ArgumentNullException("id");
 
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -605,7 +604,7 @@ namespace Numployable.APIClient.Client
             if (id == null)
                 throw new System.ArgumentNullException("id");
 
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -685,7 +684,7 @@ namespace Numployable.APIClient.Client
             if (id == null)
                 throw new System.ArgumentNullException("id");
 
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -771,7 +770,7 @@ namespace Numployable.APIClient.Client
             if (processStatusId == null)
                 throw new System.ArgumentNullException("processStatusId");
 
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -856,7 +855,7 @@ namespace Numployable.APIClient.Client
             if (id == null)
                 throw new System.ArgumentNullException("id");
 
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -936,7 +935,7 @@ namespace Numployable.APIClient.Client
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<NextActionDto>> NextActionAllAsync(System.Threading.CancellationToken cancellationToken)
         {
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -1014,7 +1013,7 @@ namespace Numployable.APIClient.Client
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<BaseCommandResponse> NextActionPOSTAsync(CreateNextActionDto body, System.Threading.CancellationToken cancellationToken)
         {
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -1099,7 +1098,7 @@ namespace Numployable.APIClient.Client
             if (id == null)
                 throw new System.ArgumentNullException("id");
 
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -1181,7 +1180,7 @@ namespace Numployable.APIClient.Client
             if (id == null)
                 throw new System.ArgumentNullException("id");
 
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -1264,7 +1263,7 @@ namespace Numployable.APIClient.Client
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ProcessStatusDto>> ProcessstatusAllAsync(System.Threading.CancellationToken cancellationToken)
         {
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -1345,7 +1344,7 @@ namespace Numployable.APIClient.Client
             if (description == null)
                 throw new System.ArgumentNullException("description");
 
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -1424,7 +1423,7 @@ namespace Numployable.APIClient.Client
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<CommuteDto>> CommuteAllAsync(System.Threading.CancellationToken cancellationToken)
         {
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -1505,7 +1504,7 @@ namespace Numployable.APIClient.Client
             if (description == null)
                 throw new System.ArgumentNullException("description");
 
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -1584,7 +1583,7 @@ namespace Numployable.APIClient.Client
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<NextActionTypeDto>> NextactiontypeAllAsync(System.Threading.CancellationToken cancellationToken)
         {
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -1665,7 +1664,7 @@ namespace Numployable.APIClient.Client
             if (description == null)
                 throw new System.ArgumentNullException("description");
 
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -1744,7 +1743,7 @@ namespace Numployable.APIClient.Client
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<RoleTypeDto>> RoletypeAllAsync(System.Threading.CancellationToken cancellationToken)
         {
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -1825,7 +1824,7 @@ namespace Numployable.APIClient.Client
             if (description == null)
                 throw new System.ArgumentNullException("description");
 
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -1904,7 +1903,7 @@ namespace Numployable.APIClient.Client
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<SourceDto>> SourceAllAsync(System.Threading.CancellationToken cancellationToken)
         {
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -1985,7 +1984,7 @@ namespace Numployable.APIClient.Client
             if (description == null)
                 throw new System.ArgumentNullException("description");
 
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -2064,7 +2063,7 @@ namespace Numployable.APIClient.Client
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<StatusDto>> StatusAllAsync(System.Threading.CancellationToken cancellationToken)
         {
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {
@@ -2145,7 +2144,7 @@ namespace Numployable.APIClient.Client
             if (description == null)
                 throw new System.ArgumentNullException("description");
 
-            var client_ = _httpClient;
+            var client_ = HttpClient;
             var disposeClient_ = false;
             try
             {

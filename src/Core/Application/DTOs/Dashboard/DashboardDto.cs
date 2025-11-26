@@ -2,5 +2,5 @@ namespace Numployable.Application.DTOs.Dashboard;
 
 public class DashboardDto
 {
-    public int TotalCount { get; set; }
+    public int TotalCount { get; init; }
 }

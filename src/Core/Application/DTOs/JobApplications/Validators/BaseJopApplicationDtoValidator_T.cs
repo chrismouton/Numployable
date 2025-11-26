@@ -6,7 +6,7 @@ namespace Numployable.Application.DTOs.JobApplications.Validators;
 public abstract class BaseJobApplicationDtoValidator<T> : AbstractValidator<T>
     where T : BaseDto
 {
-    public BaseJobApplicationDtoValidator(IJobApplicationRepository repository)
+    protected BaseJobApplicationDtoValidator(IJobApplicationRepository repository)
     {
         RuleFor(p => p.Id)
             .GreaterThan(0)

@@ -4,13 +4,13 @@ namespace Numployable.Application.DTOs.JobApplications;
 
 public class CreateJobApplicationDto : JobApplicationListDto
 {
-    public Source? Source { get; set; }
+    public Source? Source { get; init; }
 
-    public string? AdvertisedSalary { get; set; }
+    public string? AdvertisedSalary { get; init; }
 
-    public string? Location { get; set; }
+    public string? Location { get; init; }
 
-    public Commute? Commute { get; set; }
+    public Commute? Commute { get; init; }
 
-    public string? Notes { get; set; }
+    public string? Notes { get; init; }
 }

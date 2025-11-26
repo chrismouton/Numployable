@@ -6,10 +6,15 @@ services:
       - POSTGRES_DB=numployable
       - POSTGRES_USER=numployable
       - POSTGRES_PASSWORD=password1!
+      - PGDATA=/var/lib/postgresql/data/db-files/
     volumes:
-      - ./.containers/numployable-db:/var/lib/postgresql/data
+      - ./.pgdata/database:/var/lib/postgresql/data
+    expose:
+      - 5432
     ports:
       - 5432:5432
+    networks:
+      - numployable-network
 
   numployable.api:
     image: ${DOCKER_REGISTRY-}numployable.api
@@ -17,6 +22,8 @@ services:
     build:
       context: ../src
       dockerfile: ../src/API/API/Dockerfile
+    expose:
+      - 5093
     ports:
       - "5093:8080"
 
@@ -26,6 +33,11 @@ services:
     build:
       context: ../src
       dockerfile: ../src/UI/Web/Dockerfile
+    expose:
+      - 5055
     ports:
       - "5055:8080"
 
+networks:
+  numployable-network:
+    driver: bridge

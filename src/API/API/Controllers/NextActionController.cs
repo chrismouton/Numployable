@@ -1,7 +1,7 @@
-using MediatR;
+using Mediator;
 using Microsoft.AspNetCore.Mvc;
 using Numployable.Application.DTOs.NextActions;
-using Numployable.Application.Features.NextActions.Requests.Commands;
+using Numployable.Application.Features.NextActions.Requests.Command;
 using Numployable.Application.Features.NextActions.Requests.Queries;
 using Numployable.Application.Responses;
 
@@ -12,9 +12,9 @@ namespace Numployable.API.Controllers;
 public class NextActionController(IMediator mediator) : ControllerBase
 {
     [HttpGet]
-    public async Task<ActionResult<List<NextActionDto>>> Get()
+    public async Task<ActionResult<IEnumerable<NextActionDto>>> Get()
     {
-        List<NextActionDto>? nextActions = await mediator.Send(new GetNextActionListRequest());
+        IEnumerable<NextActionDto>? nextActions = await mediator.Send(new GetNextActionListRequest());
 
         return Ok(nextActions);
     }
